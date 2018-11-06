@@ -1,0 +1,29 @@
+.App {
+  background-color: #85898a; /* KU Signature Grey */
+  min-height: 100vh;
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.App-header {
+  background-color: #0051ba; /* KU Blue */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  color: white;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  color: #e8000d; /* KU Crimson */
+  font-size: 2.75rem;
+}
+
+a:hover {
+  color: #ffc82d; /* KU Jayhawk Yellow */
+}
