@@ -8,6 +8,26 @@
 
 `npm i`
 
+## Color Palette
+
+*KU Blue* - #0051ba
+*KU Crimson* - #e8000d
+*KU Jayhawk Yellow* - #ffc82d
+*KU Signature Grey* - #85898a
+
+## Secondary Color Palette
+
+*Night* - #003459
+*Lake* - #2767ff
+*Sky* - #73cbf2
+*Fog* - #8e9fbc
+*Steam* - #dde5ed
+*Brick* - #971b2f
+*Fire* - #ff3042
+*Wheat* - #f2a900
+*Terra Cotta* - #c66e4e
+*Limestone* - #d7d2cb
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
