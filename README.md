@@ -3,7 +3,9 @@
 ## Install Locally
 
 `git clone https://github.com/JSavage42/questionair.git`
+
 `cd questionair`
+
 `npm i`
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
