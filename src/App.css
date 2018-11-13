@@ -1,13 +1,11 @@
 .App {
-  background-color: #85898a; /* KU Signature Grey */
+  background-color: #fff;
   min-height: 100vh;
-  text-align: center;
-  width: 80%;
-  margin: 0 auto;
+  min-width: 100vw;
 }
 
 .App-header {
-  background-color: #0051ba; /* KU Blue */
+  background-color: var(--ku-blue); 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,15 +13,22 @@
   color: white;
 }
 
+main {
+  padding: 1rem;
+}
+
 h1 {
   font-size: 3rem;
 }
 
+h2, h3, h4, h5, h6 {
+  color: var(--ku-crimson);
+}
+
 h2 {
-  color: #e8000d; /* KU Crimson */
   font-size: 2.75rem;
 }
 
 a:hover {
-  color: #ffc82d; /* KU Jayhawk Yellow */
+  color: var(--ku-jayhawk-yellow);
 }

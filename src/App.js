@@ -8,8 +8,14 @@ class App extends Component {
         <header className="App-header">
           <h1>Question Air</h1>
         </header>
-        <h2>Test H2</h2>
-        <a href="#" title="Test Link">Test Link</a>
+        <main>
+          <section>
+            <article>
+              <h2>Test H2</h2>
+              <a href="#" title="Test Link">Test Link</a>
+            </article>
+          </section>
+        </main>
       </div>
     );
   }
