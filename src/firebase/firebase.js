@@ -1,6 +1,5 @@
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 
- // Initialize Firebase
 const config = {
   apiKey: "AIzaSyC6bP04YvBrK70SLjBroGnSMmwOJ42rfaU",
   authDomain: "question-air-test.firebaseapp.com",
@@ -10,7 +9,4 @@ const config = {
   messagingSenderId: "1093848224065"
 };
 firebase.initializeApp(config);
-
-const database = firebase.database();
-
-export { firebase, database as default };
+export default firebase;

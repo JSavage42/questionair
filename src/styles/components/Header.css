@@ -1,0 +1,41 @@
+header {
+  align-items: center;
+  background-color: var(--ku-signature-grey);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+h1 {
+  color: var(--ku-crimson);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+}
+
+nav ul>li {
+  display: inline-block;
+  margin: 1rem 1rem 0 1rem;
+}
+
+nav ul>li a {
+  background-color: var(--ku-blue);
+  font-weight: 700;
+  padding: 1rem 1rem 0 1rem;
+  text-decoration: none;
+}
+
+nav ul>li a:hover {
+  background-color: #fff;
+  color: var(--ku-blue);
+  text-decoration: none;
+}
