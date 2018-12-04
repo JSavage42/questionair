@@ -18,12 +18,13 @@ class CreateTestBank extends React.Component{
   handleOnSubmit(e) {
     e.preventDefault();
     console.log(this.state);
-    const questionRef = firebase.database().ref(this.state.testBankId);
+    const questionRef = firebase.database().ref(`tests/${this.state.testBankId}`);
     const testBankMeta = {
+      testBankId: this.state.testBankId,
       totalPoints: this.state.totalPoints,
       passingScore: this.state.passingScore
     };
-    questionRef.push(testBankMeta);
+    questionRef.child(`meta`).set(testBankMeta);
     this.setState({
       testBankId: '',
       totalPoints: '',

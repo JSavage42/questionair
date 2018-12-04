@@ -9,6 +9,7 @@ class CreateTestBank extends React.Component{
     this.state = {
       testBankId: '',
       question: '',
+      questionNum: '',
       op1: '',
       op2: '',
       op3: '',
@@ -27,9 +28,10 @@ class CreateTestBank extends React.Component{
   handleOnSubmit(e) {
     e.preventDefault();
     console.log(this.state);
-    const questionRef = firebase.database().ref(this.state.testBankId);
+    const questionRef = firebase.database().ref(`tests/${this.state.testBankId}/questions/`);
     const question = {
       question: this.state.question,
+      questionNum: this.state.questionNum,
       op1: this.state.op1,
       op2: this.state.op2,
       op3: this.state.op3,
@@ -41,9 +43,10 @@ class CreateTestBank extends React.Component{
       op9: this.state.op9,
       answer: this.state.answer,
     };
-    questionRef.push(question);
+    questionRef.child(`${this.state.questionNum}`).set(question);
     this.setState({
       question: '',
+      questionNum: '',
       op1: '',
       op2: '',
       op3: '',
@@ -72,7 +75,8 @@ class CreateTestBank extends React.Component{
         <input type="number" value={this.state.testBankId} name="testBankId" onChange={this.handleChange} />
         <fieldset form="newQuestion">
           <legend>Question</legend>
-          <label>Question</label>
+          <label>Question Number and Content</label>
+          <input type="number" value={this.state.questionNum} name="questionNum" onChange={this.handleChange}/>
           <input type="text" value={this.state.question} name="question" onChange={this.handleChange} />
           <fieldset form="newQuestion">
             <legend>Options</legend>
