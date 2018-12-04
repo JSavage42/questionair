@@ -8,6 +8,8 @@ class CreateTestBank extends React.Component{
 
     this.state = {
       testBankId: '',
+      reference1: '',
+      reference2: '',
       question: '',
       op1: '',
       op2: '',
@@ -18,6 +20,7 @@ class CreateTestBank extends React.Component{
       op7: '',
       op8: '',
       op9: '',
+      op10: '',
       answer: ''
     };
 
@@ -29,6 +32,8 @@ class CreateTestBank extends React.Component{
     console.log(this.state);
     const questionRef = firebase.database().ref(this.state.testBankId);
     const question = {
+      reference1: this.state.reference1,
+      reference2: this.state.reference2,
       question: this.state.question,
       op1: this.state.op1,
       op2: this.state.op2,
@@ -39,10 +44,13 @@ class CreateTestBank extends React.Component{
       op7: this.state.op7,
       op8: this.state.op8,
       op9: this.state.op9,
+      op10: this.state.op10,
       answer: this.state.answer,
     };
     questionRef.push(question);
     this.setState({
+      reference1: '',
+      reference2: '',
       question: '',
       op1: '',
       op2: '',
@@ -53,6 +61,7 @@ class CreateTestBank extends React.Component{
       op7: '',
       op8: '',
       op9: '',
+      op10: '',
       answer: ''
     });
   }
@@ -70,6 +79,10 @@ class CreateTestBank extends React.Component{
       <form id="newQuestion" onSubmit={this.handleOnSubmit}>
         <label>Test Bank ID Number</label>
         <input type="number" value={this.state.testBankId} name="testBankId" onChange={this.handleChange} />
+        <label>Reference 1</label>
+        <input type="text" value={this.state.reference1} name="reference1" onChange={this.handleChange} />
+        <label>Reference 2</label>
+        <input type="text" value={this.state.reference2} name="reference2" onChange={this.handleChange} />
         <fieldset form="newQuestion">
           <legend>Question</legend>
           <label>Question</label>
@@ -94,9 +107,11 @@ class CreateTestBank extends React.Component{
             <input type="text" value={this.state.op8} name="op8" onChange={this.handleChange} />
             <label>Option 9</label>
             <input type="text" value={this.state.op9} name="op9" onChange={this.handleChange} />
+            <label>Option 10</label>
+            <input type="text" value={this.state.op10} name="op10" onChange={this.handleChange} />
           </fieldset>
           <label>Correct Answer</label>
-          <input type="number" value={this.state.answer} name="answer" onChange={this.handleChange} min="1" max="9" />
+          <input type="number" value={this.state.answer} name="answer" onChange={this.handleChange} min="1" max="10" />
         </fieldset>
         <input type="submit"  name="submit" value="Submit" />
       </form>
