@@ -10,23 +10,23 @@
 
 ## Color Palette
 
-*KU Blue* - #0051ba
-*KU Crimson* - #e8000d
-*KU Jayhawk Yellow* - #ffc82d
-*KU Signature Grey* - #85898a
+_KU Blue_ - #0051ba
+_KU Crimson_ - #e8000d
+_KU Jayhawk Yellow_ - #ffc82d
+_KU Signature Grey_ - #85898a
 
 ## Secondary Color Palette
 
-*Night* - #003459
-*Lake* - #2767ff
-*Sky* - #73cbf2
-*Fog* - #8e9fbc
-*Steam* - #dde5ed
-*Brick* - #971b2f
-*Fire* - #ff3042
-*Wheat* - #f2a900
-*Terra Cotta* - #c66e4e
-*Limestone* - #d7d2cb
+_Night_ - #003459
+_Lake_ - #2767ff
+_Sky_ - #73cbf2
+_Fog_ - #8e9fbc
+_Steam_ - #dde5ed
+_Brick_ - #971b2f
+_Fire_ - #ff3042
+_Wheat_ - #f2a900
+_Terra Cotta_ - #c66e4e
+_Limestone_ - #d7d2cb
 
 ## Available Scripts
 
@@ -54,16 +54,6 @@ The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ## Learn More
 

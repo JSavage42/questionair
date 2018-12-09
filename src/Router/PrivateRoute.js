@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import Header from '../components/Navigation';
 
 const PublicRoute = ({ component: Component, ...rest }) => (
   <React.Fragment>
@@ -7,6 +8,7 @@ const PublicRoute = ({ component: Component, ...rest }) => (
       {...rest}
       component={props => (
         <React.Fragment>
+          <Header />
           <Component {...props} />
         </React.Fragment>
       )}

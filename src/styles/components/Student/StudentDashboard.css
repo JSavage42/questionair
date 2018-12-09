@@ -1,0 +1,11 @@
+#sign-in-page {
+  align-items: center;
+  background-color: #4568a0;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+#sign-in-page h2 {
+  color: #fff;
+}
