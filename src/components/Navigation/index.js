@@ -1,17 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SignOutButton from './SignOut';
-import * as ROUTES from '../constants/routes';
-import * as ROLES from '../constants/roles';
-import '../styles/components/Navigation.css';
-import { AuthUserContext } from './Session';
 
-const Navigation = ({ authUser }) => (
-  <div>
-    <AuthUserContext.Consumer>
-      {authUser => (authUser ? <NavigationAuth authUser={authUser} /> : <NavigationNonAuth />)}
-    </AuthUserContext.Consumer>
-  </div>
+import { AuthUserContext } from '../Session';
+import SignOutButton from '../SignOut';
+import * as ROUTES from '../../constants/routes';
+import * as ROLES from '../../constants/roles';
+
+const Navigation = () => (
+  <AuthUserContext.Consumer>
+    {authUser => (authUser ? <NavigationAuth authUser={authUser} /> : <NavigationNonAuth />)}
+  </AuthUserContext.Consumer>
 );
 
 const NavigationAuth = ({ authUser }) => (
@@ -25,6 +23,14 @@ const NavigationAuth = ({ authUser }) => (
     <li>
       <Link to={ROUTES.ACCOUNT}>Account</Link>
     </li>
+    <li>
+      <Link to={ROUTES.STUDENT}>Student</Link>
+    </li>
+    {(authUser.roles.includes(ROLES.ADMIN) || authUser.roles.includes(ROLES.INSTRUCTOR)) && (
+      <li>
+        <Link to={ROUTES.INSTRUCTOR}>Instructor</Link>
+      </li>
+    )}
     {authUser.roles.includes(ROLES.ADMIN) && (
       <li>
         <Link to={ROUTES.ADMIN}>Admin</Link>

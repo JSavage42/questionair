@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import { withFirebase } from '../../firebase';
+import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
 const PasswordForgetPage = () => (
   <div>
-    <h1>Password Forget</h1>
+    <h1>PasswordForget</h1>
     <PasswordForgetForm />
   </div>
 );

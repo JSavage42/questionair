@@ -1,22 +1,27 @@
 import React from 'react';
-import '../styles/base/App.css';
-import Navigation from './Navigation';
-import LandingPage from './LandingPage/LandingPage';
-import SignUpPage from './SignUpPage';
-import SignInPage from './SignInPage';
-import PasswordForgetPage from './Password/PasswordForgetPage';
-import HomePage from './Home/HomePage';
-import AccountPage from './Account/AccountPage';
-import AdminPage from './Admin/AdminDashboard';
-import * as ROUTES from '../constants/routes';
-import { withAuthentication } from './Session';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import Navigation from '../Navigation';
+import LandingPage from '../Landing';
+import SignUpPage from '../SignUp';
+import SignInPage from '../SignIn';
+import PasswordForgetPage from '../PasswordForget';
+import HomePage from '../Home';
+import AccountPage from '../Account';
+import AdminPage from '../Admin';
+
+import * as ROUTES from '../../constants/routes';
+import { withAuthentication } from '../Session';
+import InstructorPage from '../Instructor';
+import StudentPage from '../Student';
 
 const App = () => (
   <Router>
     <div>
       <Navigation />
+
       <hr />
+
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
@@ -24,6 +29,8 @@ const App = () => (
       <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
+      <Route path={ROUTES.INSTRUCTOR} component={InstructorPage} />
+      <Route path={ROUTES.STUDENT} component={StudentPage} />
     </div>
   </Router>
 );
