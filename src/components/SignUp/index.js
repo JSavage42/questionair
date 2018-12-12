@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
 
-import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
-import * as ROLES from '../../constants/roles';
+import { withFirebase } from "../Firebase";
+import * as ROUTES from "../../constants/routes";
+import * as ROLES from "../../constants/roles";
 
 const SignUpPage = () => (
   <div>
@@ -13,15 +13,16 @@ const SignUpPage = () => (
 );
 
 const INITIAL_STATE = {
-  username: '',
-  email: '',
-  passwordOne: '',
-  passwordTwo: '',
-  isAdmin: false,
-  error: null,
+  username: "",
+  email: "",
+  passwordOne: "",
+  passwordTwo: "",
+  requestAdmin: false,
+  requestInstructor: false,
+  error: null
 };
 
-const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
+const ERROR_CODE_ACCOUNT_EXISTS = "auth/email-already-in-use";
 
 const ERROR_MSG_ACCOUNT_EXISTS = `
   An account with this E-Mail address already exists.
@@ -39,11 +40,19 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne, isAdmin } = this.state;
-    const roles = [];
-
-    if (isAdmin) {
-      roles.push(ROLES.ADMIN);
+    const {
+      username,
+      email,
+      passwordOne,
+      requestAdmin,
+      requestInstructor
+    } = this.state;
+    const requests = [];
+    if (requestAdmin) {
+      requests.push("admin");
+    }
+    if (requestInstructor) {
+      requests.push("instructor");
     }
 
     this.props.firebase
@@ -53,7 +62,7 @@ class SignUpFormBase extends Component {
         return this.props.firebase.user(authUser.user.uid).set({
           username,
           email,
-          roles,
+          requests
         });
       })
       .then(() => {
@@ -83,27 +92,71 @@ class SignUpFormBase extends Component {
   };
 
   render() {
-    const { username, email, passwordOne, passwordTwo, isAdmin, error } = this.state;
+    const {
+      username,
+      email,
+      passwordOne,
+      passwordTwo,
+      error,
+      requestInstructor,
+      requestAdmin
+    } = this.state;
 
-    const isInvalid = passwordOne !== passwordTwo || passwordOne === '' || email === '' || username === '';
+    const isInvalid =
+      passwordOne !== passwordTwo ||
+      passwordOne === "" ||
+      email === "" ||
+      username === "";
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input name='username' value={username} onChange={this.onChange} type='text' placeholder='Full Name' />
-        <input name='email' value={email} onChange={this.onChange} type='text' placeholder='Email Address' />
-        <input name='passwordOne' value={passwordOne} onChange={this.onChange} type='password' placeholder='Password' />
         <input
-          name='passwordTwo'
+          name="username"
+          value={username}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Full Name"
+        />
+        <input
+          name="email"
+          value={email}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Email Address"
+        />
+        <input
+          name="passwordOne"
+          value={passwordOne}
+          onChange={this.onChange}
+          type="password"
+          placeholder="Password"
+        />
+        <input
+          name="passwordTwo"
           value={passwordTwo}
           onChange={this.onChange}
-          type='password'
-          placeholder='Confirm Password'
+          type="password"
+          placeholder="Confirm Password"
         />
         <label>
-          Admin:
-          <input name='isAdmin' type='checkbox' checked={isAdmin} onChange={this.onChangeCheckbox} />
+          Request Admin:
+          <input
+            name="requestAdmin"
+            type="checkbox"
+            checked={requestAdmin}
+            onChange={this.onChangeCheckbox}
+          />
         </label>
-        <button disabled={isInvalid} type='submit'>
+        <label>
+          Request Instructor:
+          <input
+            name="requestInstructor"
+            type="checkbox"
+            checked={requestInstructor}
+            onChange={this.onChangeCheckbox}
+          />
+        </label>
+        <button disabled={isInvalid} type="submit">
           Sign Up
         </button>
 

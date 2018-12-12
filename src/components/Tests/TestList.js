@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
+import { withFirebase } from "../Firebase";
+import * as ROUTES from "../../constants/routes";
 
 class TestList extends Component {
   constructor(props) {
@@ -11,24 +11,24 @@ class TestList extends Component {
     this.state = {
       tests: [],
 
-      loading: false,
+      loading: false
     };
   }
 
   componentDidMount() {
     this.setState({ loading: true });
 
-    this.props.firebase.tests().on('value', snapshot => {
+    this.props.firebase.tests().on("value", snapshot => {
       const testsObject = snapshot.val();
 
       const testsList = Object.keys(testsObject).map(key => ({
         ...testsObject[key],
-        uid: key,
+        uid: key
       }));
 
       this.setState({
         tests: testsList,
-        loading: false,
+        loading: false
       });
     });
   }
@@ -53,10 +53,10 @@ class TestList extends Component {
                 <Link
                   to={{
                     pathname: `${ROUTES.TESTS}/${test.tid}`,
-                    state: { test },
+                    state: { test }
                   }}
                 >
-                  Details
+                  Take Test
                 </Link>
               </span>
             </li>

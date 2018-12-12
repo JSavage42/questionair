@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
+import { withFirebase } from "../Firebase";
+import * as ROUTES from "../../constants/routes";
 
 class UserList extends Component {
   constructor(props) {
@@ -10,24 +10,24 @@ class UserList extends Component {
 
     this.state = {
       loading: false,
-      users: [],
+      users: []
     };
   }
 
   componentDidMount() {
     this.setState({ loading: true });
 
-    this.props.firebase.users().on('value', snapshot => {
+    this.props.firebase.users().on("value", snapshot => {
       const usersObject = snapshot.val();
 
       const usersList = Object.keys(usersObject).map(key => ({
         ...usersObject[key],
-        uid: key,
+        uid: key
       }));
 
       this.setState({
         users: usersList,
-        loading: false,
+        loading: false
       });
     });
   }
@@ -41,7 +41,7 @@ class UserList extends Component {
 
     return (
       <div>
-        <h2>Users</h2>
+        <h2>Enrolled Users</h2>
         {loading && <div>Loading ...</div>}
         <ul>
           {users.map(user => (
@@ -59,7 +59,7 @@ class UserList extends Component {
                 <Link
                   to={{
                     pathname: `${ROUTES.ADMIN}/${user.uid}`,
-                    state: { user },
+                    state: { user }
                   }}
                 >
                   Details
