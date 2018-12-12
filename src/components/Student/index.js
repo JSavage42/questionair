@@ -1,16 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { compose } from "recompose";
 
 import { withAuthorization } from "../Session";
 import * as ROLES from "../../constants/roles";
-import * as ROUTES from "../../constants/routes";
 
 const StudentPage = () => (
   <div>
     <h1>Student</h1>
     <p>The Student Page is accessible by every signed in user.</p>
-    <Link to={ROUTES.TAKE_TEST}>Take Test</Link>
+    <h3>What you can do</h3>
+    <ol>
+      <li>Take a Quiz</li>
+      <li>See Your Results</li>
+    </ol>
   </div>
 );
 

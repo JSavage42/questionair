@@ -1,20 +1,31 @@
 import React from "react";
 import "../../styles/components/Questions/CreateTestBank.css";
 import { withFirebase } from "../Firebase";
-import { withAuthorization } from "../Session";
-import { compose } from "recompose";
-import * as ROLES from "../../constants/roles";
 
 class CreateTestBank extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      user: "",
+      error: "",
       tid: "",
       totalPoints: "",
       passingScore: ""
     };
   }
+
+  componentDidMount() {
+    this.fetchUser();
+  }
+
+  fetchUser = () => {
+    this.props.firebase.auth.onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user, error: null });
+      }
+    });
+  };
 
   handleOnSubmit = e => {
     e.preventDefault();
@@ -26,7 +37,8 @@ class CreateTestBank extends React.Component {
     };
 
     this.props.firebase
-      .tests(this.state.tid)
+      .user(this.state.user.uid)
+      .child("tests")
       .child(this.state.tid)
       .set(testBankMeta);
 
@@ -47,6 +59,7 @@ class CreateTestBank extends React.Component {
     return (
       <main>
         <h2>Create Test Bank</h2>
+        <p>Instructor Email: {this.state.user.email}</p>
         <form id="newTestBank" onSubmit={this.handleOnSubmit}>
           <label>Test Bank ID Number</label>
           <input

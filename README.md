@@ -2,31 +2,17 @@
 
 ## Install Locally
 
+### Install Node and NPM
+
+https://nodejs.org/en/download/
+
+### Clone Repository and Install Packages
+
 `git clone https://github.com/JSavage42/questionair.git`
 
 `cd questionair`
 
 `npm i`
-
-## Color Palette
-
-_KU Blue_ - #0051ba
-_KU Crimson_ - #e8000d
-_KU Jayhawk Yellow_ - #ffc82d
-_KU Signature Grey_ - #85898a
-
-## Secondary Color Palette
-
-_Night_ - #003459
-_Lake_ - #2767ff
-_Sky_ - #73cbf2
-_Fog_ - #8e9fbc
-_Steam_ - #dde5ed
-_Brick_ - #971b2f
-_Fire_ - #ff3042
-_Wheat_ - #f2a900
-_Terra Cotta_ - #c66e4e
-_Limestone_ - #d7d2cb
 
 ## Available Scripts
 
@@ -55,8 +41,24 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Learn More
+## Style Guide
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Color Palette
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+_KU Blue_ - #0051ba
+_KU Crimson_ - #e8000d
+_KU Jayhawk Yellow_ - #ffc82d
+_KU Signature Grey_ - #85898a
+
+## Secondary Color Palette
+
+_Night_ - #003459
+_Lake_ - #2767ff
+_Sky_ - #73cbf2
+_Fog_ - #8e9fbc
+_Steam_ - #dde5ed
+_Brick_ - #971b2f
+_Fire_ - #ff3042
+_Wheat_ - #f2a900
+_Terra Cotta_ - #c66e4e
+_Limestone_ - #d7d2cb

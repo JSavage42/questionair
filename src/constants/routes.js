@@ -11,4 +11,5 @@ export const STUDENT = "/student";
 export const TESTS = "/tests";
 export const CREATE_TEST = "/tests/create";
 export const NEW_QUESTION = "/tests/new_question";
+export const SELECT_TEST = "/tests/select/";
 export const TAKE_TEST = "/tests/take/:id";

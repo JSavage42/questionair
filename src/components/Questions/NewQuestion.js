@@ -22,9 +22,23 @@ class NewQuestion extends React.Component {
       op8: "",
       op9: "",
       op10: "",
-      answer: ""
+      answer: "",
+      user: ""
     };
   }
+
+  componentDidMount() {
+    this.fetchUser();
+  }
+
+  fetchUser = () => {
+    this.props.firebase.auth.onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user, error: null });
+      }
+    });
+  };
+
   handleOnSubmit = e => {
     e.preventDefault();
     const question = {
@@ -46,8 +60,8 @@ class NewQuestion extends React.Component {
     };
 
     this.props.firebase
-      .tests(this.state.tid)
-      .child(this.state.tid)
+      .user(this.state.user.uid)
+      .child("tests")
       .child("questions/")
       .child(this.state.questionNum)
       .set(question);
