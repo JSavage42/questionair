@@ -102,9 +102,9 @@ class Firebase {
 
   // *** Tests Banks API ***
 
-  test = tid => this.db.ref(`tests/${tid}`);
+  test = (uid, tid) => this.db.ref(`users/${uid}/tests/${tid}`);
 
-  tests = () => this.db.ref(`tests`);
+  tests = uid => this.db.ref(`users/${uid}/tests`);
 }
 
 export default Firebase;

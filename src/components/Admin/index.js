@@ -1,11 +1,10 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { compose } from 'recompose';
-
-import { withAuthorization } from '../Session';
-import { UserList, UserItem } from '../Users';
-import * as ROLES from '../../constants/roles';
-import * as ROUTES from '../../constants/routes';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import { compose } from "recompose";
+import { withAuthorization } from "../Session";
+import { UserList, UserItem } from "../Users";
+import * as ROLES from "../../constants/roles";
+import * as ROUTES from "../../constants/routes";
 
 const AdminPage = () => (
   <div>
