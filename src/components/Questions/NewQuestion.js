@@ -22,6 +22,7 @@ class NewQuestion extends React.Component {
       op8: "",
       op9: "",
       op10: "",
+      options: [],
       answer: "",
       user: ""
     };
@@ -41,27 +42,50 @@ class NewQuestion extends React.Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
+
+    if (this.state.op1) {
+      this.state.options.push(this.state.op1);
+    }
+    if (this.state.op2) {
+      this.state.options.push(this.state.op2);
+    }
+    if (this.state.op3) {
+      this.state.options.push(this.state.op3);
+    }
+    if (this.state.op4) {
+      this.state.options.push(this.state.op4);
+    }
+    if (this.state.op5) {
+      this.state.options.push(this.state.op5);
+    }
+    if (this.state.op6) {
+      this.state.options.push(this.state.op6);
+    }
+    if (this.state.op7) {
+      this.state.options.push(this.state.op7);
+    }
+    if (this.state.op8) {
+      this.state.options.push(this.state.op8);
+    }
+    if (this.state.op9) {
+      this.state.options.push(this.state.op9);
+    }
+    if (this.state.op10) {
+      this.state.options.push(this.state.op10);
+    }
     const question = {
       reference1: this.state.reference1,
       reference2: this.state.reference2,
       question: this.state.question,
       questionNum: this.state.questionNum,
-      op1: this.state.op1,
-      op2: this.state.op2,
-      op3: this.state.op3,
-      op4: this.state.op4,
-      op5: this.state.op5,
-      op6: this.state.op6,
-      op7: this.state.op7,
-      op8: this.state.op8,
-      op9: this.state.op9,
-      op10: this.state.op10,
+      options: this.state.options,
       answer: this.state.answer
     };
 
     this.props.firebase
       .user(this.state.user.uid)
       .child("tests")
+      .child(this.state.tid)
       .child("questions/")
       .child(this.state.questionNum)
       .set(question);
@@ -81,7 +105,8 @@ class NewQuestion extends React.Component {
       op8: "",
       op9: "",
       op10: "",
-      answer: ""
+      answer: "",
+      options: []
     });
   };
 

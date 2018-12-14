@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { withFirebase } from '../Firebase';
+import { withFirebase } from "../Firebase";
 
 class UserItem extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class UserItem extends Component {
     this.state = {
       loading: false,
       user: null,
-      ...props.location.state,
+      ...props.location.state
     };
   }
 
@@ -20,12 +20,14 @@ class UserItem extends Component {
 
     this.setState({ loading: true });
 
-    this.props.firebase.user(this.props.match.params.id).on('value', snapshot => {
-      this.setState({
-        user: snapshot.val(),
-        loading: false,
+    this.props.firebase
+      .user(this.props.match.params.id)
+      .on("value", snapshot => {
+        this.setState({
+          user: snapshot.val(),
+          loading: false
+        });
       });
-    });
   }
 
   componentWillUnmount() {
@@ -56,7 +58,7 @@ class UserItem extends Component {
               <strong>Username:</strong> {user.username}
             </span>
             <span>
-              <button type='button' onClick={this.onSendPasswordResetEmail}>
+              <button type="button" onClick={this.onSendPasswordResetEmail}>
                 Send Password Reset
               </button>
             </span>

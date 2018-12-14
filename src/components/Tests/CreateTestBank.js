@@ -7,7 +7,7 @@ class CreateTestBank extends React.Component {
     super(props);
 
     this.state = {
-      user: "",
+      authUser: JSON.parse(localStorage.getItem("authUser")),
       error: "",
       tid: "",
       totalPoints: "",
@@ -37,7 +37,7 @@ class CreateTestBank extends React.Component {
     };
 
     this.props.firebase
-      .user(this.state.user.uid)
+      .user(this.state.authUser.uid)
       .child("tests")
       .child(this.state.tid)
       .set(testBankMeta);
@@ -59,7 +59,7 @@ class CreateTestBank extends React.Component {
     return (
       <main>
         <h2>Create Test Bank</h2>
-        <p>Instructor Email: {this.state.user.email}</p>
+        <p>Instructor Name: {this.state.authUser.username}</p>
         <form id="newTestBank" onSubmit={this.handleOnSubmit}>
           <label>Test Bank ID Number</label>
           <input

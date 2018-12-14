@@ -10,7 +10,7 @@ class TestList extends Component {
 
     this.state = {
       tests: [],
-
+      authUser: JSON.parse(localStorage.getItem("authUser")),
       loading: false
     };
   }
@@ -18,7 +18,7 @@ class TestList extends Component {
   componentDidMount() {
     this.setState({ loading: true });
 
-    this.props.firebase.tests().on("value", snapshot => {
+    this.props.firebase.tests(this.state.authUser.uid).on("value", snapshot => {
       const testsObject = snapshot.val();
 
       const testsList = Object.keys(testsObject).map(key => ({
@@ -39,26 +39,23 @@ class TestList extends Component {
 
   render() {
     const { tests, loading } = this.state;
+    console.log(tests);
     return (
       <div>
-        <h2>Tests</h2>
+        <h2>Available Tests</h2>
         {loading && <div>Loading ...</div>}
         <ul>
           {tests.map(test => (
-            <li key={test.uid}>
-              <span>
-                <strong>ID:</strong> {test.tid}
-              </span>
-              <span>
-                <Link
-                  to={{
-                    pathname: `${ROUTES.TESTS}/${test.tid}`,
-                    state: { test }
-                  }}
-                >
-                  Take Test
-                </Link>
-              </span>
+            <li key={test.tid}>
+              <strong>Take Test ID Number: </strong>
+              <Link
+                to={{
+                  pathname: `${ROUTES.TESTS}/${test.tid}`,
+                  state: { test }
+                }}
+              >
+                {test.tid}
+              </Link>
             </li>
           ))}
         </ul>

@@ -1,22 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { AuthUserContext } from '../Session';
-import SignOutButton from '../SignOut';
-import * as ROUTES from '../../constants/routes';
-import * as ROLES from '../../constants/roles';
+import { AuthUserContext } from "../Session";
+import SignOutButton from "../SignOut";
+import * as ROUTES from "../../constants/routes";
+import * as ROLES from "../../constants/roles";
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
-    {authUser => (authUser ? <NavigationAuth authUser={authUser} /> : <NavigationNonAuth />)}
+    {authUser =>
+      authUser ? <NavigationAuth authUser={authUser} /> : <NavigationNonAuth />
+    }
   </AuthUserContext.Consumer>
 );
 
 const NavigationAuth = ({ authUser }) => (
   <ul>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
     <li>
       <Link to={ROUTES.HOME}>Home</Link>
     </li>
@@ -26,7 +25,8 @@ const NavigationAuth = ({ authUser }) => (
     <li>
       <Link to={ROUTES.STUDENT}>Student</Link>
     </li>
-    {(authUser.roles.includes(ROLES.ADMIN) || authUser.roles.includes(ROLES.INSTRUCTOR)) && (
+    {(authUser.roles.includes(ROLES.ADMIN) ||
+      authUser.roles.includes(ROLES.INSTRUCTOR)) && (
       <li>
         <Link to={ROUTES.INSTRUCTOR}>Instructor</Link>
       </li>
@@ -45,7 +45,7 @@ const NavigationAuth = ({ authUser }) => (
 const NavigationNonAuth = () => (
   <ul>
     <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
+      <Link to={ROUTES.HOME}>Home</Link>
     </li>
     <li>
       <Link to={ROUTES.SIGN_IN}>Sign In</Link>

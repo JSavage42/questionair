@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { compose } from "recompose";
 import { withAuthorization } from "../Session";
+import { TestList } from "../Tests";
 import * as ROLES from "../../constants/roles";
 import * as ROUTES from "../../constants/routes";
 
@@ -12,6 +13,10 @@ const InstructorPage = () => (
     <Link to={ROUTES.CREATE_TEST}>Create Test Bank</Link>
     <br />
     <Link to={ROUTES.NEW_QUESTION}>New Question</Link>
+    <br />
+    <Link to={ROUTES.HOST_TEST}>Host Test</Link>
+
+    <TestList />
   </div>
 );
 
