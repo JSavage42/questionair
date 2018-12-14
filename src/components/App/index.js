@@ -21,6 +21,7 @@ import { NewQuestion } from "../Questions";
 
 import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
+import "../../styles/base/App.css";
 
 const App = () => (
   <Router>
