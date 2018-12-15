@@ -24,7 +24,8 @@ class NewQuestion extends React.Component {
       op10: "",
       options: [],
       answer: "",
-      user: ""
+      user: "",
+      image: ""
     };
   }
 
@@ -73,13 +74,24 @@ class NewQuestion extends React.Component {
     if (this.state.op10) {
       this.state.options.push(this.state.op10);
     }
+
+    const file = e.target.uploadImage.files[0];
+    const fileName = file.name;
+    this.props.firebase
+      .image(this.state.user.uid, fileName)
+      .put(file)
+      .then(snapshot => {
+        console.log(snapshot);
+      });
+
     const question = {
       reference1: this.state.reference1,
       reference2: this.state.reference2,
       question: this.state.question,
       questionNum: this.state.questionNum,
       options: this.state.options,
-      answer: this.state.answer
+      answer: this.state.answer,
+      image: this.state.image
     };
 
     this.props.firebase
@@ -106,7 +118,8 @@ class NewQuestion extends React.Component {
       op9: "",
       op10: "",
       answer: "",
-      options: []
+      options: [],
+      image: ""
     });
   };
 
@@ -155,6 +168,13 @@ class NewQuestion extends React.Component {
               type="text"
               value={this.state.question}
               name="question"
+              onChange={this.handleChange}
+            />
+            <input
+              accept=".jpg,.png"
+              type="file"
+              id="uploadImage"
+              name="image"
               onChange={this.handleChange}
             />
             <fieldset form="newQuestion">
