@@ -72,3 +72,4 @@ Here you can view metadata about the test (possible points, passing score, numbe
 ### Admin Page
 
 Here you can view and reset user's passwords
+You can also approve user permission requests via the admin dashboard.
