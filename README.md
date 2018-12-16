@@ -72,25 +72,3 @@ Here you can view metadata about the test (possible points, passing score, numbe
 ### Admin Page
 
 Here you can view and reset user's passwords
-
-## Style Guide
-
-## Color Palette
-
-_KU Blue_ - #0051ba
-_KU Crimson_ - #e8000d
-_KU Jayhawk Yellow_ - #ffc82d
-_KU Signature Grey_ - #85898a
-
-## Secondary Color Palette
-
-_Night_ - #003459
-_Lake_ - #2767ff
-_Sky_ - #73cbf2
-_Fog_ - #8e9fbc
-_Steam_ - #dde5ed
-_Brick_ - #971b2f
-_Fire_ - #ff3042
-_Wheat_ - #f2a900
-_Terra Cotta_ - #c66e4e
-_Limestone_ - #d7d2cb
