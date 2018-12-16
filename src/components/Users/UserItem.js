@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "../../styles/components/Users/UserItem.css";
 import { withFirebase } from "../Firebase";
 
 class UserItem extends Component {
@@ -28,6 +28,7 @@ class UserItem extends Component {
           loading: false
         });
       });
+    console.log(this.state.user);
   }
 
   componentWillUnmount() {
@@ -38,25 +39,60 @@ class UserItem extends Component {
     this.props.firebase.doPasswordReset(this.state.user.email);
   };
 
+  handleRequestApproval = e => {
+    let key;
+    if (e.target.id === "ADMIN") {
+      key = 0;
+    } else {
+      key = 1;
+    }
+    this.props.firebase
+      .user(this.state.user.uid)
+      .child(`roles`)
+      .child(key)
+      .set(e.target.id);
+  };
+
   render() {
     const { user, loading } = this.state;
 
     return (
-      <div>
-        <h2>User ({this.props.match.params.id})</h2>
+      <article id="user-item">
+        <h2>{this.state.user.username}</h2>
         {loading && <div>Loading ...</div>}
 
         {user && (
           <div>
             <span>
-              <strong>ID:</strong> {user.uid}
+              <b>ID:</b> {user.uid}
             </span>
             <span>
-              <strong>E-Mail:</strong> {user.email}
+              <b>E-Mail:</b> {user.email}
             </span>
             <span>
-              <strong>Username:</strong> {user.username}
+              <b>Username:</b> {user.username}
             </span>
+            {user.requests && (
+              <span>
+                <b>Requests: </b>
+                <p>
+                  <b>Click to approve</b>
+                </p>
+                <ul>
+                  {user.requests.map(req => (
+                    <li key={req}>
+                      <button
+                        id={req}
+                        type="button"
+                        onClick={this.handleRequestApproval}
+                      >
+                        {req}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </span>
+            )}
             <span>
               <button type="button" onClick={this.onSendPasswordResetEmail}>
                 Send Password Reset
@@ -64,7 +100,7 @@ class UserItem extends Component {
             </span>
           </div>
         )}
-      </div>
+      </article>
     );
   }
 }

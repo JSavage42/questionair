@@ -1,0 +1,13 @@
+#user-item span {
+  display: block;
+}
+
+#user-item ul {
+  list-style-type: none;
+}
+
+#user-item button {
+  border: none;
+  font-size: 2rem;
+  padding: 1.5rem;
+}
