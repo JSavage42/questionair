@@ -7,7 +7,20 @@
 }
 
 #user-item button {
+  background-color: var(--ku-blue);
+  color: var(--ku-jayhawk-yellow);
   border: none;
   font-size: 2rem;
-  padding: 1.5rem;
+  padding: 0.5rem;
+  margin: 0.175rem;
+}
+
+#user-item button:hover {
+  border: 2px solid #000;
+  text-decoration: underline;
+}
+
+#requests p,
+#requests ul {
+  margin-left: 2rem;
 }

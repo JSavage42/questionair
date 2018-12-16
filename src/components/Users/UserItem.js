@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../styles/components/Users/UserItem.css";
 import { withFirebase } from "../Firebase";
-
+import "../../styles/components/Users/UserItem.css";
 class UserItem extends Component {
   constructor(props) {
     super(props);
@@ -73,7 +73,7 @@ class UserItem extends Component {
               <b>Username:</b> {user.username}
             </span>
             {user.requests && (
-              <span>
+              <span id="requests">
                 <b>Requests: </b>
                 <p>
                   <b>Click to approve</b>
@@ -89,6 +89,16 @@ class UserItem extends Component {
                         {req}
                       </button>
                     </li>
+                  ))}
+                </ul>
+              </span>
+            )}
+            {user.roles && (
+              <span>
+                <strong>Roles:</strong>
+                <ul>
+                  {user.roles.map(role => (
+                    <li key={role}>{role}</li>
                   ))}
                 </ul>
               </span>

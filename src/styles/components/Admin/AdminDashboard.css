@@ -1,8 +1,0 @@
-#admin-dashboard li {
-  list-style-type: none;
-  margin: 3rem 0;
-}
-  #admin-dashboard a {
-  background-color: var(--ku-crimson);
-  padding: 1rem;
-}

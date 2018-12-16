@@ -1,0 +1,17 @@
+#user-list ul {
+  list-style-type: none;
+}
+
+#user-list span {
+  display: block;
+  margin: 0.175rem;
+}
+
+#user-list a {
+  display: block;
+  background-color: #803f3f;
+  padding: 0.75rem;
+  margin: 2rem;
+  text-align: center;
+  width: 5rem;
+}

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
+import "../../styles/components/Users/UserList.css";
 
 class UserList extends Component {
   constructor(props) {
@@ -41,10 +42,11 @@ class UserList extends Component {
     const { users, loading } = this.state;
 
     return (
-      <div>
+      <article id="user-list">
         <h2>Enrolled Users</h2>
         {loading && <div>Loading ...</div>}
         <ul>
+          {console.log(users)}
           {users.map(user => (
             <li key={user.uid}>
               <span>
@@ -56,6 +58,16 @@ class UserList extends Component {
               <span>
                 <strong>Username:</strong> {user.username}
               </span>
+              {user.roles && (
+                <span>
+                  <strong>Roles:</strong>
+                  <ul>
+                    {user.roles.map(role => (
+                      <li key={role}>{role}</li>
+                    ))}
+                  </ul>
+                </span>
+              )}
               <span>
                 <Link
                   to={{
@@ -69,7 +81,7 @@ class UserList extends Component {
             </li>
           ))}
         </ul>
-      </div>
+      </article>
     );
   }
 }
