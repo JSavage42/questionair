@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/components/Questions/CreateTestBank.css";
+import "../../styles/components/Tests/CreateTestBank.css";
 import { withFirebase } from "../Firebase";
 
 class CreateTestBank extends React.Component {
@@ -57,7 +57,7 @@ class CreateTestBank extends React.Component {
 
   render() {
     return (
-      <main>
+      <main id="create-test-bank">
         <h2>Create Test Bank</h2>
         <p>Instructor Name: {this.state.authUser.username}</p>
         <form id="newTestBank" onSubmit={this.handleOnSubmit}>
@@ -83,6 +83,7 @@ class CreateTestBank extends React.Component {
             onChange={this.handleChange}
           />
           <input type="submit" name="submit" value="Submit" />
+          <input type="reset" name="reset" value="Reset" />
         </form>
       </main>
     );

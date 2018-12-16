@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import TestList from "./TestList";
 import { withFirebase } from "../Firebase";
 import "../../styles/components/Student/TakeTest.css";

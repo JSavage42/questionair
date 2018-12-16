@@ -10,13 +10,7 @@ import AccountPage from "../Account";
 import AdminPage from "../Admin";
 import InstructorPage from "../Instructor";
 import StudentPage from "../Student";
-import {
-  CreateTestBank,
-  TakeTest,
-  SelectTest,
-  HostTest,
-  TestPage
-} from "../Tests";
+import { CreateTestBank, TakeTest, SelectTest, TestPage } from "../Tests";
 import { NewQuestion } from "../Questions";
 
 import * as ROUTES from "../../constants/routes";
@@ -40,7 +34,6 @@ const App = () => (
         <Route path={ROUTES.NEW_QUESTION} component={NewQuestion} />
         <Route path={ROUTES.SELECT_TEST} component={SelectTest} />
         <Route path={ROUTES.TESTS} component={TestPage} />
-        <Route path={ROUTES.HOST_TEST} component={HostTest} />
         <Route path={ROUTES.TAKE_TEST} component={TakeTest} />
       </Switch>
     </div>

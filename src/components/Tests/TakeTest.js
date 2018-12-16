@@ -1,6 +1,4 @@
 import React from "react";
-import HostTest from "./HostTest";
-import * as ROLES from "../../constants/roles";
 import { withFirebase } from "../Firebase";
 
 class TakeTest extends React.Component {
@@ -11,11 +9,7 @@ class TakeTest extends React.Component {
     };
   }
 
-  componentDidMount() {
-    if (authUser => authUser && authUser.roles.includes(ROLES.INSTRUCTOR)) {
-      return <HostTest />;
-    }
-  }
+  componentDidMount() {}
 
   render() {
     return <h2>Take the Test</h2>;

@@ -1,0 +1,20 @@
+#instructor-page {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#instructor-page a {
+  color: #2254fa;
+  font-weight: 700;
+}
+
+#instructor-page a:hover {
+  color: var(--ku-crimson);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+#instructor-page ul {
+  list-style-type: none;
+}

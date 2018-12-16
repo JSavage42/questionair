@@ -5,19 +5,18 @@ import { withAuthorization } from "../Session";
 import { TestList } from "../Tests";
 import * as ROLES from "../../constants/roles";
 import * as ROUTES from "../../constants/routes";
+import "../../styles/components/Instructor/InstructorPage.css";
 
 const InstructorPage = () => (
-  <div>
+  <main id="instructor-page">
     <h1>Instructor</h1>
     <p>The Instructor Page is accessible by every signed in Instructor user.</p>
     <Link to={ROUTES.CREATE_TEST}>Create Test Bank</Link>
     <br />
     <Link to={ROUTES.NEW_QUESTION}>New Question</Link>
-    <br />
-    <Link to={ROUTES.HOST_TEST}>Host Test</Link>
 
     <TestList />
-  </div>
+  </main>
 );
 
 const condition = authUser =>

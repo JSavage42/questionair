@@ -1,5 +1,5 @@
 import React from "react";
-
+import "../../styles/components/Tests/TestPage.css";
 import { withFirebase } from "../Firebase";
 
 class TestPage extends React.Component {
@@ -11,7 +11,8 @@ class TestPage extends React.Component {
       test: null,
       tid: "",
       questions: [],
-      loading: true
+      loading: true,
+      url: ""
     };
   }
 
@@ -37,11 +38,15 @@ class TestPage extends React.Component {
     this.props.firebase.test(authUser.uid, tid).off();
   }
 
+  handleSubmitAnswer = e => {
+    console.log(e.target.id);
+  };
+
   render() {
     const { test, tid, loading } = this.state;
 
     return (
-      <div>
+      <main id="test-page">
         <h2>Test #{tid}</h2>
         {loading && <div>Loading ...</div>}
 
@@ -50,26 +55,43 @@ class TestPage extends React.Component {
             <ul>
               <li>Possible Points: {this.state.test.totalPoints}</li>
               <li>Passing Score: {this.state.test.passingScore}</li>
-              <li>
-                Number of Questions: {this.state.test.questions.length - 1}
-              </li>
+              <li>Number of Questions: {this.state.test.questions.length}</li>
               <li>
                 Questions:
-                <ul>
+                <ul id="questions">
                   {this.state.questions.map(question => {
-                    console.log(question);
+                    question.image &&
+                      this.props.firebase
+                        .images(this.state.authUser.uid)
+                        .child(`${question.image.substring(12)}`)
+                        .getDownloadURL()
+                        .then(url => {
+                          this.setState({ url });
+                        });
                     return (
-                      <li key={question.questionNum}>
-                        #{question.questionNum}&nbsp;
-                        <p>
-                          {question.reference1}
-                          <br />
-                          {question.reference2}
+                      <li className="question" key={question.questionNum}>
+                        <p className="questionTitle">
+                          Question #{question.questionNum}: {question.question}
                         </p>
-                        {question.question}
+                        <br />
+                        {question.image && (
+                          <img
+                            src={this.state.url}
+                            alt="question"
+                            title="Image Question"
+                          />
+                        )}
                         <ol>
                           {question.options.map(op => (
-                            <li key={op}>{op}</li>
+                            <li
+                              key={op}
+                              className="option"
+                              id={op}
+                              value={op}
+                              onClick={this.handleSubmitAnswer}
+                            >
+                              {op}
+                            </li>
                           ))}
                         </ol>
                         Answer: {question.answer}
@@ -81,7 +103,7 @@ class TestPage extends React.Component {
             </ul>
           </div>
         )}
-      </div>
+      </main>
     );
   }
 }

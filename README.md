@@ -23,23 +23,55 @@ In the project directory, you can run:
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Using Question Air
 
-### `npm test`
+### Sign Up
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You must sign up before using the application. When you sign up you are allowed to request permissions. Please check all desired permissions. Once the administrator has approved your requests you'll be able to access those pages.
 
-### `npm run build`
+### Sign In
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You may sign in with email/password or if you have linked accounts: Google, Facebook, or Twitter.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Account Page
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In the Account Page you can make changes to your account. You can reset your password, or link social media accounts.
+
+### Student Page
+
+You can't do anything here right now.
+
+### Instructor Page
+
+The Instructor Page shows all the test banks you've created. It also displays links to create a new test bank or add questions to an existing test bank.
+
+#### Create Test Bank
+
+Here you can create a new test bank. Enter an ID number, total points possible, and passing score and click submit.
+
+#### New Question
+
+Here you can add questions to test banks.
+
+1. Enter the Test Bank ID number
+2. Enter the first reference (optional)
+3. Enter the second reference (optional)
+4. Enter the question number
+5. Enter the question text
+6. Upload a .jpg or .png (optional)
+7. Enter your options (at least two)
+8. Enter the text of the correct answer. (Example if the answer is Paris you would enter Pairs).
+9. Click Submit
+
+#### Instructor View of Test Page
+
+To view the Instructor view of the test page, click on one of the blue test IDs under Available Tests on the Instructor Page.
+
+Here you can view metadata about the test (possible points, passing score, number of questions) and also the questions, their options and the correct answers.
+
+### Admin Page
+
+Here you can view and reset user's passwords
 
 ## Style Guide
 

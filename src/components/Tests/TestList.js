@@ -39,7 +39,6 @@ class TestList extends Component {
 
   render() {
     const { tests, loading } = this.state;
-    console.log(tests);
     return (
       <div>
         <h2>Available Tests</h2>

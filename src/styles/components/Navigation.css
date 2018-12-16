@@ -22,20 +22,29 @@ nav ul {
   margin: 0;
 }
 
-nav ul>li {
+nav ul > li {
   display: inline-block;
   margin: 1rem 1rem 0 1rem;
 }
 
-nav ul>li a {
+nav ul > li a {
   background-color: var(--ku-blue);
   font-weight: 700;
   padding: 1rem 1rem 0 1rem;
   text-decoration: none;
 }
 
-nav ul>li a:hover {
+nav ul > li a:hover {
   background-color: #fff;
   color: var(--ku-blue);
   text-decoration: none;
+}
+
+header button {
+  background-color: var(--ku-crimson);
+  border: none;
+  color: var(--ku-jayhawk-yellow);
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding: 1rem 1rem 0 1rem;
 }

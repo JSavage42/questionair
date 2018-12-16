@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/components/Questions/NewQuestion.css";
 import { withFirebase } from "../Firebase";
+import { isNullOrUndefined } from "util";
 
 class NewQuestion extends React.Component {
   constructor(props) {
@@ -74,15 +75,16 @@ class NewQuestion extends React.Component {
     if (this.state.op10) {
       this.state.options.push(this.state.op10);
     }
-
-    const file = e.target.uploadImage.files[0];
-    const fileName = file.name;
-    this.props.firebase
-      .image(this.state.user.uid, fileName)
-      .put(file)
-      .then(snapshot => {
-        console.log(snapshot);
-      });
+    if (e.target.upLoadImage === isNullOrUndefined) {
+      const file = e.target.uploadImage.files[0];
+      const fileName = file.name;
+      this.props.firebase
+        .image(this.state.user.uid, fileName)
+        .put(file)
+        .then(snapshot => {
+          console.log(snapshot);
+        });
+    }
 
     const question = {
       reference1: this.state.reference1,
@@ -131,7 +133,7 @@ class NewQuestion extends React.Component {
 
   render() {
     return (
-      <main>
+      <main id="new-question">
         <h2>Create Questions</h2>
         <form id="newQuestion" onSubmit={this.handleOnSubmit}>
           <label>Test Bank ID Number</label>
@@ -252,12 +254,10 @@ class NewQuestion extends React.Component {
             </fieldset>
             <label>Correct Answer</label>
             <input
-              type="number"
+              type="text"
               value={this.state.answer}
               name="answer"
               onChange={this.handleChange}
-              min="1"
-              max="10"
             />
           </fieldset>
           <input type="submit" name="submit" value="Submit" />
