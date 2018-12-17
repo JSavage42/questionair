@@ -1,32 +1,11 @@
-* {
-  
-  /* Main Color Palette */
-  --ku-blue: #0051ba;
-  --ku-crimson:#e8000d;
-  --ku-jayhawk-yellow: #ffc82d;
-  --ku-signature-grey:#85898a;
-  
-  /* Secondary Color Palette */
-  --night: #003459;
-  --lake: #2767ff;
-  --sky: #73cbf2;
-  --fog: #8e9fbc;
-  --steam: #dde5ed;
-  --brick: #971b2f;
-  --fire: #ff3042;
-  --wheat: #f2a900;
-  --terra-cotta: #c66e4e;
-  --limestone: #d7d2cb;
-}
-
-
 html {
   font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 body {
-  color: #000;
-  background-color: #fff;
+  color: #fff;
+  background-color: #10162e;
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

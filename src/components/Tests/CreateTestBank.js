@@ -67,6 +67,7 @@ class CreateTestBank extends React.Component {
             value={this.state.testBankId}
             name="tid"
             onChange={this.handleChange}
+            placeholder="Test Bank ID Number"
           />
           <label>Total Points</label>
           <input
@@ -74,6 +75,7 @@ class CreateTestBank extends React.Component {
             value={this.state.totalPoints}
             name="totalPoints"
             onChange={this.handleChange}
+            placeholder="Total Points"
           />
           <label>Passing Score</label>
           <input
@@ -81,6 +83,7 @@ class CreateTestBank extends React.Component {
             value={this.state.passingScore}
             name="passingScore"
             onChange={this.handleChange}
+            placeholder="Passing Score"
           />
           <input type="submit" name="submit" value="Submit" />
           <input type="reset" name="reset" value="Reset" />

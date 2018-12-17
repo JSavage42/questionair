@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { compose } from "recompose";
-
+import "../../styles/components/Home/Home.css";
 import { withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
 
@@ -27,10 +27,10 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Home Page</h1>
-        <p>The Home Page is accessible by every signed in user.</p>
-      </div>
+      <main id="home">
+        <h2>Home Page</h2>
+        <p>Welcome to Question Air.</p>
+      </main>
     );
   }
 }
