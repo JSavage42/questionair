@@ -142,6 +142,7 @@ class NewQuestion extends React.Component {
             value={this.state.testBankId}
             name="tid"
             onChange={this.handleChange}
+            placeholder="Test Bank ID"
           />
           <label>Reference 1</label>
           <input
@@ -149,6 +150,7 @@ class NewQuestion extends React.Component {
             value={this.state.reference1}
             name="reference1"
             onChange={this.handleChange}
+            placeholder="Reference 1"
           />
           <label>Reference 2</label>
           <input
@@ -156,110 +158,120 @@ class NewQuestion extends React.Component {
             value={this.state.reference2}
             name="reference2"
             onChange={this.handleChange}
+            placeholder="Reference 2"
           />
-          <fieldset form="newQuestion">
-            <legend>Question</legend>
-            <label>Question Number and Content</label>
-            <input
-              type="number"
-              value={this.state.questionNum}
-              name="questionNum"
-              onChange={this.handleChange}
-            />
-            <input
-              type="text"
-              value={this.state.question}
-              name="question"
-              onChange={this.handleChange}
-            />
-            <input
-              accept=".jpg,.png"
-              type="file"
-              id="uploadImage"
-              name="image"
-              onChange={this.handleChange}
-            />
-            <fieldset form="newQuestion">
-              <legend>Options</legend>
-              <label>Option 1</label>
-              <input
-                type="text"
-                value={this.state.op1}
-                name="op1"
-                onChange={this.handleChange}
-              />
-              <label>Option 2</label>
-              <input
-                type="text"
-                value={this.state.op2}
-                name="op2"
-                onChange={this.handleChange}
-              />
-              <label>Option 3</label>
-              <input
-                type="text"
-                value={this.state.op3}
-                name="op3"
-                onChange={this.handleChange}
-              />
-              <label>Option 4</label>
-              <input
-                type="text"
-                value={this.state.op4}
-                name="op4"
-                onChange={this.handleChange}
-              />
-              <label>Option 5</label>
-              <input
-                type="text"
-                value={this.state.op5}
-                name="op5"
-                onChange={this.handleChange}
-              />
-              <label>Option 6</label>
-              <input
-                type="text"
-                value={this.state.op6}
-                name="op6"
-                onChange={this.handleChange}
-              />
-              <label>Option 7</label>
-              <input
-                type="text"
-                value={this.state.op7}
-                name="op7"
-                onChange={this.handleChange}
-              />
-              <label>Option 8</label>
-              <input
-                type="text"
-                value={this.state.op8}
-                name="op8"
-                onChange={this.handleChange}
-              />
-              <label>Option 9</label>
-              <input
-                type="text"
-                value={this.state.op9}
-                name="op9"
-                onChange={this.handleChange}
-              />
-              <label>Option 10</label>
-              <input
-                type="text"
-                value={this.state.op10}
-                name="op10"
-                onChange={this.handleChange}
-              />
-            </fieldset>
-            <label>Correct Answer</label>
-            <input
-              type="text"
-              value={this.state.answer}
-              name="answer"
-              onChange={this.handleChange}
-            />
-          </fieldset>
+          <label>Question Number and Content</label>
+          <input
+            type="number"
+            value={this.state.questionNum}
+            name="questionNum"
+            onChange={this.handleChange}
+            placeholder="Question Number"
+          />
+          <input
+            type="text"
+            value={this.state.question}
+            name="question"
+            onChange={this.handleChange}
+            placeholder="Question Text"
+          />
+          <input
+            accept=".jpg,.png"
+            type="file"
+            id="uploadImage"
+            name="image"
+            onChange={this.handleChange}
+          />
+          <label>Option A</label>
+          <input
+            type="text"
+            value={this.state.op1}
+            name="op1"
+            onChange={this.handleChange}
+            placeholder="Option A"
+          />
+          <label>Option B</label>
+          <input
+            type="text"
+            value={this.state.op2}
+            name="op2"
+            onChange={this.handleChange}
+            placeholder="Option B"
+          />
+          <label>Option C</label>
+          <input
+            type="text"
+            value={this.state.op3}
+            name="op3"
+            onChange={this.handleChange}
+            placeholder="Option C"
+          />
+          <label>Option D</label>
+          <input
+            type="text"
+            value={this.state.op4}
+            name="op4"
+            onChange={this.handleChange}
+            placeholder="Option D"
+          />
+          <label>Option E</label>
+          <input
+            type="text"
+            value={this.state.op5}
+            name="op5"
+            onChange={this.handleChange}
+            placeholder="Option E"
+          />
+          <label>Option F</label>
+          <input
+            type="text"
+            value={this.state.op6}
+            name="op6"
+            onChange={this.handleChange}
+            placeholder="Option F"
+          />
+          <label>Option G</label>
+          <input
+            type="text"
+            value={this.state.op7}
+            name="op7"
+            onChange={this.handleChange}
+            placeholder="Option G"
+          />
+          <label>Option H</label>
+          <input
+            type="text"
+            value={this.state.op8}
+            name="op8"
+            onChange={this.handleChange}
+            placeholder="Option H"
+          />
+          <label>Option I</label>
+          <input
+            type="text"
+            value={this.state.op9}
+            name="op9"
+            onChange={this.handleChange}
+            placeholder="Option I"
+          />
+          <label>Option J</label>
+          <input
+            type="text"
+            value={this.state.op10}
+            name="op10"
+            onChange={this.handleChange}
+            placeholder="Option J"
+          />
+
+          <label>Correct Answer</label>
+          <input
+            type="text"
+            value={this.state.answer}
+            name="answer"
+            onChange={this.handleChange}
+            placeholder="Correct Answer"
+          />
+
           <input type="submit" name="submit" value="Submit" />
         </form>
       </main>

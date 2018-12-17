@@ -20,7 +20,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--ku-crimson);
+  color: #d8a931;
 }
 
 h2 {
@@ -65,7 +65,7 @@ a:hover {
   width: 100%;
 }
 
-.testAnswers input[type='submit'] {
+.testAnswers input[type="submit"] {
   align-self: center;
   background-color: var(--ku-blue);
   border: none;

@@ -47,16 +47,16 @@ class TestList extends Component {
         {loading && <div>Loading ...</div>}
         <ul>
           {tests &&
-            tests.map(quiz => (
-              <li key={quiz.tid}>
+            tests.map(test => (
+              <li key={test.tid}>
                 <strong>Take Quiz ID Number: </strong>
                 <Link
                   to={{
-                    pathname: `${ROUTES.TESTS}/${quiz.tid}`,
-                    state: { quiz }
+                    pathname: `${ROUTES.TESTS}/${test.tid}`,
+                    state: { test }
                   }}
                 >
-                  {quiz.tid}
+                  {test.tid}
                 </Link>
               </li>
             ))}

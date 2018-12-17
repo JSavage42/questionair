@@ -7,9 +7,9 @@
 }
 
 #create-test-bank input {
-  background-color: #aaa;
+  background-color: #2121ba;
   border: none;
-  color: #000;
+  color: #fff;
   display: block;
   font-size: 2.5rem;
   margin: 0.5rem 0;
@@ -17,9 +17,10 @@
 }
 
 #create-test-bank input[type="submit"] {
-  background: var(--ku-blue);
-  color: #fff;
+  background: #d8a931;
+  color: #000;
   display: inline-block;
+  font-weight: 700;
 }
 
 #create-test-bank input[type="reset"] {

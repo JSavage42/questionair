@@ -1,6 +1,6 @@
 header {
   align-items: center;
-  background-color: var(--ku-signature-grey);
+  background-color: #2121ba;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,7 +8,7 @@ header {
 }
 
 h1 {
-  color: var(--ku-crimson);
+  color: #ab8421;
 }
 
 nav {
@@ -28,22 +28,22 @@ nav ul > li {
 }
 
 nav ul > li a {
-  background-color: var(--ku-blue);
+  background-color: #6e520c;
   font-weight: 700;
   padding: 1rem 1rem 0 1rem;
   text-decoration: none;
 }
 
 nav ul > li a:hover {
-  background-color: #fff;
-  color: var(--ku-blue);
+  background-color: #10162e;
+  color: #fff;
   text-decoration: none;
 }
 
 header button {
-  background-color: var(--ku-crimson);
+  background-color: #a2a2a2;
   border: none;
-  color: var(--ku-jayhawk-yellow);
+  color: #000;
   font-size: 1.6rem;
   font-weight: 700;
   padding: 1rem 1rem 0 1rem;

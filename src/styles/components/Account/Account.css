@@ -1,0 +1,46 @@
+#account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#account input {
+  background-color: #2121ba;
+  border: none;
+  color: #fff;
+  display: block;
+  font-size: 3rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  width: 35rem;
+}
+
+#account button {
+  background-color: #2121ba;
+  border: none;
+  color: #fff;
+  display: block;
+  font-size: 3rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  width: 35rem;
+}
+
+#account button:hover {
+  background-color: #6e520c;
+  color: #fff;
+}
+
+#account ul {
+  list-style-type: none;
+}
+
+#signin-methods {
+  width: 35rem;
+}
+
+#signin-methods ul {
+  margin: 0;
+  padding: 0;
+}
