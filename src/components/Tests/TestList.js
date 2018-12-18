@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import "../../styles/components/Tests/TestList.css";
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 
@@ -42,26 +42,27 @@ class TestList extends Component {
   render() {
     const { tests, loading } = this.state;
     return (
-      <div>
+      <article id='test-list'>
         <h2>Available Quizzes</h2>
         {loading && <div>Loading ...</div>}
         <ul>
           {tests &&
             tests.map(test => (
-              <li key={test.tid}>
-                <strong>Take Quiz ID Number: </strong>
-                <Link
-                  to={{
-                    pathname: `${ROUTES.TESTS}/${test.tid}`,
-                    state: { test }
-                  }}
-                >
+              <Link
+                to={{
+                  pathname: `${ROUTES.TESTS}/${test.tid}`,
+                  state: { test }
+                }}
+                key={test.tid}
+              >
+                <li>
+                  Take Quiz ID Number:
                   {test.tid}
-                </Link>
-              </li>
+                </li>
+              </Link>
             ))}
         </ul>
-      </div>
+      </article>
     );
   }
 }

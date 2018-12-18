@@ -1,11 +1,35 @@
-#sign-in-page {
+#student {
   align-items: center;
-  background-color: #4568a0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   height: 100vh;
+  flex-direction: column;
 }
 
-#sign-in-page h2 {
+#student input {
+  background-color: #2121ba;
+  border: none;
   color: #fff;
+  display: block;
+  font-size: 2.5rem;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  width: 35rem;
+}
+
+#student input[type="submit"] {
+  background: #d8a931;
+  color: #fff;
+  display: inline-block;
+  font-weight: 700;
+  width: 36.5rem;
+}
+
+#student input[type="submit"]:hover {
+  background-color: #6e520c;
+  color: #fff;
+}
+
+#student label {
+  font-weight: 700;
 }

@@ -28,7 +28,7 @@ const SIGN_IN_METHODS = [
 const AccountPage = () => (
   <AuthUserContext.Consumer>
     {authUser => (
-      <main id="account">
+      <main id='account'>
         <article>
           <h2>Account: {authUser.email}</h2>
           <PasswordForgetForm />
@@ -93,8 +93,8 @@ class LoginManagementBase extends Component {
     const { activeSignInMethods, error } = this.state;
 
     return (
-      <article id="signin-methods">
-        Sign In Methods:
+      <article id='signin-methods'>
+        <span>Sign In Methods:</span>
         <ul>
           {SIGN_IN_METHODS.map(signInMethod => {
             const onlyOneLeft = activeSignInMethods.length === 1;
@@ -138,14 +138,14 @@ const SocialLoginToggle = ({
 }) =>
   isEnabled ? (
     <button
-      type="button"
+      type='button'
       onClick={() => onUnlink(signInMethod.id)}
       disabled={onlyOneLeft}
     >
       Deactivate {signInMethod.id}
     </button>
   ) : (
-    <button type="button" onClick={() => onLink(signInMethod.provider)}>
+    <button type='button' onClick={() => onLink(signInMethod.provider)}>
       Link {signInMethod.id}
     </button>
   );
@@ -177,7 +177,7 @@ class DefaultLoginToggle extends Component {
 
     return isEnabled ? (
       <button
-        type="button"
+        type='button'
         onClick={() => onUnlink(signInMethod.id)}
         disabled={onlyOneLeft}
       >
@@ -186,21 +186,21 @@ class DefaultLoginToggle extends Component {
     ) : (
       <form onSubmit={this.onSubmit}>
         <input
-          name="passwordOne"
+          name='passwordOne'
           value={passwordOne}
           onChange={this.onChange}
-          type="password"
-          placeholder="New Password"
+          type='password'
+          placeholder='New Password'
         />
         <input
-          name="passwordTwo"
+          name='passwordTwo'
           value={passwordTwo}
           onChange={this.onChange}
-          type="password"
-          placeholder="Confirm New Password"
+          type='password'
+          placeholder='Confirm New Password'
         />
 
-        <button disabled={isInvalid} type="submit">
+        <button disabled={isInvalid} type='submit'>
           Link {signInMethod.id}
         </button>
       </form>

@@ -19,29 +19,31 @@
 
 #new-question input[type="submit"] {
   background: #d8a931;
-  color: #fff;
-  display: inline-block;
   font-weight: 700;
+  width: 36.5rem;
 }
 
 #new-question input[type="reset"] {
-  background-color: #d8a931;
-  color: #fff;
-  display: inline-block;
-  margin-left: 2rem;
+  background-color: #ccc;
+  color: #000;
+  width: 36.5rem;
 }
 
 #new-question input[type="file"] {
-  background-color: #2121ba;
-  color: #fff;
+  background-color: #10162e;
   width: 35rem;
 }
 
-#new-question label {
-  font-weight: 700;
+#new-question input[type="submit"]:hover {
+  background-color: #6e520c;
+  color: #fff;
 }
 
-#new-question p {
-  font-size: 2rem;
+#new-question input[type="reset"]:hover {
+  background-color: #6e520c;
+  color: #fff;
+}
+
+#new-question label {
   font-weight: 700;
 }
