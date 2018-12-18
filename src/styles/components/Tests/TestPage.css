@@ -30,11 +30,5 @@
 }
 
 #test-page #questions .option:hover {
-  background-color: #221b75;
-  color: #fff;
-  font-size: 3rem;
-  padding: 1rem;
-  margin: 1rem 0;
-  text-align: center;
-  width: 40rem;
+  background-color: #6e520c;
 }

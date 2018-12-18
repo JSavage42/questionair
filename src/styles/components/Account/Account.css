@@ -10,7 +10,7 @@
   border: none;
   color: #fff;
   display: block;
-  font-size: 3rem;
+  font-size: 2.5rem;
   padding: 1rem;
   margin: 1rem 0;
   width: 35rem;
@@ -21,10 +21,10 @@
   border: none;
   color: #fff;
   display: block;
-  font-size: 3rem;
+  font-size: 2.5rem;
   padding: 1rem;
   margin: 1rem 0;
-  width: 35rem;
+  width: 37rem;
 }
 
 #account button:hover {
@@ -36,8 +36,8 @@
   list-style-type: none;
 }
 
-#signin-methods {
-  width: 35rem;
+#signin-methods span {
+  font-weight: 700;
 }
 
 #signin-methods ul {
