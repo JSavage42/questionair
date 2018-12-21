@@ -1,20 +1,26 @@
 header {
-  align-items: center;
+  align-items: flex-start;
   background-color: var(--light-blue);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 100%;
+  justify-content: start;
+  width: 100vw;
 }
 
 h1 {
   color: var(--yellow);
 }
 
+header img {
+  align-self: start;
+  margin-left: 2rem;
+  width: 5%;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
-  height: 100%;
+  width: 100%;
 }
 
 nav ul {
@@ -43,11 +49,15 @@ nav ul > li a:hover {
 }
 
 header button {
+  align-self: flex-end;
+  justify-self: flex-end;
   background-color: var(--grey);
   border-radius: 1rem 1rem 0 0;
   border: none;
   color: #000;
+  margin: 0 1rem;
   font-size: 1.6rem;
   font-weight: 700;
-  padding: 0.51rem 1rem 0 1rem;
+  padding: 0.5rem;
+  width: auto;
 }

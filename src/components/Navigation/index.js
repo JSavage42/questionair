@@ -1,11 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { AuthUserContext } from "../Session";
-import SignOutButton from "../SignOut";
-import * as ROUTES from "../../constants/routes";
-import * as ROLES from "../../constants/roles";
-import "../../styles/components/Navigation.css";
+import { AuthUserContext } from '../Session';
+import SignOutButton from '../SignOut';
+import * as ROUTES from '../../constants/routes';
+import * as ROLES from '../../constants/roles';
+import '../../styles/components/Navigation.css';
+import logo from '../../images/logo.svg';
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
@@ -17,7 +18,7 @@ const Navigation = () => (
 
 const NavigationAuth = ({ authUser }) => (
   <header>
-    <h1>Question Air</h1>
+    <img src={logo} alt='Question Air' title='Question Air' />
     <nav>
       <ul>
         <li>
@@ -40,10 +41,8 @@ const NavigationAuth = ({ authUser }) => (
             <Link to={ROUTES.ADMIN}>Admin</Link>
           </li>
         )}
-        <li>
-          <SignOutButton />
-        </li>
       </ul>
+      <SignOutButton />
     </nav>
   </header>
 );
