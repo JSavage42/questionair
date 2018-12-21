@@ -7,8 +7,9 @@
 }
 
 #student input {
-  background-color: #2121ba;
+  background-color: var(--med-blue);
   border: none;
+  border-radius: 1rem;
   color: #fff;
   display: block;
   font-size: 2.5rem;
@@ -17,19 +18,20 @@
   width: 35rem;
 }
 
-#student input[type="submit"] {
-  background: #d8a931;
-  color: #fff;
+#student input[type='submit'] {
+  background: var(--yellow);
+  color: #000;
   display: inline-block;
   font-weight: 700;
   width: 36.5rem;
 }
 
-#student input[type="submit"]:hover {
-  background-color: #6e520c;
+#student input[type='submit']:hover {
+  background-color: var(--gold);
   color: #fff;
 }
 
 #student label {
   font-weight: 700;
+  letter-spacing: 0.125rem;
 }

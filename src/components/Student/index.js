@@ -13,7 +13,10 @@ class StudentPage extends React.Component {
     };
   }
 
-  handleStartTest = e => {};
+  handleStartTest = e => {
+    e.preventDefault();
+    console.log(this.state);
+  };
 
   handleOnChange = e => {
     this.setState({ [e.target.name]: e.target.value });
