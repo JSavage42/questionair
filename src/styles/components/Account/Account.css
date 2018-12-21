@@ -6,7 +6,8 @@
 }
 
 #account input {
-  background-color: #2121ba;
+  background-color: var(--med-blue);
+  border-radius: 1rem;
   border: none;
   color: #fff;
   display: block;
@@ -17,7 +18,8 @@
 }
 
 #account button {
-  background-color: #2121ba;
+  background-color: var(--med-blue);
+  border-radius: 1rem;
   border: none;
   color: #fff;
   display: block;
@@ -28,7 +30,7 @@
 }
 
 #account button:hover {
-  background-color: #6e520c;
+  background-color: var(--gold);
   color: #fff;
 }
 
@@ -38,6 +40,7 @@
 
 #signin-methods span {
   font-weight: 700;
+  letter-spacing: 0.125rem;
 }
 
 #signin-methods ul {

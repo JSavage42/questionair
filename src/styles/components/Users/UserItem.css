@@ -7,8 +7,9 @@
 }
 
 #user-item button {
-  background-color: #d8a931;
+  background-color: var(--yellow);
   border: none;
+  border-radius: 1rem;
   color: #000;
   font-size: 2rem;
   font-weight: 700;
@@ -17,7 +18,8 @@
 }
 
 #user-item button:hover {
-  border: 2px solid #000;
+  background-color: var(--gold);
+  color: #fff;
   text-decoration: underline;
 }
 

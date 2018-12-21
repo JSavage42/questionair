@@ -5,14 +5,15 @@
 }
 
 #instructor-page a {
-  color: #2254fa;
-  font-weight: 700;
+  color: var(--yellow);
+  font-size: 2rem;
+  letter-spacing: 0.125rem;
+  font-weight: 500;
 }
 
 #instructor-page a:hover {
-  color: var(--ku-crimson);
-  font-weight: 700;
-  text-decoration: underline;
+  color: #fff;
+  font-weight: 500;
 }
 
 #instructor-page ul {

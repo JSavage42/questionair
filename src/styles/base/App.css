@@ -13,6 +13,8 @@ main {
 
 h1 {
   font-size: 3rem;
+  color: #fff;
+  letter-spacing: 0.125rem;
 }
 
 h2,
@@ -20,7 +22,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #d8a931;
+  color: var(--yellow);
 }
 
 h2 {
@@ -29,16 +31,17 @@ h2 {
 }
 
 a {
-  color: var(--ku-jayhawk-yellow);
+  color: #fff;
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--ku-jayhawk-yellow);
+  color: var(--light-blue);
   text-decoration: underline;
 }
 
-.testQuestion {
+/* !TODO check if removing breaks
+/* .testQuestion {
   border: 1px solid #000;
   border-radius: 1.5rem;
   color: #fff;
@@ -65,13 +68,13 @@ a:hover {
   width: 100%;
 }
 
-.testAnswers input[type="submit"] {
+.testAnswers input[type='submit'] {
   align-self: center;
-  background-color: var(--ku-blue);
-  border: none;
+  background-color: var(--light-blue);
+  border: 1px solid #000;
   border-radius: 1.25rem;
   color: #fff;
   font-size: 2rem;
   padding: 1.25rem 2rem;
   width: 100%;
-}
+} */
