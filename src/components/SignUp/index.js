@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
-import { withFirebase } from "../Firebase";
-import * as ROUTES from "../../constants/routes";
+import { withFirebase } from '../Firebase';
+import * as ROUTES from '../../constants/routes';
 
 const SignUpPage = () => (
   <div>
@@ -12,16 +12,16 @@ const SignUpPage = () => (
 );
 
 const INITIAL_STATE = {
-  username: "",
-  email: "",
-  passwordOne: "",
-  passwordTwo: "",
+  username: '',
+  email: '',
+  passwordOne: '',
+  passwordTwo: '',
   requestAdmin: false,
   requestInstructor: false,
-  error: null
+  error: null,
 };
 
-const ERROR_CODE_ACCOUNT_EXISTS = "auth/email-already-in-use";
+const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
 
 const ERROR_MSG_ACCOUNT_EXISTS = `
   An account with this E-Mail address already exists.
@@ -38,30 +38,30 @@ class SignUpFormBase extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     const {
       username,
       email,
       passwordOne,
       requestAdmin,
-      requestInstructor
+      requestInstructor,
     } = this.state;
     const requests = [];
     if (requestAdmin) {
-      requests.push("admin");
+      requests.push('admin');
     }
     if (requestInstructor) {
-      requests.push("instructor");
+      requests.push('instructor');
     }
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then(authUser => {
-        // Create a user in your Firebase realtime database
+      .then((authUser) => {
+        // Create a user in your Firebase real time database
         return this.props.firebase.user(authUser.user.uid).set({
           username,
           email,
-          requests
+          requests,
         });
       })
       .then(() => {
@@ -71,7 +71,7 @@ class SignUpFormBase extends Component {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
       })
-      .catch(error => {
+      .catch((error) => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS;
         }
@@ -82,11 +82,11 @@ class SignUpFormBase extends Component {
     event.preventDefault();
   };
 
-  onChange = event => {
+  onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  onChangeCheckbox = event => {
+  onChangeCheckbox = (event) => {
     this.setState({ [event.target.name]: event.target.checked });
   };
 
@@ -98,14 +98,14 @@ class SignUpFormBase extends Component {
       passwordTwo,
       error,
       requestInstructor,
-      requestAdmin
+      requestAdmin,
     } = this.state;
 
     const isInvalid =
       passwordOne !== passwordTwo ||
-      passwordOne === "" ||
-      email === "" ||
-      username === "";
+      passwordOne === '' ||
+      email === '' ||
+      username === '';
 
     return (
       <form onSubmit={this.onSubmit}>

@@ -1,0 +1,35 @@
+#take-test ul {
+  list-style-type: none;
+}
+
+#take-test ol {
+  list-style-type: none;
+}
+
+#take-test #questions .question {
+  margin-bottom: 2rem;
+}
+
+#take-test #questions img {
+  max-width: 60rem;
+}
+
+#take-test #questions p {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+#take-test #questions .option {
+  background-color: var(--med-blue);
+  border-radius: 1rem;
+  color: #fff;
+  font-size: 3rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  text-align: center;
+  width: 40rem;
+}
+
+#take-test #questions .option:hover {
+  background-color: var(--gold);
+}

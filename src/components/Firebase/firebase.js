@@ -1,7 +1,7 @@
-import app from "firebase/app";
-import "firebase/auth";
-import "firebase/database";
-import "firebase/storage";
+import app from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/storage';
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -9,7 +9,7 @@ const config = {
   databaseURL: process.env.REACT_APP_DATABASE_URL,
   projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 };
 
 class Firebase {
@@ -50,23 +50,24 @@ class Firebase {
 
   doSignOut = () => this.auth.signOut();
 
-  doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
+  doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email);
 
   doSendEmailVerification = () =>
     this.auth.currentUser.sendEmailVerification({
-      url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT
+      url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
     });
 
-  doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
+  doPasswordUpdate = (password) =>
+    this.auth.currentUser.updatePassword(password);
 
   // *** Merge Auth and DB User API *** //
 
   onAuthUserListener = (next, fallback) =>
-    this.auth.onAuthStateChanged(authUser => {
+    this.auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         this.user(authUser.uid)
-          .once("value")
-          .then(snapshot => {
+          .once('value')
+          .then((snapshot) => {
             const dbUser = snapshot.val();
 
             // default empty roles
@@ -80,7 +81,7 @@ class Firebase {
               email: authUser.email,
               emailVerified: authUser.emailVerified,
               providerData: authUser.providerData,
-              ...dbUser
+              ...dbUser,
             };
 
             next(authUser);
@@ -92,7 +93,7 @@ class Firebase {
 
   // *** User API ***
 
-  user = uid => this.db.ref(`users/${uid}`);
+  user = (uid) => this.db.ref(`users/${uid}`);
 
   users = () => this.db.ref(`users`);
 
@@ -100,12 +101,18 @@ class Firebase {
 
   test = (uid, tid) => this.db.ref(`users/${uid}/tests/${tid}`);
 
-  tests = uid => this.db.ref(`users/${uid}/tests`);
+  tests = (uid) => this.db.ref(`users/${uid}/tests`);
 
   // *** Question Image API ***
   image = (uid, fileName) => this.storage.ref(`${uid}/images/${fileName}`);
 
-  images = uid => this.storage.ref(`${uid}/images`);
+  images = (uid) => this.storage.ref(`${uid}/images`);
+
+  // *** Host API ***
+
+  host = (uid, tid) => this.db.ref(`users/${uid}/host/${tid}`);
+
+  hosts = (uid) => this.db.ref(`users/${uid}/host`);
 }
 
 export default Firebase;
