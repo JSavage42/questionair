@@ -39,11 +39,15 @@ In the Account Page you can make changes to your account. You can reset your pas
 
 ### Student Page
 
-You can't do anything here right now.
+You can add an Instructor's ID and Test ID to open a page that displays all the test questions and options.
+
+Working on getting the functionality of showing one question at a time controlled by the Instructor.
 
 ### Instructor Page
 
 The Instructor Page shows all the test banks you've created. It also displays links to create a new test bank or add questions to an existing test bank.
+
+Working on ability to edit a question. Also, the ability to control the hosted test.
 
 #### Create Test Bank
 
@@ -71,4 +75,6 @@ Here you can view metadata about the test (possible points, passing score, numbe
 
 ### Admin Page
 
-Here you can view and reset user's passwords. You can also approve user permission requests via the admin dashboard.
+Here you can view and reset user's passwords. You can also approve user permission requests via the admin dashboard. You can also remove permissions from users.
+
+Working on ability to grant permissions to users without a request.
