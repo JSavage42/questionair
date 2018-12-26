@@ -7,19 +7,41 @@ import * as ROLES from '../../constants/roles';
 import * as ROUTES from '../../constants/routes';
 import '../../styles/components/Instructor/InstructorPage.css';
 
-const InstructorPage = () => (
-  <main id='instructor-page'>
-    <h2>Instructor</h2>
-    <p>The Instructor Page is accessible by every signed in Instructor user.</p>
-    <Link to={ROUTES.CREATE_TEST}>Create Test Bank</Link>
-    <br />
-    <Link to={ROUTES.NEW_QUESTION}>New Question</Link>
+class InstructorPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      authUser: JSON.parse(localStorage.getItem('authUser')).uid,
+    };
+  }
+  handleEndHostedTests = () => {
+    const { authUser } = this.state;
+    this.props.firebase.hosts(authUser).remove();
+  };
 
-    <TestList />
-  </main>
-);
+  render() {
+    return (
+      <main id="instructor-page">
+        <h2>Instructor</h2>
+        <p>
+          The Instructor Page is accessible by every signed in Instructor user.
+        </p>
+        <Link to={ROUTES.CREATE_TEST}>Create Test Bank</Link>
+        <br />
+        <Link to={ROUTES.NEW_QUESTION}>New Question</Link>
 
-const condition = authUser =>
+        <TestList />
+        <input
+          type="button"
+          value="End Hosted Tests"
+          onClick={this.handleEndHostedTests}
+        />
+      </main>
+    );
+  }
+}
+
+const condition = (authUser) =>
   (authUser && authUser.roles.includes(ROLES.ADMIN)) ||
   authUser.roles.includes(ROLES.INSTRUCTOR);
 

@@ -1,6 +1,8 @@
-import React from "react";
-import "../../styles/components/Tests/TestPage.css";
-import { withFirebase } from "../Firebase";
+import React from 'react';
+import '../../styles/components/Tests/TestPage.css';
+import { compose } from 'recompose';
+import { withFirebase } from '../Firebase';
+import { withAuthentication } from '../Session';
 
 class TestPage extends React.Component {
   constructor(props) {
@@ -8,39 +10,16 @@ class TestPage extends React.Component {
 
     this.state = {
       // Gets current authUser from local storage
-      authUser: JSON.parse(localStorage.getItem("authUser")),
-      test: null,
-      tid: "",
-      questions: [],
+      authUser: this.props.location.state.authUser,
+      test: this.props.location.state.test,
+      tid: this.props.location.state.test.tid,
+      questions: Object.values(this.props.location.state.test.questions),
       loading: true,
-      url: ""
+      url: '',
     };
   }
 
-  componentDidMount() {
-    const { authUser } = this.state;
-    if (authUser.tests) {
-      const tid = this.props.history.location.state.test.tid;
-      this.setState({ tid: tid });
-      // Gets tests from current signed in user. Sets those to state along with the questions in their respective arrays.
-      this.props.firebase
-        .test(authUser.uid, this.props.history.location.state.test.tid)
-        .on("value", snapshot => {
-          this.setState({
-            test: snapshot.val(),
-            questions: Object.values(snapshot.val().questions),
-            loading: false
-          });
-        });
-    }
-  }
-
-  componentWillUnmount() {
-    const { authUser, tid } = this.state;
-    this.props.firebase.test(authUser.uid, tid).off();
-  }
-
-  handleSubmitAnswer = e => {
+  handleSubmitAnswer = (e) => {
     // TODO Create logic for handling a submitted answer.
     console.log(e.target.id);
   };
@@ -63,13 +42,13 @@ class TestPage extends React.Component {
                 Questions:
                 <ul id="questions">
                   {/* Iterates through the questions array, checks if there is an image associated with it, downloads the image and sets the url to the url state. */}
-                  {this.state.questions.map(question => {
+                  {this.state.questions.map((question) => {
                     question.image &&
                       this.props.firebase
                         .images(this.state.authUser.uid)
                         .child(`${question.image.substring(12)}`)
                         .getDownloadURL()
-                        .then(url => {
+                        .then((url) => {
                           this.setState({ url });
                         });
                     /* Returns the question number, text, image (if there is one) and then iterates through the options which are clickable to submit answers. */
@@ -87,7 +66,7 @@ class TestPage extends React.Component {
                           />
                         )}
                         <ol>
-                          {question.options.map(op => (
+                          {question.options.map((op) => (
                             <li
                               key={op}
                               className="option"
@@ -114,4 +93,7 @@ class TestPage extends React.Component {
 }
 
 // Wraps the component with the higher order component "withFirebase" to give the component access to the Firebase API.
-export default withFirebase(TestPage);
+export default compose(
+  withAuthentication,
+  withFirebase,
+)(TestPage);

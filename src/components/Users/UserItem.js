@@ -1,34 +1,28 @@
-import React, { Component } from "react";
-import "../../styles/components/Users/UserItem.css";
-import { withFirebase } from "../Firebase";
-import "../../styles/components/Users/UserItem.css";
+import React, { Component } from 'react';
+import '../../styles/components/Users/UserItem.css';
+import { withFirebase } from '../Firebase';
 class UserItem extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      loading: false,
+      loading: true,
       user: null,
-      ...props.location.state
+      uid: null,
+      ...props.location.state,
     };
   }
 
   componentDidMount() {
-    if (this.state.user) {
-      return;
-    }
-
-    this.setState({ loading: true });
-
     this.props.firebase
       .user(this.props.match.params.id)
-      .on("value", snapshot => {
+      .on('value', (snapshot) => {
         this.setState({
           user: snapshot.val(),
-          loading: false
+          uid: this.props.match.params.id,
+          loading: false,
         });
       });
-    console.log(this.state.user);
   }
 
   componentWillUnmount() {
@@ -39,9 +33,9 @@ class UserItem extends Component {
     this.props.firebase.doPasswordReset(this.state.user.email);
   };
 
-  handleRequestApproval = e => {
+  handleRequestApproval = (e) => {
     let key;
-    if (e.target.id === "ADMIN") {
+    if (e.target.id === 'ADMIN') {
       key = 0;
     } else {
       key = 1;
@@ -53,8 +47,25 @@ class UserItem extends Component {
       .set(e.target.id);
   };
 
+  handleRoleRemoval = (e) => {
+    let key;
+    if (e.target.id === 'ADMIN') {
+      key = 0;
+    } else {
+      key = 1;
+    }
+    this.props.firebase
+      .user(this.state.uid)
+      .child('roles')
+      .child(key)
+      .remove();
+
+    console.log(key);
+  };
+
   render() {
-    const { user, loading } = this.state;
+    const { user, loading, uid } = this.state;
+    console.log(this.state.uid);
 
     return (
       <article id="user-item">
@@ -64,7 +75,7 @@ class UserItem extends Component {
         {user && (
           <div>
             <span>
-              <b>ID:</b> {user.uid}
+              <b>ID:</b> {uid}
             </span>
             <span>
               <b>E-Mail:</b> {user.email}
@@ -74,12 +85,9 @@ class UserItem extends Component {
             </span>
             {user.requests && (
               <span id="requests">
-                <b>Requests: </b>
-                <p>
-                  <b>Click to approve</b>
-                </p>
+                <b>Requests: </b>(Click to Approve)
                 <ul>
-                  {user.requests.map(req => (
+                  {user.requests.map((req) => (
                     <li key={req}>
                       <button
                         id={req}
@@ -95,10 +103,18 @@ class UserItem extends Component {
             )}
             {user.roles && (
               <span>
-                <strong>Roles:</strong>
+                <b>Roles: </b>(Click to Remove)
                 <ul>
-                  {user.roles.map(role => (
-                    <li key={role}>{role}</li>
+                  {user.roles.map((role) => (
+                    <li key={role}>
+                      <button
+                        id={role}
+                        type="button"
+                        onClick={this.handleRoleRemoval}
+                      >
+                        {role}
+                      </button>
+                    </li>
                   ))}
                 </ul>
               </span>

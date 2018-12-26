@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-import { withFirebase } from "../Firebase";
-import * as ROUTES from "../../constants/routes";
-import "../../styles/components/Users/UserList.css";
+import { withFirebase } from '../Firebase';
+import * as ROUTES from '../../constants/routes';
+import '../../styles/components/Users/UserList.css';
 
 class UserList extends Component {
   constructor(props) {
@@ -11,25 +11,24 @@ class UserList extends Component {
 
     this.state = {
       loading: false,
-      users: []
+      users: [],
     };
   }
 
   componentDidMount() {
     this.setState({ loading: true });
 
-    this.props.firebase.users().on("value", snapshot => {
-      console.log(snapshot.val());
+    this.props.firebase.users().on('value', (snapshot) => {
       const usersObject = snapshot.val();
 
-      const usersList = Object.keys(usersObject).map(key => ({
+      const usersList = Object.keys(usersObject).map((key) => ({
         ...usersObject[key],
-        uid: key
+        uid: key,
       }));
 
       this.setState({
         users: usersList,
-        loading: false
+        loading: false,
       });
     });
   }
@@ -46,8 +45,7 @@ class UserList extends Component {
         <h2>Enrolled Users</h2>
         {loading && <div>Loading ...</div>}
         <ul>
-          {console.log(users)}
-          {users.map(user => (
+          {users.map((user) => (
             <li key={user.uid}>
               <span>
                 <strong>ID:</strong> {user.uid}
@@ -62,7 +60,7 @@ class UserList extends Component {
                 <span>
                   <strong>Roles:</strong>
                   <ul>
-                    {user.roles.map(role => (
+                    {user.roles.map((role) => (
                       <li key={role}>{role}</li>
                     ))}
                   </ul>
@@ -72,7 +70,7 @@ class UserList extends Component {
                 <Link
                   to={{
                     pathname: `${ROUTES.ADMIN}/${user.uid}`,
-                    state: { user }
+                    state: { user },
                   }}
                 >
                   Details
