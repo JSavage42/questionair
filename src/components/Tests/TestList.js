@@ -16,12 +16,13 @@ class TestList extends Component {
       tid: '',
       test: null,
       questions: [],
+      userTests: [],
     };
   }
 
   componentDidMount() {
     this.setState({ loading: true });
-    this.props.firebase.tests().on('value', snapshot => {
+    this.props.firebase.tests(this.state.authUser.uid).on('value', snapshot => {
       const testsObject = snapshot.val();
       if (testsObject === null) {
         this.setState({ loading: false });
@@ -35,6 +36,12 @@ class TestList extends Component {
           tests: testsList,
           loading: false,
         });
+        for (const [key, value] of Object.entries(testsList)) {
+          if (value.tid.includes(this.state.authUser.uid.substring(0, 4))) {
+            this.state.userTests.push(value);
+            console.log(this.state.userTests);
+          }
+        }
       }
     });
   }
@@ -53,7 +60,7 @@ class TestList extends Component {
     const { authUser, tid, test } = this.state;
 
     // *** Get Test from test API ***
-    this.props.firebase.test(tid).on('value', snapshot => {
+    this.props.firebase.test(authUser.uid, tid).on('value', snapshot => {
       this.setState({
         test: snapshot.val(),
         questions: Object.values(snapshot.val().questions),
@@ -67,15 +74,15 @@ class TestList extends Component {
   };
 
   render() {
-    const { tests, loading } = this.state;
+    const { userTests, loading } = this.state;
     return (
       <section id="instrurctor-test-list">
         <article id="test-list">
           <h2>Available Quizzes</h2>
           {loading && <div>Loading ...</div>}
           <ul>
-            {tests &&
-              tests.map(test => (
+            {userTests &&
+              userTests.map(test => (
                 <Link
                   to={{
                     pathname: `${ROUTES.TESTS}/${test.tid}`,
