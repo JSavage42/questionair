@@ -1,39 +1,40 @@
-import React, { Component } from "react";
-import { compose } from "recompose";
-import "../../styles/components/Account/Account.css";
-import { AuthUserContext, withAuthorization } from "../Session";
-import { withFirebase } from "../Firebase";
-import { PasswordForgetForm } from "../PasswordForget";
-import PasswordChangeForm from "../PasswordChange";
+import React, { Component } from 'react';
+import { compose } from 'recompose';
+import '../../styles/components/Account/Account.css';
+import { AuthUserContext, withAuthorization } from '../Session';
+import { withFirebase } from '../Firebase';
+import { PasswordForgetForm } from '../PasswordForget';
+import PasswordChangeForm from '../PasswordChange';
 
 const SIGN_IN_METHODS = [
   {
-    id: "password",
-    provider: null
+    id: 'password',
+    provider: null,
   },
   {
-    id: "google.com",
-    provider: "googleProvider"
+    id: 'google.com',
+    provider: 'googleProvider',
   },
   {
-    id: "facebook.com",
-    provider: "facebookProvider"
+    id: 'facebook.com',
+    provider: 'facebookProvider',
   },
   {
-    id: "twitter.com",
-    provider: "twitterProvider"
-  }
+    id: 'twitter.com',
+    provider: 'twitterProvider',
+  },
 ];
 
 const AccountPage = () => (
   <AuthUserContext.Consumer>
     {authUser => (
-      <main id='account'>
+      <main id="account">
         <article>
           <h2>Account: {authUser.email}</h2>
           <PasswordForgetForm />
           <PasswordChangeForm />
           <LoginManagement authUser={authUser} />
+          <PermissionRequests />
         </article>
       </main>
     )}
@@ -46,7 +47,7 @@ class LoginManagementBase extends Component {
 
     this.state = {
       activeSignInMethods: [],
-      error: null
+      error: null,
     };
   }
 
@@ -58,7 +59,7 @@ class LoginManagementBase extends Component {
     this.props.firebase.auth
       .fetchSignInMethodsForEmail(this.props.authUser.email)
       .then(activeSignInMethods =>
-        this.setState({ activeSignInMethods, error: null })
+        this.setState({ activeSignInMethods, error: null }),
       )
       .catch(error => this.setState({ error }));
   };
@@ -73,7 +74,7 @@ class LoginManagementBase extends Component {
   onDefaultLoginLink = password => {
     const credential = this.props.firebase.emailAuthProvider.credential(
       this.props.authUser.email,
-      password
+      password,
     );
 
     this.props.firebase.auth.currentUser
@@ -93,7 +94,7 @@ class LoginManagementBase extends Component {
     const { activeSignInMethods, error } = this.state;
 
     return (
-      <article id='signin-methods'>
+      <article id="signin-methods">
         <span>Sign In Methods:</span>
         <ul>
           {SIGN_IN_METHODS.map(signInMethod => {
@@ -102,7 +103,7 @@ class LoginManagementBase extends Component {
 
             return (
               <li key={signInMethod.id}>
-                {signInMethod.id === "password" ? (
+                {signInMethod.id === 'password' ? (
                   <DefaultLoginToggle
                     onlyOneLeft={onlyOneLeft}
                     isEnabled={isEnabled}
@@ -134,18 +135,18 @@ const SocialLoginToggle = ({
   isEnabled,
   signInMethod,
   onLink,
-  onUnlink
+  onUnlink,
 }) =>
   isEnabled ? (
     <button
-      type='button'
+      type="button"
       onClick={() => onUnlink(signInMethod.id)}
       disabled={onlyOneLeft}
     >
       Deactivate {signInMethod.id}
     </button>
   ) : (
-    <button type='button' onClick={() => onLink(signInMethod.provider)}>
+    <button type="button" onClick={() => onLink(signInMethod.provider)}>
       Link {signInMethod.id}
     </button>
   );
@@ -154,14 +155,14 @@ class DefaultLoginToggle extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { passwordOne: "", passwordTwo: "" };
+    this.state = { passwordOne: '', passwordTwo: '' };
   }
 
   onSubmit = event => {
     event.preventDefault();
 
     this.props.onLink(this.state.passwordOne);
-    this.setState({ passwordOne: "", passwordTwo: "" });
+    this.setState({ passwordOne: '', passwordTwo: '' });
   };
 
   onChange = event => {
@@ -173,11 +174,11 @@ class DefaultLoginToggle extends Component {
 
     const { passwordOne, passwordTwo } = this.state;
 
-    const isInvalid = passwordOne !== passwordTwo || passwordOne === "";
+    const isInvalid = passwordOne !== passwordTwo || passwordOne === '';
 
     return isEnabled ? (
       <button
-        type='button'
+        type="button"
         onClick={() => onUnlink(signInMethod.id)}
         disabled={onlyOneLeft}
       >
@@ -186,27 +187,78 @@ class DefaultLoginToggle extends Component {
     ) : (
       <form onSubmit={this.onSubmit}>
         <input
-          name='passwordOne'
+          name="passwordOne"
           value={passwordOne}
           onChange={this.onChange}
-          type='password'
-          placeholder='New Password'
+          type="password"
+          placeholder="New Password"
         />
         <input
-          name='passwordTwo'
+          name="passwordTwo"
           value={passwordTwo}
           onChange={this.onChange}
-          type='password'
-          placeholder='Confirm New Password'
+          type="password"
+          placeholder="Confirm New Password"
         />
 
-        <button disabled={isInvalid} type='submit'>
+        <button disabled={isInvalid} type="submit">
           Link {signInMethod.id}
         </button>
       </form>
     );
   }
 }
+
+class PermissionRequestsBase extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      uid: null,
+    };
+  }
+
+  componentDidMount() {
+    const uid = this.props.firebase.auth.currentUser.uid;
+    this.setState({ uid });
+  }
+
+  handleRequests = e => {
+    let key;
+    if (e.target.id === 'ADMIN') {
+      key = 0;
+    } else {
+      key = 1;
+    }
+    this.props.firebase
+      .user(this.state.uid)
+      .child(`requests`)
+      .child(key)
+      .set(e.target.id);
+  };
+
+  render() {
+    return (
+      <article id="permission-request">
+        <b>Requests: </b>(Click to send request)
+        <ul>
+          <li>
+            <button id="ADMIN" type="button" onClick={this.handleRequests}>
+              ADMIN
+            </button>
+          </li>
+          <li>
+            <button id="INSTRUCTOR" type="button" onClick={this.handleRequests}>
+              INSTRUCTOR
+            </button>
+          </li>
+        </ul>
+      </article>
+    );
+  }
+}
+
+const PermissionRequests = withFirebase(PermissionRequestsBase);
 
 const LoginManagement = withFirebase(LoginManagementBase);
 
