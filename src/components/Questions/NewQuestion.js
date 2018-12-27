@@ -1,32 +1,32 @@
-import React from "react";
-import "../../styles/components/Questions/NewQuestion.css";
-import { withFirebase } from "../Firebase";
-import { isNullOrUndefined } from "util";
+import React from 'react';
+import '../../styles/components/Questions/NewQuestion.css';
+import { withFirebase } from '../Firebase';
+import { isNullOrUndefined } from 'util';
 
 class NewQuestion extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      tid: "",
-      reference1: "",
-      reference2: "",
-      question: "",
-      questionNum: "",
-      op1: "",
-      op2: "",
-      op3: "",
-      op4: "",
-      op5: "",
-      op6: "",
-      op7: "",
-      op8: "",
-      op9: "",
-      op10: "",
+      tid: '',
+      reference1: '',
+      reference2: '',
+      question: '',
+      questionNum: '',
+      op1: '',
+      op2: '',
+      op3: '',
+      op4: '',
+      op5: '',
+      op6: '',
+      op7: '',
+      op8: '',
+      op9: '',
+      op10: '',
       options: [],
-      answer: "",
-      user: "",
-      image: ""
+      answer: '',
+      user: '',
+      image: '',
     };
   }
 
@@ -43,237 +43,274 @@ class NewQuestion extends React.Component {
   };
 
   handleOnSubmit = e => {
+    const {
+      op1,
+      op2,
+      op3,
+      op4,
+      op5,
+      op6,
+      op7,
+      op8,
+      op9,
+      op10,
+      options,
+      tid,
+      reference1,
+      reference2,
+      question,
+      questionNum,
+      answer,
+      user,
+      image,
+    } = this.state;
     e.preventDefault();
 
-    if (this.state.op1) {
-      this.state.options.push(this.state.op1);
+    if (op1) {
+      options.push(op1);
     }
-    if (this.state.op2) {
-      this.state.options.push(this.state.op2);
+    if (op2) {
+      options.push(op2);
     }
-    if (this.state.op3) {
-      this.state.options.push(this.state.op3);
+    if (op3) {
+      options.push(op3);
     }
-    if (this.state.op4) {
-      this.state.options.push(this.state.op4);
+    if (op4) {
+      options.push(op4);
     }
-    if (this.state.op5) {
-      this.state.options.push(this.state.op5);
+    if (op5) {
+      options.push(op5);
     }
-    if (this.state.op6) {
-      this.state.options.push(this.state.op6);
+    if (op6) {
+      options.push(op6);
     }
-    if (this.state.op7) {
-      this.state.options.push(this.state.op7);
+    if (op7) {
+      options.push(op7);
     }
-    if (this.state.op8) {
-      this.state.options.push(this.state.op8);
+    if (op8) {
+      options.push(op8);
     }
-    if (this.state.op9) {
-      this.state.options.push(this.state.op9);
+    if (op9) {
+      options.push(op9);
     }
-    if (this.state.op10) {
-      this.state.options.push(this.state.op10);
+    if (op10) {
+      options.push(op10);
     }
     if (e.target.upLoadImage === isNullOrUndefined) {
       const file = e.target.uploadImage.files[0];
       const fileName = file.name;
       this.props.firebase
-        .image(this.state.user.uid, fileName)
+        .image(user.uid, fileName)
         .put(file)
         .then(snapshot => {
           console.log(snapshot);
         });
     }
 
-    const question = {
-      reference1: this.state.reference1,
-      reference2: this.state.reference2,
-      question: this.state.question,
-      questionNum: this.state.questionNum,
-      options: this.state.options,
-      answer: this.state.answer,
-      image: this.state.image
+    const addQuestion = {
+      reference1: reference1,
+      reference2: reference2,
+      question: question,
+      questionNum: questionNum,
+      options: options,
+      answer: answer,
+      image: image,
     };
 
     this.props.firebase
-      .user(this.state.user.uid)
-      .child("tests")
-      .child(this.state.tid)
-      .child("questions/")
-      .child(this.state.questionNum)
-      .set(question);
+      .test(tid)
+      .child('questions/')
+      .child(questionNum)
+      .set(addQuestion);
 
     this.setState({
-      reference1: "",
-      reference2: "",
-      question: "",
-      questionNum: "",
-      op1: "",
-      op2: "",
-      op3: "",
-      op4: "",
-      op5: "",
-      op6: "",
-      op7: "",
-      op8: "",
-      op9: "",
-      op10: "",
-      answer: "",
+      reference1: '',
+      reference2: '',
+      question: '',
+      questionNum: '',
+      op1: '',
+      op2: '',
+      op3: '',
+      op4: '',
+      op5: '',
+      op6: '',
+      op7: '',
+      op8: '',
+      op9: '',
+      op10: '',
+      answer: '',
       options: [],
-      image: ""
+      image: '',
     });
   };
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   render() {
+    const {
+      testBankId,
+      reference1,
+      reference2,
+      questionNum,
+      question,
+      op1,
+      op2,
+      op3,
+      op4,
+      op5,
+      op6,
+      op7,
+      op8,
+      op9,
+      op10,
+      answer,
+    } = this.state;
     return (
-      <main id='new-question'>
+      <main id="new-question">
         <h2>Create Questions</h2>
-        <form id='newQuestion' onSubmit={this.handleOnSubmit}>
+        <form id="newQuestion" onSubmit={this.handleOnSubmit}>
           <label>Test Bank ID Number</label>
           <input
-            type='number'
-            value={this.state.testBankId}
-            name='tid'
+            type="text"
+            value={testBankId}
+            name="tid"
             onChange={this.handleChange}
-            placeholder='Test Bank ID'
+            placeholder="Test Bank ID"
           />
           <label>Reference 1</label>
           <input
-            type='text'
-            value={this.state.reference1}
-            name='reference1'
+            type="text"
+            value={reference1}
+            name="reference1"
             onChange={this.handleChange}
-            placeholder='Reference 1'
+            placeholder="Reference 1"
           />
           <label>Reference 2</label>
           <input
-            type='text'
-            value={this.state.reference2}
-            name='reference2'
+            type="text"
+            value={reference2}
+            name="reference2"
             onChange={this.handleChange}
-            placeholder='Reference 2'
+            placeholder="Reference 2"
           />
           <label>Question Number and Content</label>
           <input
-            type='number'
-            value={this.state.questionNum}
-            name='questionNum'
+            type="number"
+            value={questionNum}
+            name="questionNum"
             onChange={this.handleChange}
-            placeholder='Question Number'
+            placeholder="Question Number"
           />
           <input
-            type='text'
-            value={this.state.question}
-            name='question'
+            type="text"
+            value={question}
+            name="question"
             onChange={this.handleChange}
-            placeholder='Question Text'
+            placeholder="Question Text"
           />
           <input
-            accept='.jpg,.png'
-            type='file'
-            id='uploadImage'
-            name='image'
+            accept=".jpg,.png"
+            type="file"
+            id="uploadImage"
+            name="image"
             onChange={this.handleChange}
           />
           <label>Option A</label>
           <input
-            type='text'
-            value={this.state.op1}
-            name='op1'
+            type="text"
+            value={op1}
+            name="op1"
             onChange={this.handleChange}
-            placeholder='Option A'
+            placeholder="Option A"
           />
           <label>Option B</label>
           <input
-            type='text'
-            value={this.state.op2}
-            name='op2'
+            type="text"
+            value={op2}
+            name="op2"
             onChange={this.handleChange}
-            placeholder='Option B'
+            placeholder="Option B"
           />
           <label>Option C</label>
           <input
-            type='text'
-            value={this.state.op3}
-            name='op3'
+            type="text"
+            value={op3}
+            name="op3"
             onChange={this.handleChange}
-            placeholder='Option C'
+            placeholder="Option C"
           />
           <label>Option D</label>
           <input
-            type='text'
-            value={this.state.op4}
-            name='op4'
+            type="text"
+            value={op4}
+            name="op4"
             onChange={this.handleChange}
-            placeholder='Option D'
+            placeholder="Option D"
           />
           <label>Option E</label>
           <input
-            type='text'
-            value={this.state.op5}
-            name='op5'
+            type="text"
+            value={op5}
+            name="op5"
             onChange={this.handleChange}
-            placeholder='Option E'
+            placeholder="Option E"
           />
           <label>Option F</label>
           <input
-            type='text'
-            value={this.state.op6}
-            name='op6'
+            type="text"
+            value={op6}
+            name="op6"
             onChange={this.handleChange}
-            placeholder='Option F'
+            placeholder="Option F"
           />
           <label>Option G</label>
           <input
-            type='text'
-            value={this.state.op7}
-            name='op7'
+            type="text"
+            value={op7}
+            name="op7"
             onChange={this.handleChange}
-            placeholder='Option G'
+            placeholder="Option G"
           />
           <label>Option H</label>
           <input
-            type='text'
-            value={this.state.op8}
-            name='op8'
+            type="text"
+            value={op8}
+            name="op8"
             onChange={this.handleChange}
-            placeholder='Option H'
+            placeholder="Option H"
           />
           <label>Option I</label>
           <input
-            type='text'
-            value={this.state.op9}
-            name='op9'
+            type="text"
+            value={op9}
+            name="op9"
             onChange={this.handleChange}
-            placeholder='Option I'
+            placeholder="Option I"
           />
           <label>Option J</label>
           <input
-            type='text'
-            value={this.state.op10}
-            name='op10'
+            type="text"
+            value={op10}
+            name="op10"
             onChange={this.handleChange}
-            placeholder='Option J'
+            placeholder="Option J"
           />
 
           <label>Correct Answer</label>
           <input
-            type='text'
-            value={this.state.answer}
-            name='answer'
+            type="text"
+            value={answer}
+            name="answer"
             onChange={this.handleChange}
-            placeholder='Correct Answer'
+            placeholder="Correct Answer"
           />
 
-          <input type='submit' name='submit' value='Submit' />
-          <input type='reset' name='reset' value='Reset' />
+          <input type="submit" name="submit" value="Submit" />
+          <input type="reset" name="reset" value="Reset" />
         </form>
       </main>
     );

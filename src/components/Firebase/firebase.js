@@ -50,24 +50,23 @@ class Firebase {
 
   doSignOut = () => this.auth.signOut();
 
-  doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email);
+  doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
 
   doSendEmailVerification = () =>
     this.auth.currentUser.sendEmailVerification({
       url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
     });
 
-  doPasswordUpdate = (password) =>
-    this.auth.currentUser.updatePassword(password);
+  doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
 
   // *** Merge Auth and DB User API *** //
 
   onAuthUserListener = (next, fallback) =>
-    this.auth.onAuthStateChanged((authUser) => {
+    this.auth.onAuthStateChanged(authUser => {
       if (authUser) {
         this.user(authUser.uid)
           .once('value')
-          .then((snapshot) => {
+          .then(snapshot => {
             const dbUser = snapshot.val();
 
             // default empty roles
@@ -93,26 +92,26 @@ class Firebase {
 
   // *** User API ***
 
-  user = (uid) => this.db.ref(`users/${uid}`);
+  user = uid => this.db.ref(`users/${uid}`);
 
   users = () => this.db.ref(`users`);
 
   // *** Tests Banks API ***
 
-  test = (uid, tid) => this.db.ref(`users/${uid}/tests/${tid}`);
+  test = tid => this.db.ref(`tests/${tid}`);
 
-  tests = (uid) => this.db.ref(`users/${uid}/tests`);
+  tests = () => this.db.ref(`tests`);
 
   // *** Question Image API ***
   image = (uid, fileName) => this.storage.ref(`${uid}/images/${fileName}`);
 
-  images = (uid) => this.storage.ref(`${uid}/images`);
+  images = uid => this.storage.ref(`${uid}/images`);
 
   // *** Host API ***
 
-  host = (uid, tid) => this.db.ref(`users/${uid}/host/${tid}`);
+  host = tid => this.db.ref(`tests/${tid}`);
 
-  hosts = (uid) => this.db.ref(`users/${uid}/host`);
+  hosts = uid => this.db.ref(`users/${uid}/host`);
 }
 
 export default Firebase;

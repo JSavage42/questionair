@@ -39,7 +39,7 @@ const App = () => (
         <Route exact path={ROUTES.CREATE_TEST} component={CreateTestBank} />
         <Route exact path={ROUTES.NEW_QUESTION} component={NewQuestion} />
         <Route exact path={ROUTES.SELECT_TEST} component={SelectTest} />
-        <Route exact path={ROUTES.TESTS} component={TestPage} />
+        <Route exact path={ROUTES.TEST_VIEW} component={TestPage} />
         <Route exact path={ROUTES.TAKE_TEST} component={TakeTest} />
       </Switch>
     </div>
