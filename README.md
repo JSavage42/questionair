@@ -35,7 +35,7 @@ You may sign in with email/password or if you have linked accounts: Google, Face
 
 ### Account Page
 
-In the Account Page you can make changes to your account. You can reset your password, or link social media accounts.
+In the Account Page you can make changes to your account. You can reset your password, or link social media accounts. Users can request permissions from account page.
 
 ### Student Page
 
@@ -75,6 +75,4 @@ Here you can view metadata about the test (possible points, passing score, numbe
 
 ### Admin Page
 
-Here you can view and reset user's passwords. You can also approve user permission requests via the admin dashboard. You can also remove permissions from users.
-
-Working on ability to grant permissions to users without a request.
+Here you can view and reset user's passwords. You can also approve user permission requests via the admin dashboard. You can also remove permissions from users. Admins can only grant permissions via a request. This is a security feature.
