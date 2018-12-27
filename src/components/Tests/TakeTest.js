@@ -9,7 +9,6 @@ class TakeTest extends React.Component {
     super(props);
     this.state = {
       authUser: '',
-      instructorID: this.props.location.state.instructorID,
       tid: this.props.location.state.tid,
       questions: [],
       test: null,
@@ -19,18 +18,18 @@ class TakeTest extends React.Component {
   }
 
   componentDidMount() {
-    const { instructorID, tid } = this.state;
-    this.props.firebase.host(instructorID, tid).on('value', (snapshot) => {
+    const { tid } = this.state;
+    this.props.firebase.host(tid).on('value', snapshot => {
       this.setState({
-        test: snapshot.val().test,
-        questions: Object.values(snapshot.val().test.questions),
+        test: snapshot.val(),
+        questions: Object.values(snapshot.val().questions),
         loading: false,
       });
     });
     console.log(this.props);
   }
 
-  handleSubmitAnswer = (e) => {
+  handleSubmitAnswer = e => {
     e.preventDefault();
   };
 
@@ -45,13 +44,13 @@ class TakeTest extends React.Component {
             <article className="test-question">
               <ul id="questions">
                 {/* Iterates through the questions array, checks if there is an image associated with it, downloads the image and sets the url to the url state. */}
-                {questions.map((question) => {
+                {questions.map(question => {
                   question.image &&
                     this.props.firebase
                       .images(this.state.instructorID)
                       .child(`${question.image.substring(12)}`)
                       .getDownloadURL()
-                      .then((url) => {
+                      .then(url => {
                         this.setState({ url });
                       });
                   /* Returns the question number, text, image (if there is one) and then iterates through the options which are clickable to submit answers. */
@@ -69,7 +68,7 @@ class TakeTest extends React.Component {
                         />
                       )}
                       <ol>
-                        {question.options.map((op) => (
+                        {question.options.map(op => (
                           <li
                             key={op}
                             className="option"

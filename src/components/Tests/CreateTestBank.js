@@ -1,22 +1,25 @@
-import React from "react";
-import "../../styles/components/Tests/CreateTestBank.css";
-import { withFirebase } from "../Firebase";
+import React from 'react';
+import '../../styles/components/Tests/CreateTestBank.css';
+import { withFirebase } from '../Firebase';
 
 class CreateTestBank extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      authUser: JSON.parse(localStorage.getItem("authUser")),
-      error: "",
-      tid: "",
-      totalPoints: "",
-      passingScore: ""
+      authUser: JSON.parse(localStorage.getItem('authUser')),
+      error: '',
+      tid: '',
+      totalPoints: '',
+      passingScore: '',
+      tidPrefix: '',
     };
   }
 
   componentDidMount() {
     this.fetchUser();
+    const tidPrefix = this.state.authUser.uid.substring(0, 4);
+    this.setState({ tidPrefix });
   }
 
   fetchUser = () => {
@@ -28,30 +31,29 @@ class CreateTestBank extends React.Component {
   };
 
   handleOnSubmit = e => {
+    const { tid, tidPrefix, totalPoints, passingScore } = this.state;
     e.preventDefault();
 
     const testBankMeta = {
-      tid: this.state.tid,
-      totalPoints: this.state.totalPoints,
-      passingScore: this.state.passingScore
+      tid: `${tidPrefix}${tid}`,
+      totalPoints: totalPoints,
+      passingScore: passingScore,
     };
 
-    this.props.firebase
-      .user(this.state.authUser.uid)
-      .child("tests")
-      .child(this.state.tid)
-      .set(testBankMeta);
+    console.log(testBankMeta);
+
+    this.props.firebase.test(`${tidPrefix}${tid}`).set(testBankMeta);
 
     this.setState({
-      tid: "",
-      totalPoints: "",
-      passingScore: ""
+      tid: '',
+      totalPoints: '',
+      passingScore: '',
     });
   };
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -59,7 +61,11 @@ class CreateTestBank extends React.Component {
     return (
       <main id="create-test-bank">
         <h2>Create Test Bank</h2>
-        <p>Instructor Name: {this.state.authUser.username}</p>
+        <p>
+          Instructor Name: {this.state.authUser.username}
+          <br />
+          Test ID prefix: {this.state.tidPrefix}
+        </p>
         <form id="newTestBank" onSubmit={this.handleOnSubmit}>
           <label>Test Bank ID Number</label>
           <input
@@ -67,7 +73,7 @@ class CreateTestBank extends React.Component {
             value={this.state.testBankId}
             name="tid"
             onChange={this.handleChange}
-            placeholder="Test Bank ID Number"
+            placeholder="Test ID"
           />
           <label>Total Points</label>
           <input

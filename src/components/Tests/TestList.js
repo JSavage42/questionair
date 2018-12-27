@@ -21,24 +21,22 @@ class TestList extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-    this.props.firebase
-      .tests(this.state.authUser.uid)
-      .on('value', (snapshot) => {
-        const testsObject = snapshot.val();
-        if (testsObject === null) {
-          this.setState({ loading: false });
-        } else {
-          const testsList = Object.keys(testsObject).map((key) => ({
-            ...testsObject[key],
-            uid: key,
-          }));
+    this.props.firebase.tests().on('value', snapshot => {
+      const testsObject = snapshot.val();
+      if (testsObject === null) {
+        this.setState({ loading: false });
+      } else {
+        const testsList = Object.keys(testsObject).map(key => ({
+          ...testsObject[key],
+          uid: key,
+        }));
 
-          this.setState({
-            tests: testsList,
-            loading: false,
-          });
-        }
-      });
+        this.setState({
+          tests: testsList,
+          loading: false,
+        });
+      }
+    });
   }
 
   componentWillUnmount() {
@@ -46,16 +44,16 @@ class TestList extends Component {
     this.props.firebase.host().off();
   }
 
-  handleOnChange = (e) => {
+  handleOnChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleHostTest = (e) => {
+  handleHostTest = e => {
     e.preventDefault();
     const { authUser, tid, test } = this.state;
 
     // *** Get Test from test API ***
-    this.props.firebase.test(authUser.uid, tid).on('value', (snapshot) => {
+    this.props.firebase.test(tid).on('value', snapshot => {
       this.setState({
         test: snapshot.val(),
         questions: Object.values(snapshot.val().questions),
@@ -77,7 +75,7 @@ class TestList extends Component {
           {loading && <div>Loading ...</div>}
           <ul>
             {tests &&
-              tests.map((test) => (
+              tests.map(test => (
                 <Link
                   to={{
                     pathname: `${ROUTES.TESTS}/${test.tid}`,
