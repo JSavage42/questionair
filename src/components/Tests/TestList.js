@@ -39,7 +39,6 @@ class TestList extends Component {
         for (const [key, value] of Object.entries(testsList)) {
           if (value.tid.includes(this.state.authUser.uid.substring(0, 4))) {
             this.state.userTests.push(value);
-            console.log(this.state.userTests);
           }
         }
       }
