@@ -16,7 +16,7 @@ class UserItem extends Component {
   componentDidMount() {
     this.props.firebase
       .user(this.props.match.params.id)
-      .on('value', (snapshot) => {
+      .on('value', snapshot => {
         this.setState({
           user: snapshot.val(),
           uid: this.props.match.params.id,
@@ -33,7 +33,7 @@ class UserItem extends Component {
     this.props.firebase.doPasswordReset(this.state.user.email);
   };
 
-  handleRequestApproval = (e) => {
+  handleRequestApproval = e => {
     let key;
     if (e.target.id === 'ADMIN') {
       key = 0;
@@ -41,13 +41,18 @@ class UserItem extends Component {
       key = 1;
     }
     this.props.firebase
-      .user(this.state.user.uid)
+      .user(this.state.uid)
       .child(`roles`)
       .child(key)
       .set(e.target.id);
+    this.props.firebase
+      .user(this.state.uid)
+      .child(`requests`)
+      .child(key)
+      .remove();
   };
 
-  handleRoleRemoval = (e) => {
+  handleRoleRemoval = e => {
     let key;
     if (e.target.id === 'ADMIN') {
       key = 0;
@@ -87,7 +92,7 @@ class UserItem extends Component {
               <span id="requests">
                 <b>Requests: </b>(Click to Approve)
                 <ul>
-                  {user.requests.map((req) => (
+                  {user.requests.map(req => (
                     <li key={req}>
                       <button
                         id={req}
@@ -105,7 +110,7 @@ class UserItem extends Component {
               <span>
                 <b>Roles: </b>(Click to Remove)
                 <ul>
-                  {user.roles.map((role) => (
+                  {user.roles.map(role => (
                     <li key={role}>
                       <button
                         id={role}
