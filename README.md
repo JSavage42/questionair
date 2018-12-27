@@ -1,4 +1,4 @@
-# Question Air v0.42.5
+# Question Air v0.43.0
 
 ## Install Locally
 
@@ -39,7 +39,7 @@ In the Account Page you can make changes to your account. You can reset your pas
 
 ### Student Page
 
-You can add an Instructor's ID and Test ID to open a page that displays all the test questions and options.
+You can add a Test ID to open a page that displays all the test questions and options.
 
 Working on getting the functionality of showing one question at a time controlled by the Instructor.
 
@@ -47,7 +47,7 @@ Working on getting the functionality of showing one question at a time controlle
 
 The Instructor Page shows all the test banks you've created. It also displays links to create a new test bank or add questions to an existing test bank.
 
-Working on ability to edit a question. Also, the ability to control the hosted test.
+Working on ability to edit a question. Also, the ability to control the hosted test. Also, to show **ONLY** your tests.
 
 #### Create Test Bank
 
@@ -69,9 +69,9 @@ Here you can add questions to test banks.
 
 #### Instructor View of Test Page
 
-To view the Instructor view of the test page, click on one of the blue test IDs under Available Tests on the Instructor Page.
+To view the Instructor view of the test page, click on one of the blue test IDs under Available Quizzes on the Instructor Page.
 
-Here you can view metadata about the test (possible points, passing score, number of questions) and also the questions, their options and the correct answers.
+Here you can view metadata about the test (test ID, possible points, passing score, number of questions) and also the questions, their options and the correct answers.
 
 ### Admin Page
 
