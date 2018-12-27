@@ -241,18 +241,12 @@ class PermissionRequestsBase extends Component {
     return (
       <article id="permission-request">
         <b>Requests: </b>(Click to send request)
-        <ul>
-          <li>
-            <button id="ADMIN" type="button" onClick={this.handleRequests}>
-              ADMIN
-            </button>
-          </li>
-          <li>
-            <button id="INSTRUCTOR" type="button" onClick={this.handleRequests}>
-              INSTRUCTOR
-            </button>
-          </li>
-        </ul>
+        <button id="ADMIN" type="button" onClick={this.handleRequests}>
+          ADMIN
+        </button>
+        <button id="INSTRUCTOR" type="button" onClick={this.handleRequests}>
+          INSTRUCTOR
+        </button>
       </article>
     );
   }
