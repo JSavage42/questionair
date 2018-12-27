@@ -1,7 +1,7 @@
 {
   "main.css": "/questionair/static/css/main.afb10d06.chunk.css",
-  "main.js": "/questionair/static/js/main.74b8ed0b.chunk.js",
-  "main.js.map": "/questionair/static/js/main.74b8ed0b.chunk.js.map",
+  "main.js": "/questionair/static/js/main.4b372fe5.chunk.js",
+  "main.js.map": "/questionair/static/js/main.4b372fe5.chunk.js.map",
   "static/js/1.d78daf72.chunk.js": "/questionair/static/js/1.d78daf72.chunk.js",
   "static/js/1.d78daf72.chunk.js.map": "/questionair/static/js/1.d78daf72.chunk.js.map",
   "runtime~main.js": "/questionair/static/js/runtime~main.66417dad.js",
@@ -9,6 +9,6 @@
   "static/media/logo.svg": "/questionair/static/media/logo.11ad7f58.svg",
   "static/css/main.afb10d06.chunk.css.map": "/questionair/static/css/main.afb10d06.chunk.css.map",
   "index.html": "/questionair/index.html",
-  "precache-manifest.da85f40acf0b8d6f45179b4310f42ba0.js": "/questionair/precache-manifest.da85f40acf0b8d6f45179b4310f42ba0.js",
+  "precache-manifest.4aa38e052e825301fcff607861885857.js": "/questionair/precache-manifest.4aa38e052e825301fcff607861885857.js",
   "service-worker.js": "/questionair/service-worker.js"
 }

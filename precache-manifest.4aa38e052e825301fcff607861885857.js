@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "74b8ed0b474e72c86dfb",
+    "revision": "4b372fe5486e4c5cff85",
     "url": "/questionair/static/css/main.afb10d06.chunk.css"
   },
   {
-    "revision": "74b8ed0b474e72c86dfb",
-    "url": "/questionair/static/js/main.74b8ed0b.chunk.js"
+    "revision": "4b372fe5486e4c5cff85",
+    "url": "/questionair/static/js/main.4b372fe5.chunk.js"
   },
   {
     "revision": "d78daf7214a8bfcc277c",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/questionair/static/media/logo.11ad7f58.svg"
   },
   {
-    "revision": "635974b79bcd235e636b307eb1439a12",
+    "revision": "937e65555f355429c259c6655b4f80df",
     "url": "/questionair/index.html"
   }
 ];
