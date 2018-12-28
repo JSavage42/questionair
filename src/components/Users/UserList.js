@@ -16,9 +16,10 @@ class UserList extends Component {
   }
 
   componentDidMount() {
+    const { firebase } = this.props;
     this.setState({ loading: true });
 
-    this.props.firebase.users().on('value', (snapshot) => {
+    firebase.users().on('value', (snapshot) => {
       const usersObject = snapshot.val();
 
       const usersList = Object.keys(usersObject).map((key) => ({
@@ -34,7 +35,8 @@ class UserList extends Component {
   }
 
   componentWillUnmount() {
-    this.props.firebase.users().off();
+    const { firebase } = this.props;
+    firebase.users().off();
   }
 
   render() {

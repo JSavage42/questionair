@@ -15,22 +15,23 @@ class PasswordChangeForm extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     const { passwordOne } = this.state;
+    const { firebase } = this.state;
 
-    this.props.firebase
+    firebase
       .doPasswordUpdate(passwordOne)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ error });
       });
 
     event.preventDefault();
   };
 
-  onChange = event => {
+  onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
@@ -42,20 +43,20 @@ class PasswordChangeForm extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <input
-          name='passwordOne'
+          name="passwordOne"
           value={passwordOne}
           onChange={this.onChange}
-          type='password'
-          placeholder='New Password'
+          type="password"
+          placeholder="New Password"
         />
         <input
-          name='passwordTwo'
+          name="passwordTwo"
           value={passwordTwo}
           onChange={this.onChange}
-          type='password'
-          placeholder='Confirm New Password'
+          type="password"
+          placeholder="Confirm New Password"
         />
-        <button disabled={isInvalid} type='submit'>
+        <button disabled={isInvalid} type="submit">
           Reset My Password
         </button>
 

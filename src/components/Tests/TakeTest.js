@@ -7,9 +7,10 @@ import { compose } from 'recompose';
 class TakeTest extends React.Component {
   constructor(props) {
     super(props);
+    const { location } = this.props;
     this.state = {
       authUser: '',
-      tid: this.props.location.state.tid,
+      tid: location.state.tid,
       questions: [],
       test: null,
       loading: true,
@@ -19,22 +20,23 @@ class TakeTest extends React.Component {
 
   componentDidMount() {
     const { tid } = this.state;
-    this.props.firebase.host(tid).on('value', snapshot => {
+    const { firebase } = this.props;
+    firebase.host(tid).on('value', (snapshot) => {
       this.setState({
         test: snapshot.val(),
         questions: Object.values(snapshot.val().questions),
         loading: false,
       });
     });
-    console.log(this.props);
   }
 
-  handleSubmitAnswer = e => {
+  handleSubmitAnswer = (e) => {
     e.preventDefault();
   };
 
   render() {
-    const { loading, test, questions, tid } = this.state;
+    const { loading, test, questions, tid, instructorID, url } = this.state;
+    const { firebase } = this.props;
     return (
       <main id="take-test">
         {loading && <div>Loading ...</div>}
@@ -44,13 +46,13 @@ class TakeTest extends React.Component {
             <article className="test-question">
               <ul id="questions">
                 {/* Iterates through the questions array, checks if there is an image associated with it, downloads the image and sets the url to the url state. */}
-                {questions.map(question => {
+                {questions.map((question) => {
                   question.image &&
-                    this.props.firebase
-                      .images(this.state.instructorID)
+                    firebase
+                      .images(instructorID)
                       .child(`${question.image.substring(12)}`)
                       .getDownloadURL()
-                      .then(url => {
+                      .then((url) => {
                         this.setState({ url });
                       });
                   /* Returns the question number, text, image (if there is one) and then iterates through the options which are clickable to submit answers. */
@@ -61,14 +63,10 @@ class TakeTest extends React.Component {
                       </p>
                       <br />
                       {question.image && (
-                        <img
-                          src={this.state.url}
-                          alt="question"
-                          title="Image Question"
-                        />
+                        <img src={url} alt="question" title="Image Question" />
                       )}
                       <ol>
-                        {question.options.map(op => (
+                        {question.options.map((op) => (
                           <li
                             key={op}
                             className="option"

@@ -12,21 +12,22 @@ class StudentPage extends React.Component {
     };
   }
 
-  handleStartTest = e => {
+  handleStartTest = (e) => {
     e.preventDefault();
     const { tid } = this.state;
-    console.log(this.props);
-    this.props.history.push({
+    const { history } = this.props;
+    history.push({
       pathname: `tests/s/${tid}`,
       state: { tid },
     });
   };
 
-  handleOnChange = e => {
+  handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
+    const { tid } = this.state;
     return (
       <main id="student">
         <h2>Student</h2>
@@ -37,7 +38,7 @@ class StudentPage extends React.Component {
             <input
               type="text"
               name="tid"
-              value={this.state.tid}
+              value={tid}
               onChange={this.handleOnChange}
               placeholder="Test ID"
             />
@@ -49,7 +50,7 @@ class StudentPage extends React.Component {
   }
 }
 
-const condition = authUser =>
+const condition = (authUser) =>
   (authUser && authUser.roles.includes(ROLES.ADMIN)) ||
   authUser.roles.includes(ROLES.INSTRUCTOR) ||
   authUser.roles.includes(ROLES.STUDENT);

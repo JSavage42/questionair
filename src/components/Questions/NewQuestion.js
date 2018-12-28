@@ -35,14 +35,16 @@ class NewQuestion extends React.Component {
   }
 
   fetchUser = () => {
-    this.props.firebase.auth.onAuthStateChanged(user => {
+    const { firebase } = this.props;
+    firebase.auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user, error: null });
       }
     });
   };
 
-  handleOnSubmit = e => {
+  handleOnSubmit = (e) => {
+    const { firebase } = this.props;
     const {
       op1,
       op2,
@@ -99,10 +101,10 @@ class NewQuestion extends React.Component {
     if (e.target.upLoadImage === isNullOrUndefined) {
       const file = e.target.uploadImage.files[0];
       const fileName = file.name;
-      this.props.firebase
+      firebase
         .image(user.uid, fileName)
         .put(file)
-        .then(snapshot => {
+        .then((snapshot) => {
           console.log(snapshot);
         });
     }
@@ -117,7 +119,7 @@ class NewQuestion extends React.Component {
       image: image,
     };
 
-    this.props.firebase
+    firebase
       .test(tid)
       .child('questions/')
       .child(questionNum)
@@ -144,7 +146,7 @@ class NewQuestion extends React.Component {
     });
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });

@@ -20,18 +20,20 @@ class TestPage extends React.Component {
   }
 
   componentWillMount = () => {
-    console.log(this.props.location.state);
+    const { location } = this.props;
+    console.log(location.state);
     this.setState({ loading: false });
   };
 
-  handleSubmitAnswer = e => {
+  handleSubmitAnswer = (e) => {
     // TODO Create logic for handling a submitted answer.
     console.log(e.target.id);
   };
 
   render() {
-    const { test, tid, loading, questions } = this.state;
-    console.log(this.props.location.state);
+    const { test, tid, loading, questions, authUser, url } = this.state;
+    const { location, firebase } = this.props;
+    console.log(location.state);
     return (
       <main id="test-page">
         <h2>Test #{tid}</h2>
@@ -40,22 +42,20 @@ class TestPage extends React.Component {
         {test && (
           <div>
             <ul>
-              <li>Possible Points: {this.state.test.totalPoints}</li>
-              <li>Passing Score: {this.state.test.passingScore}</li>
-              <li>
-                Number of Questions: {this.state.test.questions.length - 1}
-              </li>
+              <li>Possible Points: {test.totalPoints}</li>
+              <li>Passing Score: {test.passingScore}</li>
+              <li>Number of Questions: {test.questions.length - 1}</li>
               <li>
                 Questions:
                 <ul id="questions">
                   {/* Iterates through the questions array, checks if there is an image associated with it, downloads the image and sets the url to the url state. */}
-                  {this.state.questions.map(question => {
+                  {questions.map((question) => {
                     question.image &&
-                      this.props.firebase
-                        .images(this.state.authUser.uid)
+                      firebase
+                        .images(authUser.uid)
                         .child(`${question.image.substring(12)}`)
                         .getDownloadURL()
-                        .then(url => {
+                        .then((url) => {
                           this.setState({ url });
                         });
                     /* Returns the question number, text, image (if there is one) and then iterates through the options which are clickable to submit answers. */
@@ -67,13 +67,13 @@ class TestPage extends React.Component {
                         <br />
                         {question.image && (
                           <img
-                            src={this.state.url}
+                            src={url}
                             alt="question"
                             title="Image Question"
                           />
                         )}
                         <ol>
-                          {question.options.map(op => (
+                          {question.options.map((op) => (
                             <li
                               key={op}
                               className="option"

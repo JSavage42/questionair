@@ -14,53 +14,59 @@ class UserItem extends Component {
   }
 
   componentDidMount() {
-    this.props.firebase
-      .user(this.props.match.params.id)
-      .on('value', snapshot => {
-        this.setState({
-          user: snapshot.val(),
-          uid: this.props.match.params.id,
-          loading: false,
-        });
+    const { match, firebase } = this.props;
+    firebase.user(match.params.id).on('value', (snapshot) => {
+      this.setState({
+        user: snapshot.val(),
+        uid: match.params.id,
+        loading: false,
       });
+    });
   }
 
   componentWillUnmount() {
-    this.props.firebase.user(this.props.match.params.id).off();
+    const { match, firebase } = this.props;
+    firebase.user(match.params.id).off();
   }
 
   onSendPasswordResetEmail = () => {
-    this.props.firebase.doPasswordReset(this.state.user.email);
+    const { user } = this.state;
+    const { firebase } = this.props;
+    firebase.doPasswordReset(user.email);
   };
 
-  handleRequestApproval = e => {
+  handleRequestApproval = (e) => {
+    const { uid } = this.state;
+    const { firebase } = this.props;
     let key;
     if (e.target.id === 'ADMIN') {
       key = 0;
     } else {
       key = 1;
     }
-    this.props.firebase
-      .user(this.state.uid)
+    firebase
+      .user(uid)
       .child(`roles`)
       .child(key)
       .set(e.target.id);
-    this.props.firebase
-      .user(this.state.uid)
+    firebase
+      .user(uid)
       .child(`requests`)
       .child(key)
       .remove();
   };
 
-  handleRoleRemoval = e => {
+  handleRoleRemoval = (e) => {
+    const { uid } = this.state;
+    const { firebase } = this.props;
     let key;
     if (e.target.id === 'ADMIN') {
       key = 0;
     } else {
       key = 1;
     }
-    this.props.firebase
-      .user(this.state.uid)
+    firebase
+      .user(uid)
       .child('roles')
       .child(key)
       .remove();
@@ -70,11 +76,10 @@ class UserItem extends Component {
 
   render() {
     const { user, loading, uid } = this.state;
-    console.log(this.state.uid);
 
     return (
       <article id="user-item">
-        <h2>{this.state.user.username}</h2>
+        <h2>{user.username}</h2>
         {loading && <div>Loading ...</div>}
 
         {user && (
@@ -92,7 +97,7 @@ class UserItem extends Component {
               <span id="requests">
                 <b>Requests: </b>(Click to Approve)
                 <ul>
-                  {user.requests.map(req => (
+                  {user.requests.map((req) => (
                     <li key={req}>
                       <button
                         id={req}
@@ -110,7 +115,7 @@ class UserItem extends Component {
               <span>
                 <b>Roles: </b>(Click to Remove)
                 <ul>
-                  {user.roles.map(role => (
+                  {user.roles.map((role) => (
                     <li key={role}>
                       <button
                         id={role}

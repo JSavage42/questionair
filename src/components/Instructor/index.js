@@ -16,7 +16,8 @@ class InstructorPage extends React.Component {
   }
   handleEndHostedTests = () => {
     const { authUser } = this.state;
-    this.props.firebase.hosts(authUser).remove();
+    const { firebase } = this.props;
+    firebase.hosts(authUser).remove();
   };
 
   render() {
