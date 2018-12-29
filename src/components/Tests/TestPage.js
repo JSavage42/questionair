@@ -7,31 +7,45 @@ import { withAuthentication } from '../Session';
 class TestPage extends React.Component {
   constructor(props) {
     super(props);
-
+    const { authUser, test } = this.props.location.state;
     this.state = {
-      // Gets current authUser from local storage
-      authUser: this.props.location.state.authUser,
-      test: this.props.location.state.test,
-      tid: this.props.location.state.test.tid,
-      questions: Object.values(this.props.location.state.test.questions),
+      authUser: authUser,
+      test: test,
+      tid: test.tid,
+      questions: Object.values(test.questions),
       loading: true,
       url: '',
+      toggle: false,
     };
   }
 
   componentWillMount = () => {
-    console.log(this.props.location.state);
     this.setState({ loading: false });
   };
 
-  handleSubmitAnswer = e => {
-    // TODO Create logic for handling a submitted answer.
-    console.log(e.target.id);
+  handleToggle = (e) => {
+    const toggle = document.querySelector(`li[data-key=${e.target.id}]`);
+    toggle.classList.toggle('toggle');
+  };
+
+  handleSubmitAnswer = (e) => {
+    const { firebase } = this.props;
+    const { tid, authUser } = this.state;
+    firebase
+      .host(tid)
+      .child(`answersGiven/`)
+      .child(`${e.target.dataset.question}/`)
+      .child(`${authUser.uid}`)
+      .set(e.target.dataset.key);
+
+    const toggle = document.querySelector(`li[data-key="${e.target.id}"]`);
+    toggle.classList.toggle('toggle');
   };
 
   render() {
-    const { test, tid, loading, questions } = this.state;
-    console.log(this.props.location.state);
+    const { test, tid, loading, questions, authUser, url } = this.state;
+    const { firebase } = this.props;
+
     return (
       <main id="test-page">
         <h2>Test #{tid}</h2>
@@ -40,22 +54,20 @@ class TestPage extends React.Component {
         {test && (
           <div>
             <ul>
-              <li>Possible Points: {this.state.test.totalPoints}</li>
-              <li>Passing Score: {this.state.test.passingScore}</li>
-              <li>
-                Number of Questions: {this.state.test.questions.length - 1}
-              </li>
+              <li>Possible Points: {test.totalPoints}</li>
+              <li>Passing Score: {test.passingScore}</li>
+              <li>Number of Questions: {test.questions.length - 1}</li>
               <li>
                 Questions:
                 <ul id="questions">
                   {/* Iterates through the questions array, checks if there is an image associated with it, downloads the image and sets the url to the url state. */}
-                  {this.state.questions.map(question => {
+                  {questions.map((question) => {
                     question.image &&
-                      this.props.firebase
-                        .images(this.state.authUser.uid)
+                      firebase
+                        .images(authUser.uid)
                         .child(`${question.image.substring(12)}`)
                         .getDownloadURL()
-                        .then(url => {
+                        .then((url) => {
                           this.setState({ url });
                         });
                     /* Returns the question number, text, image (if there is one) and then iterates through the options which are clickable to submit answers. */
@@ -67,19 +79,22 @@ class TestPage extends React.Component {
                         <br />
                         {question.image && (
                           <img
-                            src={this.state.url}
+                            src={url}
                             alt="question"
                             title="Image Question"
                           />
                         )}
                         <ol>
-                          {question.options.map(op => (
+                          {question.options.map((op) => (
                             <li
                               key={op}
+                              data-key={op}
+                              data-question={question.questionNum}
                               className="option"
                               id={op}
                               value={op}
                               onClick={this.handleSubmitAnswer}
+                              // onMouseDown={this.handleToggle}
                             >
                               {op}
                             </li>

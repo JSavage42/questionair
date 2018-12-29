@@ -21,13 +21,15 @@ class TestList extends Component {
   }
 
   componentDidMount() {
+    const { authUser, userTests } = this.state;
+    const { firebase } = this.props;
     this.setState({ loading: true });
-    this.props.firebase.tests(this.state.authUser.uid).on('value', snapshot => {
+    firebase.tests(authUser.uid).on('value', (snapshot) => {
       const testsObject = snapshot.val();
       if (testsObject === null) {
         this.setState({ loading: false });
       } else {
-        const testsList = Object.keys(testsObject).map(key => ({
+        const testsList = Object.keys(testsObject).map((key) => ({
           ...testsObject[key],
           uid: key,
         }));
@@ -36,9 +38,9 @@ class TestList extends Component {
           tests: testsList,
           loading: false,
         });
-        for (const [key, value] of Object.entries(testsList)) {
-          if (value.tid.includes(this.state.authUser.uid.substring(0, 4))) {
-            this.state.userTests.push(value);
+        for (const value of Object.values(testsList)) {
+          if (value.tid.includes(authUser.uid.substring(0, 4))) {
+            userTests.push(value);
           }
         }
       }
@@ -46,46 +48,45 @@ class TestList extends Component {
   }
 
   componentWillUnmount() {
-    this.props.firebase.tests().off();
-    this.props.firebase.host().off();
+    const { firebase } = this.props;
+    firebase.tests().off();
+    firebase.host().off();
   }
 
-  handleOnChange = e => {
+  handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleHostTest = e => {
+  handleHostTest = (e) => {
     e.preventDefault();
-    const { authUser, tid, test } = this.state;
+    const { tid, test } = this.state;
+    const { firebase } = this.props;
 
     // *** Get Test from test API ***
-    this.props.firebase.test(authUser.uid, tid).on('value', snapshot => {
+    firebase.test(tid).on('value', (snapshot) => {
       this.setState({
         test: snapshot.val(),
         questions: Object.values(snapshot.val().questions),
       });
-
-      // *** Create Hosted Test ***
-      this.props.firebase.host(authUser.uid, tid).set({
-        test,
-      });
     });
+    // *** Create Hosted Test ***
+    firebase.host(tid).set(test);
   };
 
   render() {
-    const { userTests, loading } = this.state;
+    const { userTests, loading, authUser, tid } = this.state;
     return (
-      <section id="instrurctor-test-list">
+      <section id="instructor-test-list">
         <article id="test-list">
           <h2>Available Quizzes</h2>
           {loading && <div>Loading ...</div>}
           <ul>
             {userTests &&
-              userTests.map(test => (
+              userTests.map((test) => (
                 <Link
                   to={{
                     pathname: `${ROUTES.TESTS}/${test.tid}`,
-                    state: { test, authUser: this.state.authUser },
+                    state: { test, authUser },
                   }}
                   key={test.tid}
                 >
@@ -94,16 +95,15 @@ class TestList extends Component {
               ))}
           </ul>
         </article>
-        {(this.state.authUser &&
-          this.state.authUser.roles.includes(ROLES.ADMIN)) ||
-        this.state.authUser.roles.includes(ROLES.INSTRUCTOR) ? (
+        {(authUser && authUser.roles.includes(ROLES.ADMIN)) ||
+        authUser.roles.includes(ROLES.INSTRUCTOR) ? (
           <article id="tests-host">
             <h2>Host A Test</h2>
             <form onSubmit={this.handleHostTest}>
               <input
-                type="number"
+                type="text"
                 name="tid"
-                value={this.state.tid}
+                value={tid}
                 placeholder="Test ID"
                 onChange={this.handleOnChange}
               />

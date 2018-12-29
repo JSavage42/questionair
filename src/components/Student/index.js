@@ -2,6 +2,7 @@ import React from 'react';
 import { compose } from 'recompose';
 import '../../styles/components/Student/StudentDashboard.css';
 import { withAuthorization, withAuthentication } from '../Session';
+import { withFirebase } from '../Firebase';
 import * as ROLES from '../../constants/roles';
 
 class StudentPage extends React.Component {
@@ -9,24 +10,32 @@ class StudentPage extends React.Component {
     super(props);
     this.state = {
       tid: '',
+      uid: '',
+      authUser: JSON.parse(localStorage.getItem(`authUser`)),
     };
   }
 
-  handleStartTest = e => {
+  componentWillMount() {
+    const { authUser } = this.state;
+    this.setState({ uid: authUser.uid });
+  }
+
+  handleStartTest = (e) => {
     e.preventDefault();
-    const { tid } = this.state;
-    console.log(this.props);
-    this.props.history.push({
+    const { tid, uid } = this.state;
+    const { history } = this.props;
+    history.push({
       pathname: `tests/s/${tid}`,
-      state: { tid },
+      state: { tid, uid },
     });
   };
 
-  handleOnChange = e => {
+  handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
+    const { tid } = this.state;
     return (
       <main id="student">
         <h2>Student</h2>
@@ -37,7 +46,7 @@ class StudentPage extends React.Component {
             <input
               type="text"
               name="tid"
-              value={this.state.tid}
+              value={tid}
               onChange={this.handleOnChange}
               placeholder="Test ID"
             />
@@ -49,7 +58,7 @@ class StudentPage extends React.Component {
   }
 }
 
-const condition = authUser =>
+const condition = (authUser) =>
   (authUser && authUser.roles.includes(ROLES.ADMIN)) ||
   authUser.roles.includes(ROLES.INSTRUCTOR) ||
   authUser.roles.includes(ROLES.STUDENT);
@@ -57,4 +66,5 @@ const condition = authUser =>
 export default compose(
   withAuthorization(condition),
   withAuthentication,
+  withFirebase,
 )(StudentPage);

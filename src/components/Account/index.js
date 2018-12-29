@@ -27,7 +27,7 @@ const SIGN_IN_METHODS = [
 
 const AccountPage = () => (
   <AuthUserContext.Consumer>
-    {authUser => (
+    {(authUser) => (
       <main id="account">
         <article>
           <h2>Account: {authUser.email}</h2>
@@ -56,38 +56,42 @@ class LoginManagementBase extends Component {
   }
 
   fetchSignInMethods = () => {
-    this.props.firebase.auth
-      .fetchSignInMethodsForEmail(this.props.authUser.email)
-      .then(activeSignInMethods =>
+    const { firebase, authUser } = this.props;
+    firebase.auth
+      .fetchSignInMethodsForEmail(authUser.email)
+      .then((activeSignInMethods) =>
         this.setState({ activeSignInMethods, error: null }),
       )
-      .catch(error => this.setState({ error }));
+      .catch((error) => this.setState({ error }));
   };
 
-  onSocialLoginLink = provider => {
-    this.props.firebase.auth.currentUser
-      .linkWithPopup(this.props.firebase[provider])
+  onSocialLoginLink = (provider) => {
+    const { firebase } = this.props;
+    firebase.auth.currentUser
+      .linkWithPopup(firebase[provider])
       .then(this.fetchSignInMethods)
-      .catch(error => this.setState({ error }));
+      .catch((error) => this.setState({ error }));
   };
 
-  onDefaultLoginLink = password => {
-    const credential = this.props.firebase.emailAuthProvider.credential(
+  onDefaultLoginLink = (password) => {
+    const { firebase } = this.props;
+    const credential = firebase.emailAuthProvider.credential(
       this.props.authUser.email,
       password,
     );
 
-    this.props.firebase.auth.currentUser
+    firebase.auth.currentUser
       .linkAndRetrieveDataWithCredential(credential)
       .then(this.fetchSignInMethods)
-      .catch(error => this.setState({ error }));
+      .catch((error) => this.setState({ error }));
   };
 
-  onUnlink = providerId => {
-    this.props.firebase.auth.currentUser
+  onUnlink = (providerId) => {
+    const { firebase } = this.props;
+    firebase.auth.currentUser
       .unlink(providerId)
       .then(this.fetchSignInMethods)
-      .catch(error => this.setState({ error }));
+      .catch((error) => this.setState({ error }));
   };
 
   render() {
@@ -97,7 +101,7 @@ class LoginManagementBase extends Component {
       <article id="signin-methods">
         <span>Sign In Methods:</span>
         <ul>
-          {SIGN_IN_METHODS.map(signInMethod => {
+          {SIGN_IN_METHODS.map((signInMethod) => {
             const onlyOneLeft = activeSignInMethods.length === 1;
             const isEnabled = activeSignInMethods.includes(signInMethod.id);
 
@@ -158,14 +162,16 @@ class DefaultLoginToggle extends Component {
     this.state = { passwordOne: '', passwordTwo: '' };
   }
 
-  onSubmit = event => {
+  onSubmit = (event) => {
+    const { passwordOne } = this.state;
+    const { onLink } = this.props;
     event.preventDefault();
 
-    this.props.onLink(this.state.passwordOne);
+    onLink(passwordOne);
     this.setState({ passwordOne: '', passwordTwo: '' });
   };
 
-  onChange = event => {
+  onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
@@ -219,19 +225,22 @@ class PermissionRequestsBase extends Component {
   }
 
   componentDidMount() {
-    const uid = this.props.firebase.auth.currentUser.uid;
+    const { firebase } = this.props;
+    const uid = firebase.auth.currentUser.uid;
     this.setState({ uid });
   }
 
-  handleRequests = e => {
+  handleRequests = (e) => {
+    const { uid } = this.state;
+    const { firebase } = this.props;
     let key;
     if (e.target.id === 'ADMIN') {
       key = 0;
     } else {
       key = 1;
     }
-    this.props.firebase
-      .user(this.state.uid)
+    firebase
+      .user(uid)
       .child(`requests`)
       .child(key)
       .set(e.target.id);
@@ -256,6 +265,6 @@ const PermissionRequests = withFirebase(PermissionRequestsBase);
 
 const LoginManagement = withFirebase(LoginManagementBase);
 
-const condition = authUser => !!authUser;
+const condition = (authUser) => !!authUser;
 
 export default compose(withAuthorization(condition))(AccountPage);

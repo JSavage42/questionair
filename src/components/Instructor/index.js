@@ -14,9 +14,11 @@ class InstructorPage extends React.Component {
       authUser: JSON.parse(localStorage.getItem('authUser')).uid,
     };
   }
+
   handleEndHostedTests = () => {
     const { authUser } = this.state;
-    this.props.firebase.hosts(authUser).remove();
+    const { firebase } = this.props;
+    firebase.hosts(authUser).remove();
   };
 
   render() {
