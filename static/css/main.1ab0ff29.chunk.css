@@ -1,0 +1,47 @@
+html{font-size:62.5%;box-sizing:border-box}body{color:#fff;background-color:var(--dark-blue);margin:0;padding:0;font-family:Fira Sans,Droid Sans,Helvetica Neue,sans-serif;font-size:1.6rem}:root{--dark-blue:#10162e;--med-dark-blue:#0b0069;--med-blue:#192192;--light-blue:#1a1aa7;--gold:#866e30;--yellow:#ab8421;--grey:#aaa}header{align-items:flex-start;background-color:var(--light-blue);display:flex;flex-direction:column;justify-content:start;width:100vw}h1{color:var(--yellow)}header img{align-self:start;margin-left:2rem;width:5%}nav{display:flex;justify-content:space-between;width:100%}nav ul{list-style-type:none;margin:0}nav ul>li{display:inline-block;margin:1rem 1rem 0}nav ul>li a{background-color:var(--gold);border-radius:1rem 1rem 0 0;font-weight:700;letter-spacing:.125rem;padding:.51rem 1rem 0;text-decoration:none}nav ul>li a:hover{background-color:var(--dark-blue);color:#fff;text-decoration:none}header button{align-self:flex-end;justify-self:flex-end;background-color:var(--grey);border-radius:1rem 1rem 0 0;border:none;color:#000;margin:0 1rem;font-size:1.6rem;font-weight:700;padding:.5rem;width:auto}
+
+/* !WARNING Keep file until finished */#account{display:flex;justify-content:center;align-items:center;flex-direction:column}#account input{width:35rem}#account button,#account input{background-color:var(--med-blue);border-radius:1rem;border:none;color:#fff;display:block;font-size:2.5rem;padding:1rem;margin:1rem 0}#account button{width:37rem}#account button:hover{background-color:var(--gold);color:#fff}#account ul{list-style-type:none}#signin-methods span{font-weight:700;letter-spacing:.125rem}#signin-methods ul{margin:0;padding:0}#user-list ul{list-style-type:none}#user-list span{display:block;margin:.175rem}#user-list a{background-color:var(--yellow);border-radius:1rem;color:#000;display:block;font-weight:700;padding:.75rem;margin:2rem;text-align:center;width:5rem}#user-list a:hover{background-color:var(--gold);color:#fff}#user-item{margin-left:1rem;font-size:2rem}#user-item span{display:block}#user-item ul{list-style-type:none}#user-item button{background-color:var(--yellow);border:none;border-radius:1rem;color:#000;font-size:2rem;font-weight:700;padding:.5rem;margin:.175rem;width:35rem}#user-item button:hover{background-color:var(--gold);color:#fff;text-decoration:underline}
+
+/* !WARNING Keep file until finished */#test-list{align-items:center;display:flex;flex-direction:column}#test-list a{background-color:var(--med-blue);border-radius:1rem;color:#fff;display:block;font-size:2.5rem;letter-spacing:.125rem;margin:.5rem 0;padding:.75rem;text-align:center}#test-list a:hover{background-color:var(--gold);color:#fff}#test-list a:visited{color:#fff}#tests-host{align-items:center;display:flex;flex-direction:column}#tests-host input{background-color:var(--med-blue);border:none;border-radius:1rem;color:#fff;display:block;font-size:2.5rem;margin:.5rem 0;padding:.75rem;width:35rem}#tests-host input[type=submit]{background:var(--yellow);color:#000;font-weight:700;width:36.5rem}#tests-host input[type=submit]:hover{background:var(--med-blue);color:#fff;font-weight:700;width:36.5rem}#create-test-bank{align-items:center;display:flex;flex-direction:column;height:100%;justify-content:center}#create-test-bank input{background-color:var(--med-blue);border:none;border-radius:1rem;color:#fff;display:block;font-size:2.5rem;margin:.5rem 0;padding:.75rem;width:35rem}#create-test-bank input[type=submit]{background:var(--yellow);color:#000;font-weight:700;width:36.5rem}#create-test-bank input[type=reset]{background-color:var(--grey);color:#000;width:36.5rem}#create-test-bank input[type=reset]:hover,#create-test-bank input[type=submit]:hover{background-color:var(--gold);color:#fff}#create-test-bank label{font-weight:700;letter-spacing:.125rem}#create-test-bank p{font-size:2rem;font-weight:700}#take-test ol,#take-test ul{list-style-type:none}#take-test #questions .question{margin-bottom:2rem}#take-test #questions img{max-width:60rem}#take-test #questions p{font-size:2.5rem;margin:0}#take-test #questions .option{background-color:var(--med-blue);border-radius:1rem;color:#fff;font-size:3rem;padding:1rem;margin:1rem 0;text-align:center;width:40rem}#take-test #questions .option:hover,#take-test #questions .toggle{background-color:var(--gold)}
+
+/* !WARNING Keep file until finished */#test-page ol,#test-page ul{list-style-type:none}#test-page #questions .question{margin-bottom:2rem}#test-page #questions img{max-width:60rem}#test-page #questions p{font-size:2.5rem;margin:0}#test-page #questions .option{background-color:var(--med-blue);border-radius:1rem;color:#fff;font-size:3rem;padding:1rem;margin:1rem 0;text-align:center;width:40rem}#test-page #questions .option:hover,#test-page #questions .toggle{background-color:var(--gold)}#instructor-page{display:flex;justify-content:center;flex-direction:column}#instructor-page a{color:var(--yellow);font-size:2rem;letter-spacing:.125rem;font-weight:500}#instructor-page a:hover{color:#fff;font-weight:500}#instructor-page ul{list-style-type:none}#instructor-page input[type=button]{align-self:center;background-color:var(--grey);border:none;border-radius:1rem;color:#fff;display:block;font-size:2.5rem;margin:.5rem 0;padding:.75rem;width:36.5rem}#instructor-page input[type=button]:hover{background-color:var(--light-blue);color:#fff;display:block}#student{align-items:center;display:flex;justify-content:flex-start;flex-direction:column}#student input{background-color:var(--med-blue);border:none;border-radius:1rem;color:#fff;display:block;font-size:2.5rem;margin:.5rem 0;padding:.75rem;width:35rem}#student input[type=submit]{background:var(--yellow);color:#000;display:inline-block;font-weight:700;width:36.5rem}#student input[type=submit]:hover{background-color:var(--gold);color:#fff}#student label{font-weight:700;letter-spacing:.125rem}#new-question{align-items:center;display:flex;flex-direction:column;height:100%;justify-content:center}#new-question input{background-color:var(--med-blue);border-radius:1rem;border:none;color:#fff;display:block;font-size:2.5rem;margin:.5rem 0;padding:.75rem;width:35rem}#new-question input[type=submit]{background:var(--yellow);color:#000;font-weight:700;width:36.5rem}#new-question input[type=reset]{background-color:var(--grey);color:#000;width:36.5rem}#new-question input[type=file]{background-color:var(--dark-blue);width:35rem}#new-question input[type=reset]:hover,#new-question input[type=submit]:hover{background-color:var(--gold);color:#fff}#new-question label{font-weight:700;letter-spacing:.125rem}#root{height:100vh;width:100vw}button{cursor:pointer}main{padding:1rem}h1{font-size:3rem;color:#fff;letter-spacing:.125rem}h2,h3,h4,h5,h6{color:var(--yellow)}h2{font-size:2.75rem;text-align:center}a{color:#fff;text-decoration:none}a:hover{color:var(--light-blue);text-decoration:underline}
+
+/* !TODO check if removing breaks
+/* .testQuestion {
+  border: 1px solid #000;
+  border-radius: 1.5rem;
+  color: #fff;
+  display: flex;
+  flex-flow: column;
+  padding: 1rem;
+  margin: 0 auto;
+  width: 60%;
+}
+
+.testQuestion h3 {
+  color: #fff;
+}
+
+.testAnswers form {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+}
+
+.testAnswers ol {
+  align-self: flex-start;
+  list-style-type: upper-alpha;
+  width: 100%;
+}
+
+.testAnswers input[type='submit'] {
+  align-self: center;
+  background-color: var(--light-blue);
+  border: 1px solid #000;
+  border-radius: 1.25rem;
+  color: #fff;
+  font-size: 2rem;
+  padding: 1.25rem 2rem;
+  width: 100%;
+} */
+/*# sourceMappingURL=main.1ab0ff29.chunk.css.map */
