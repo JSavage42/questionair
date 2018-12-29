@@ -2,6 +2,7 @@ import React from 'react';
 import { compose } from 'recompose';
 import '../../styles/components/Student/StudentDashboard.css';
 import { withAuthorization, withAuthentication } from '../Session';
+import { withFirebase } from '../Firebase';
 import * as ROLES from '../../constants/roles';
 
 class StudentPage extends React.Component {
@@ -9,16 +10,23 @@ class StudentPage extends React.Component {
     super(props);
     this.state = {
       tid: '',
+      uid: '',
+      authUser: JSON.parse(localStorage.getItem(`authUser`)),
     };
+  }
+
+  componentWillMount() {
+    const { authUser } = this.state;
+    this.setState({ uid: authUser.uid });
   }
 
   handleStartTest = (e) => {
     e.preventDefault();
-    const { tid } = this.state;
+    const { tid, uid } = this.state;
     const { history } = this.props;
     history.push({
       pathname: `tests/s/${tid}`,
-      state: { tid },
+      state: { tid, uid },
     });
   };
 
@@ -58,4 +66,5 @@ const condition = (authUser) =>
 export default compose(
   withAuthorization(condition),
   withAuthentication,
+  withFirebase,
 )(StudentPage);

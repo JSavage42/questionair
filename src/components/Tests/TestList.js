@@ -38,7 +38,7 @@ class TestList extends Component {
           tests: testsList,
           loading: false,
         });
-        for (const [key, value] of Object.entries(testsList)) {
+        for (const value of Object.values(testsList)) {
           if (value.tid.includes(authUser.uid.substring(0, 4))) {
             userTests.push(value);
           }
@@ -59,21 +59,18 @@ class TestList extends Component {
 
   handleHostTest = (e) => {
     e.preventDefault();
-    const { authUser, tid, test } = this.state;
+    const { tid, test } = this.state;
     const { firebase } = this.props;
 
     // *** Get Test from test API ***
-    firebase.test(authUser.uid, tid).on('value', (snapshot) => {
+    firebase.test(tid).on('value', (snapshot) => {
       this.setState({
         test: snapshot.val(),
         questions: Object.values(snapshot.val().questions),
       });
-
-      // *** Create Hosted Test ***
-      firebase.host(authUser.uid, tid).set({
-        test,
-      });
     });
+    // *** Create Hosted Test ***
+    firebase.host(tid).set(test);
   };
 
   render() {
@@ -104,7 +101,7 @@ class TestList extends Component {
             <h2>Host A Test</h2>
             <form onSubmit={this.handleHostTest}>
               <input
-                type="number"
+                type="text"
                 name="tid"
                 value={tid}
                 placeholder="Test ID"

@@ -7,33 +7,45 @@ import { withAuthentication } from '../Session';
 class TestPage extends React.Component {
   constructor(props) {
     super(props);
-
+    const { authUser, test } = this.props.location.state;
     this.state = {
-      // Gets current authUser from local storage
-      authUser: this.props.location.state.authUser,
-      test: this.props.location.state.test,
-      tid: this.props.location.state.test.tid,
-      questions: Object.values(this.props.location.state.test.questions),
+      authUser: authUser,
+      test: test,
+      tid: test.tid,
+      questions: Object.values(test.questions),
       loading: true,
       url: '',
+      toggle: false,
     };
   }
 
   componentWillMount = () => {
-    const { location } = this.props;
-    console.log(location.state);
     this.setState({ loading: false });
   };
 
+  handleToggle = (e) => {
+    const toggle = document.querySelector(`li[data-key=${e.target.id}]`);
+    toggle.classList.toggle('toggle');
+  };
+
   handleSubmitAnswer = (e) => {
-    // TODO Create logic for handling a submitted answer.
-    console.log(e.target.id);
+    const { firebase } = this.props;
+    const { tid, authUser } = this.state;
+    firebase
+      .host(tid)
+      .child(`answersGiven/`)
+      .child(`${e.target.dataset.question}/`)
+      .child(`${authUser.uid}`)
+      .set(e.target.dataset.key);
+
+    const toggle = document.querySelector(`li[data-key="${e.target.id}"]`);
+    toggle.classList.toggle('toggle');
   };
 
   render() {
     const { test, tid, loading, questions, authUser, url } = this.state;
-    const { location, firebase } = this.props;
-    console.log(location.state);
+    const { firebase } = this.props;
+
     return (
       <main id="test-page">
         <h2>Test #{tid}</h2>
@@ -76,10 +88,13 @@ class TestPage extends React.Component {
                           {question.options.map((op) => (
                             <li
                               key={op}
+                              data-key={op}
+                              data-question={question.questionNum}
                               className="option"
                               id={op}
                               value={op}
                               onClick={this.handleSubmitAnswer}
+                              // onMouseDown={this.handleToggle}
                             >
                               {op}
                             </li>

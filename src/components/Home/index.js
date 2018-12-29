@@ -1,22 +1,23 @@
-import React, { Component } from "react";
-import { compose } from "recompose";
-import "../../styles/components/Home/Home.css";
-import { withAuthorization } from "../Session";
-import { withFirebase } from "../Firebase";
+import React, { Component } from 'react';
+import { compose } from 'recompose';
+import '../../styles/components/Home/Home.css';
+import { withAuthorization } from '../Session';
+import { withFirebase } from '../Firebase';
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      users: null
+      users: null,
     };
   }
 
   componentDidMount() {
-    this.props.firebase.users().on("value", snapshot => {
+    const { firebase } = this.props;
+    firebase.users().on('value', (snapshot) => {
       this.setState({
-        users: snapshot.val()
+        users: snapshot.val(),
       });
     });
   }
@@ -35,9 +36,9 @@ class HomePage extends Component {
   }
 }
 
-const condition = authUser => !!authUser;
+const condition = (authUser) => !!authUser;
 
 export default compose(
   withFirebase,
-  withAuthorization(condition)
+  withAuthorization(condition),
 )(HomePage);

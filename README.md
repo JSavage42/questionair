@@ -53,11 +53,13 @@ Working on ability to edit a question. Also, the ability to control the hosted t
 
 Here you can create a new test bank. Enter an ID number, total points possible, and passing score and click submit.
 
+A shell test will be created with the meta data provided. A prefix with the first four characters of your user ID will be pre-pended to the front of your entered Test ID. This is the ID you'll use when adding questions and to host the test. This is also the ID you'll give to students so they can participate.
+
 #### New Question
 
 Here you can add questions to test banks.
 
-1. Enter the Test Bank ID number
+1. Enter the Test Bank ID number. Your ID Prefix and the Test ID you gave when creating a test bank. If you've forgotten go to the Instructor main page to see your created tests.
 2. Enter the first reference (optional)
 3. Enter the second reference (optional)
 4. Enter the question number

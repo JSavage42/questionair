@@ -33,3 +33,7 @@
 #test-page #questions .option:hover {
   background-color: var(--gold);
 }
+
+#test-page #questions .toggle {
+  background-color: var(--gold);
+}

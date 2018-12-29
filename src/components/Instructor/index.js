@@ -14,6 +14,7 @@ class InstructorPage extends React.Component {
       authUser: JSON.parse(localStorage.getItem('authUser')).uid,
     };
   }
+
   handleEndHostedTests = () => {
     const { authUser } = this.state;
     const { firebase } = this.props;
