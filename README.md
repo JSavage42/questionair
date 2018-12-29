@@ -39,15 +39,18 @@ In the Account Page you can make changes to your account. You can reset your pas
 
 ### Student Page
 
-You can add a Test ID to open a page that displays all the test questions and options.
+You can add a Test ID to open a page that displays one question at a time and waits for the Hosting Instructor to continue the test.
 
-Working on getting the functionality of showing one question at a time controlled by the Instructor.
+**TODO**
+
+1. Only allow one option to be highlighted at a time.
+1. Show the current graph for submitted answers after you submit.
 
 ### Instructor Page
 
 The Instructor Page shows all the test banks you've created. It also displays links to create a new test bank or add questions to an existing test bank.
 
-Working on ability to edit a question. Also, the ability to control the hosted test. Also, to show **ONLY** your tests.
+Working on ability to edit a question. Also, the ability to control the hosted test.
 
 #### Create Test Bank
 
