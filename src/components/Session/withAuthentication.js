@@ -1,5 +1,6 @@
 import React from 'react';
 
+// *** HOC and Context *** //
 import AuthUserContext from './context';
 import { withFirebase } from '../Firebase';
 

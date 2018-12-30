@@ -1,8 +1,14 @@
 import React from 'react';
+
+// *** Styles *** //
 import '../../styles/components/Tests/TakeTest.css';
+
+// *** Third-Party *** //
+import { compose } from 'recompose';
+
+// *** HOC and Context *** //
 import { withFirebase } from '../Firebase';
 import { withAuthentication } from '../Session';
-import { compose } from 'recompose';
 
 class TakeTest extends React.Component {
   constructor(props) {

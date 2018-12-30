@@ -1,9 +1,19 @@
 import React from 'react';
-import { compose } from 'recompose';
-import { withAuthorization } from '../Session';
-import { UserList } from '../Users';
+
+// *** Constants *** //
 import * as ROLES from '../../constants/roles';
+
+// *** Third-Party *** //
+import { compose } from 'recompose';
+
+// *** Styles *** //
 import '../../styles/components/Admin/Admin.css';
+
+// *** HOC and Context *** //
+import { withAuthorization } from '../Session';
+
+// *** Components *** //
+import { UserList } from '../Users';
 
 const AdminPage = () => (
   <main id="admin-page">

@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+
+// *** Constants *** //
+import * as ROUTES from '../../constants/routes';
+
+// *** Third-Party *** //
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
-import { SignUpLink } from '../SignUp';
-import { PasswordForgetLink } from '../PasswordForget';
+// *** HOC and Context *** //
 import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
+
+// *** Components *** //
+import { PasswordForgetLink } from '../PasswordForget';
+import { SignUpLink } from '../SignUp';
 
 const SignInPage = () => (
   <div>

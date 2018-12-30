@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+
+// *** Styles *** //
 import '../../styles/components/Users/UserItem.css';
+
+// *** HOC and Context *** //
 import { withFirebase } from '../Firebase';
 class UserItem extends Component {
   constructor(props) {

@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import '../../styles/components/Tests/TestList.css';
-import { withFirebase } from '../Firebase';
+
+// *** Constants *** //
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
+
+// *** Styles *** //
+import '../../styles/components/Tests/TestList.css';
+
+// *** Third-Party *** //
+import { Link } from 'react-router-dom';
+
+// *** HOC and Context *** //
+import { withFirebase } from '../Firebase';
 
 class TestList extends Component {
   constructor(props) {
@@ -62,14 +70,14 @@ class TestList extends Component {
     const { tid, test } = this.state;
     const { firebase } = this.props;
 
-    // *** Get Test from test API ***
+    // *** Get Test from test API *** //
     firebase.test(tid).on('value', (snapshot) => {
       this.setState({
         test: snapshot.val(),
         questions: Object.values(snapshot.val().questions),
       });
     });
-    // *** Create Hosted Test ***
+    // *** Create Hosted Test *** //
     firebase.host(tid).set(test);
   };
 

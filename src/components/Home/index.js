@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+
+// *** Third-Party *** //
 import { compose } from 'recompose';
+
+// *** Styles *** //
 import '../../styles/components/Home/Home.css';
+
+// *** HOC and Context *** //
 import { withAuthorization } from '../Session';
 import { withFirebase } from '../Firebase';
 

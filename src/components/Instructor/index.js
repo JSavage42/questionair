@@ -1,11 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { compose } from 'recompose';
-import { withAuthorization } from '../Session';
-import { TestList } from '../Tests';
+
+// *** Constatnts *** //
 import * as ROLES from '../../constants/roles';
 import * as ROUTES from '../../constants/routes';
+
+// *** Styles *** //
 import '../../styles/components/Instructor/InstructorPage.css';
+
+// *** Third-Party *** //
+import { Link } from 'react-router-dom';
+import { compose } from 'recompose';
+
+// *** HOC and Context *** //
+import { withAuthorization } from '../Session';
+
+// *** Components *** //
+import { TestList } from '../Tests';
 
 class InstructorPage extends React.Component {
   constructor(props) {

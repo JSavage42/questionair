@@ -1,18 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
-import './styles/base/index.css';
-import './styles/base/settings.css';
 import * as serviceWorker from './serviceWorker';
 
+// *** Third-Party *** //
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+// *** Styles *** //
+import './styles/base/index.css';
+import './styles/base/settings.css';
+
+// *** Components *** //
 import App from './components/App';
 import Firebase, { FirebaseContext } from './components/Firebase';
 
 ReactDOM.render(
   <FirebaseContext.Provider value={new Firebase()}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </FirebaseContext.Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change
