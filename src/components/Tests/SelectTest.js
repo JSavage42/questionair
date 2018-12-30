@@ -1,7 +1,13 @@
-import React from "react";
-import TestList from "./TestList";
-import { withFirebase } from "../Firebase";
-import "../../styles/components/Student/TakeTest.css";
+import React from 'react';
+
+// *** Styles *** //
+import '../../styles/components/Student/TakeTest.css';
+
+// *** HOC and Context *** //
+import { withFirebase } from '../Firebase';
+
+// *** Components *** //
+import TestList from './TestList';
 
 const TakeTest = () => (
   <main id="taketest">

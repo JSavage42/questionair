@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
+
+// *** Third-Party *** //
 import { compose } from 'recompose';
+
+// *** Styles *** //
 import '../../styles/components/Account/Account.css';
+
+// *** HOC and Context *** //
 import { AuthUserContext, withAuthorization } from '../Session';
 import { withFirebase } from '../Firebase';
-import { PasswordForgetForm } from '../PasswordForget';
+
+// *** Components *** //
 import PasswordChangeForm from '../PasswordChange';
+import { PasswordForgetForm } from '../PasswordForget';
 
 const SIGN_IN_METHODS = [
   {

@@ -1,5 +1,7 @@
-import React from "react";
-import { withFirebase } from "../Firebase";
+import React from 'react';
+
+// *** HOC and Context *** //
+import { withFirebase } from '../Firebase';
 
 const SignOutButton = ({ firebase }) => (
   <button type="button" onClick={firebase.doSignOut}>

@@ -1,9 +1,17 @@
 import React from 'react';
-import { compose } from 'recompose';
+
+// *** Constants *** //
+import * as ROLES from '../../constants/roles';
+
+// *** Styles *** //
 import '../../styles/components/Student/StudentDashboard.css';
+
+// *** Third-Party *** //
+import { compose } from 'recompose';
+
+// *** HOC and Context *** //
 import { withAuthorization, withAuthentication } from '../Session';
 import { withFirebase } from '../Firebase';
-import * as ROLES from '../../constants/roles';
 
 class StudentPage extends React.Component {
   constructor(props) {

@@ -1,5 +1,9 @@
 import React from 'react';
+
+// *** Styles *** //
 import '../../styles/components/Tests/CreateTestBank.css';
+
+// *** HOC and Context *** //
 import { withFirebase } from '../Firebase';
 
 class CreateTestBank extends React.Component {

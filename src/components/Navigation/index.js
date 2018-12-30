@@ -1,16 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import { AuthUserContext } from '../Session';
-import SignOutButton from '../SignOut';
+// *** Constants *** //
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
-import '../../styles/components/Navigation.css';
+
+// *** Styles *** //
 import logo from '../../images/logo.svg';
+import '../../styles/components/Navigation.css';
+
+// *** Third-Party *** //
+import { Link } from 'react-router-dom';
+
+// *** HOC and Context *** //
+import { AuthUserContext } from '../Session';
+
+// *** Components *** //
+import SignOutButton from '../SignOut';
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
-    {authUser =>
+    {(authUser) =>
       authUser ? <NavigationAuth authUser={authUser} /> : <NavigationNonAuth />
     }
   </AuthUserContext.Consumer>
@@ -18,7 +27,7 @@ const Navigation = () => (
 
 const NavigationAuth = ({ authUser }) => (
   <header>
-    <img src={logo} alt='Question Air' title='Question Air' />
+    <img src={logo} alt="Question Air" title="Question Air" />
     <nav>
       <ul>
         <li>

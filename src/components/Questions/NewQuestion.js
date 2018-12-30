@@ -1,7 +1,13 @@
 import React from 'react';
-import '../../styles/components/Questions/NewQuestion.css';
-import { withFirebase } from '../Firebase';
+
+// *** Libraries *** //
 import { isNullOrUndefined } from 'util';
+
+// *** Styles *** //
+import '../../styles/components/Questions/NewQuestion.css';
+
+// *** HOC and Context *** //
+import { withFirebase } from '../Firebase';
 
 class NewQuestion extends React.Component {
   constructor(props) {

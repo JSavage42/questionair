@@ -1,10 +1,15 @@
 import React from 'react';
+
+// *** Constants *** //
+import * as ROUTES from '../../constants/routes';
+
+// *** Third-Party *** //
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
+// *** HOC and Context *** //
 import AuthUserContext from './context';
 import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
 
 const withAuthorization = (condition) => (Component) => {
   class WithAuthorization extends React.Component {

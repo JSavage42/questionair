@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+// *** HOC and Context *** //
 import { withFirebase } from '../Firebase';
 
 const INITIAL_STATE = {
