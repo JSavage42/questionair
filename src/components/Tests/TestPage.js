@@ -1,5 +1,9 @@
 import React from 'react';
 
+// *** Constants *** //
+import * as ROUTES from '../../constants/routes';
+import * as ROLES from '../../constants/roles';
+
 // *** Styles *** //
 import '../../styles/components/Tests/TestPage.css';
 
@@ -29,23 +33,22 @@ class TestPage extends React.Component {
     this.setState({ loading: false });
   };
 
-  handleToggle = (e) => {
-    const toggle = document.querySelector(`li[data-key=${e.target.id}]`);
-    toggle.classList.toggle('toggle');
-  };
+  handleHostTest = (e) => {
+    e.preventDefault();
+    const { tid, test } = this.state;
+    const { firebase, history } = this.props;
+    const hostedTest = {
+      currentQuestion: 0,
+      answersGiven: [],
+      ...test,
+    };
+    // *** Create Hosted Test *** //
+    firebase.host(tid).set(hostedTest);
 
-  handleSubmitAnswer = (e) => {
-    const { firebase } = this.props;
-    const { tid, authUser } = this.state;
-    firebase
-      .host(tid)
-      .child(`answersGiven/`)
-      .child(`${e.target.dataset.question}/`)
-      .child(`${authUser.uid}`)
-      .set(e.target.dataset.key);
-
-    const toggle = document.querySelector(`li[data-key="${e.target.id}"]`);
-    toggle.classList.toggle('toggle');
+    history.push({
+      pathname: `${ROUTES.TESTS}/i/${tid}`,
+      state: tid,
+    });
   };
 
   render() {
@@ -59,6 +62,16 @@ class TestPage extends React.Component {
         {/* Checks if there is a tests object and prints the following JSX */}
         {test && (
           <div>
+            {(authUser && authUser.roles.includes(ROLES.ADMIN)) ||
+            authUser.roles.includes(ROLES.INSTRUCTOR) ? (
+              <article id="tests-host">
+                <form onSubmit={this.handleHostTest}>
+                  <input type="submit" name="submit" value="Host This Test" />
+                </form>
+              </article>
+            ) : (
+              ''
+            )}
             <ul>
               <li>Possible Points: {test.totalPoints}</li>
               <li>Passing Score: {test.passingScore}</li>

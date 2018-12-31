@@ -23,7 +23,13 @@ import SignInPage from '../SignIn';
 import SignUpPage from '../SignUp';
 import StudentPage from '../Student';
 import { NewQuestion } from '../Questions';
-import { CreateTestBank, TakeTest, SelectTest, TestPage } from '../Tests';
+import {
+  CreateTestBank,
+  TakeTest,
+  SelectTest,
+  TestPage,
+  HostTest,
+} from '../Tests';
 import { UserItem } from '../Users';
 
 const App = () => (
@@ -48,6 +54,7 @@ const App = () => (
       <Route exact path={ROUTES.SELECT_TEST} component={SelectTest} />
       <Route exact path={ROUTES.TEST_VIEW} component={TestPage} />
       <Route exact path={ROUTES.TAKE_TEST} component={TakeTest} />
+      <Route exact path={ROUTES.HOST_TEST} component={HostTest} />
     </Switch>
   </div>
 );
