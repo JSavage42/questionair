@@ -98,7 +98,7 @@ class TakeTest extends React.Component {
                       key={op}
                       data-key={op}
                       data-question={questions[currentQuestion].questionNum}
-                      className="option"
+                      className="option btn"
                       id={op}
                       value={op}
                       onClick={this.handleSubmitAnswer}

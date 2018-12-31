@@ -1,5 +1,6 @@
 #test-page ul {
   list-style-type: none;
+  padding: 0;
 }
 
 #test-page ol {
@@ -17,23 +18,4 @@
 #test-page #questions p {
   font-size: 2.5rem;
   margin: 0;
-}
-
-#test-page #questions .option {
-  background-color: var(--med-blue);
-  border-radius: 1rem;
-  color: #fff;
-  font-size: 3rem;
-  padding: 1rem;
-  margin: 1rem 0;
-  text-align: center;
-  width: 40rem;
-}
-
-#test-page #questions .option:hover {
-  background-color: var(--gold);
-}
-
-#test-page #questions .toggle {
-  background-color: var(--gold);
 }

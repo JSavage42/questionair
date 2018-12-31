@@ -82,7 +82,7 @@ class UserItem extends Component {
     const { user, loading, uid } = this.state;
 
     return (
-      <article id="user-item">
+      <main id="user-item">
         <h2>{user.username}</h2>
         {loading && <div>Loading ...</div>}
 
@@ -103,13 +103,12 @@ class UserItem extends Component {
                 <ul>
                   {user.requests.map((req) => (
                     <li key={req}>
-                      <button
+                      <input
                         id={req}
                         type="button"
+                        value={req}
                         onClick={this.handleRequestApproval}
-                      >
-                        {req}
-                      </button>
+                      />
                     </li>
                   ))}
                 </ul>
@@ -121,26 +120,27 @@ class UserItem extends Component {
                 <ul>
                   {user.roles.map((role) => (
                     <li key={role}>
-                      <button
+                      <input
                         id={role}
                         type="button"
+                        value={role}
                         onClick={this.handleRoleRemoval}
-                      >
-                        {role}
-                      </button>
+                      />
                     </li>
                   ))}
                 </ul>
               </span>
             )}
             <span>
-              <button type="button" onClick={this.onSendPasswordResetEmail}>
-                Send Password Reset
-              </button>
+              <input
+                value="Send Password Reset"
+                type="button"
+                onClick={this.onSendPasswordResetEmail}
+              />
             </span>
           </div>
         )}
-      </article>
+      </main>
     );
   }
 }
