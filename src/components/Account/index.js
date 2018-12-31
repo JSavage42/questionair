@@ -37,13 +37,11 @@ const AccountPage = () => (
   <AuthUserContext.Consumer>
     {(authUser) => (
       <main id="account">
-        <article>
-          <h2>Account: {authUser.email}</h2>
-          <PasswordForgetForm />
-          <PasswordChangeForm />
-          <LoginManagement authUser={authUser} />
-          <PermissionRequests />
-        </article>
+        <h2>Account: {authUser.email}</h2>
+        <PasswordForgetForm />
+        <PasswordChangeForm />
+        <LoginManagement authUser={authUser} />
+        <PermissionRequests />
       </main>
     )}
   </AuthUserContext.Consumer>

@@ -1,1 +1,19 @@
-/* !WARNING Keep file until finished */
+#home {
+  height: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+}
+
+#home article {
+  display: flex;
+  height: 100%;
+  font-size: 5rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+#home article p {
+  text-shadow: 5px 5px 15px #000;
+}

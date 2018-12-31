@@ -18,8 +18,6 @@ import { UserList } from '../Users';
 const AdminPage = () => (
   <main id="admin-page">
     <h2>Admin</h2>
-    <p>The Admin Page is accessible by every signed in admin user.</p>
-
     <UserList />
   </main>
 );
