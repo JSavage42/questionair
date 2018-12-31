@@ -1,26 +1,33 @@
 #instructor-page {
+  align-items: center;
   display: flex;
   justify-content: center;
   flex-direction: column;
-}
-
-#instructor-page a {
-  color: var(--yellow);
-  font-size: 2rem;
-  letter-spacing: 0.125rem;
-  font-weight: 500;
-}
-
-#instructor-page a:hover {
-  color: #fff;
-  font-weight: 500;
 }
 
 #instructor-page ul {
   list-style-type: none;
 }
 
-#instructor-page input[type='button'] {
+#instructor-page input {
+  background-color: var(--med-blue);
+  border: none;
+  border-radius: 1rem;
+  color: #fff;
+  display: block;
+  font-size: 2.5rem;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  text-align: center;
+  width: 35rem;
+}
+
+#instructor-page input:hover {
+  background-color: var(--gold);
+  text-decoration: underline;
+}
+
+#instructor-page input.endHostedTests {
   align-self: center;
   background-color: var(--grey);
   border: none;
@@ -33,7 +40,7 @@
   width: 36.5rem;
 }
 
-#instructor-page input[type='button']:hover {
+#instructor-page input.endHostedTests:hover {
   background-color: var(--light-blue);
   color: #fff;
   display: block;

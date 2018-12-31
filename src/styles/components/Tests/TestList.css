@@ -10,7 +10,6 @@
   color: #fff;
   display: block;
   font-size: 2.5rem;
-  letter-spacing: 0.125rem;
   margin: 0.5rem 0;
   padding: 0.75rem;
   text-align: center;
@@ -23,6 +22,11 @@
 
 #test-list a:visited {
   color: #fff;
+}
+
+#test-list ul {
+  margin: 0;
+  padding: 0;
 }
 
 /* *** Host a Test *** */

@@ -37,7 +37,6 @@ nav ul > li a {
   background-color: var(--gold);
   border-radius: 1rem 1rem 0 0;
   font-weight: 700;
-  letter-spacing: 0.125rem;
   padding: 0.51rem 1rem 0 1rem;
   text-decoration: none;
 }
