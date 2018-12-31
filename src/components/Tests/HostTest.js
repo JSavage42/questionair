@@ -39,6 +39,7 @@ class HostTest extends Component {
         answersGiven: Object.values(snapshot.val().answersGiven),
         loading: false,
       });
+<<<<<<< HEAD
       const submittedAnswersArray = [];
       const currQuest = snapshot.val().currentQuestion;
       Object.entries(this.state.answersGiven[currQuest]).forEach(
@@ -66,6 +67,14 @@ class HostTest extends Component {
 
   render() {
     const { tid, loading, test, submittedAnswers } = this.state;
+=======
+    });
+  }
+
+  render() {
+    const { tid, loading, test, answersGiven } = this.state;
+    console.log(answersGiven);
+>>>>>>> 704b6aa78ab8eaba70a271cf290d0cecdc6e0e69
     return (
       <main id="host-test">
         {loading && <div>Loading...</div>}
@@ -73,6 +82,7 @@ class HostTest extends Component {
           <section>
             <h2>Test ID: {tid}</h2>
             <p>Answers Given:</p>
+<<<<<<< HEAD
             <ul id="answers-given">
               {submittedAnswers[0] !== false &&
                 submittedAnswers.map(([key, value]) => (
@@ -88,6 +98,11 @@ class HostTest extends Component {
           name="next-question"
           onClick={this.handleNextQuestion}
         />
+=======
+            {this.state.submittedAnswers}
+          </section>
+        )}
+>>>>>>> 704b6aa78ab8eaba70a271cf290d0cecdc6e0e69
       </main>
     );
   }
