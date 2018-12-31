@@ -14,7 +14,6 @@ main {
 h1 {
   font-size: 3rem;
   color: #fff;
-  letter-spacing: 0.125rem;
 }
 
 h2,
@@ -30,6 +29,10 @@ h2 {
   text-align: center;
 }
 
+h3 {
+  font-size: 2.5rem;
+}
+
 a {
   color: #fff;
   text-decoration: none;
@@ -39,42 +42,3 @@ a:hover {
   color: var(--light-blue);
   text-decoration: underline;
 }
-
-/* !TODO check if removing breaks
-/* .testQuestion {
-  border: 1px solid #000;
-  border-radius: 1.5rem;
-  color: #fff;
-  display: flex;
-  flex-flow: column;
-  padding: 1rem;
-  margin: 0 auto;
-  width: 60%;
-}
-
-.testQuestion h3 {
-  color: #fff;
-}
-
-.testAnswers form {
-  display: flex;
-  flex-flow: column;
-  width: 100%;
-}
-
-.testAnswers ol {
-  align-self: flex-start;
-  list-style-type: upper-alpha;
-  width: 100%;
-}
-
-.testAnswers input[type='submit'] {
-  align-self: center;
-  background-color: var(--light-blue);
-  border: 1px solid #000;
-  border-radius: 1.25rem;
-  color: #fff;
-  font-size: 2rem;
-  padding: 1.25rem 2rem;
-  width: 100%;
-} */

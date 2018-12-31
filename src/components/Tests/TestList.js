@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 // *** Constants *** //
 import * as ROUTES from '../../constants/routes';
-import * as ROLES from '../../constants/roles';
 
 // *** Styles *** //
 import '../../styles/components/Tests/TestList.css';
 
 // *** Third-Party *** //
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
 
 // *** HOC and Context *** //
 import { withFirebase } from '../Firebase';
@@ -35,7 +35,7 @@ class TestList extends Component {
     firebase.tests(authUser.uid).on('value', (snapshot) => {
       const testsObject = snapshot.val();
       if (testsObject === null) {
-        this.setState({ loading: false });
+        return;
       } else {
         const testsList = Object.keys(testsObject).map((key) => ({
           ...testsObject[key],
@@ -65,32 +65,16 @@ class TestList extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleHostTest = (e) => {
-    e.preventDefault();
-    const { tid, test } = this.state;
-    const { firebase } = this.props;
-
-    // *** Get Test from test API *** //
-    firebase.test(tid).on('value', (snapshot) => {
-      this.setState({
-        test: snapshot.val(),
-        questions: Object.values(snapshot.val().questions),
-      });
-    });
-    // *** Create Hosted Test *** //
-    firebase.host(tid).set(test);
-  };
-
   render() {
-    const { userTests, loading, authUser, tid } = this.state;
+    const { userTests, loading, authUser } = this.state;
     return (
       <section id="instructor-test-list">
-        <article id="test-list">
-          <h2>Available Quizzes</h2>
-          {loading && <div>Loading ...</div>}
-          <ul>
-            {userTests &&
-              userTests.map((test) => (
+        {loading && <div>Loading ...</div>}
+        {userTests.length !== 0 && (
+          <article id="test-list">
+            <h3>Available Quizzes</h3>
+            <ul>
+              {userTests.map((test) => (
                 <Link
                   to={{
                     pathname: `${ROUTES.TESTS}/${test.tid}`,
@@ -101,29 +85,15 @@ class TestList extends Component {
                   <li>Quiz ID Number: {test.tid}</li>
                 </Link>
               ))}
-          </ul>
-        </article>
-        {(authUser && authUser.roles.includes(ROLES.ADMIN)) ||
-        authUser.roles.includes(ROLES.INSTRUCTOR) ? (
-          <article id="tests-host">
-            <h2>Host A Test</h2>
-            <form onSubmit={this.handleHostTest}>
-              <input
-                type="text"
-                name="tid"
-                value={tid}
-                placeholder="Test ID"
-                onChange={this.handleOnChange}
-              />
-              <input type="submit" name="submit" value="Submit" />
-            </form>
+            </ul>
           </article>
-        ) : (
-          ''
         )}
       </section>
     );
   }
 }
 
-export default withFirebase(TestList);
+export default compose(
+  withRouter,
+  withFirebase,
+)(TestList);
