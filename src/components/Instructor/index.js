@@ -46,12 +46,10 @@ class InstructorPage extends React.Component {
     return (
       <main id="instructor-page">
         <h2>Instructor</h2>
-        <p>
-          The Instructor Page is accessible by every signed in Instructor user.
-        </p>
+        <h3>Quizzes</h3>
         <input
           type="button"
-          value="Create Test Bank"
+          value="Create Quiz Bank"
           name="CREATE_TEST"
           onClick={this.handleLinkClick}
         />

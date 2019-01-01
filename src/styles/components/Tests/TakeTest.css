@@ -1,9 +1,11 @@
 #take-test ul {
   list-style-type: none;
+  padding: 0;
 }
 
 #take-test ol {
   list-style-type: none;
+  padding: 0;
 }
 
 #take-test #questions .question {
@@ -17,23 +19,4 @@
 #take-test #questions p {
   font-size: 2.5rem;
   margin: 0;
-}
-
-#take-test #questions .option {
-  background-color: var(--med-blue);
-  border-radius: 1rem;
-  color: #fff;
-  font-size: 3rem;
-  padding: 1rem;
-  margin: 1rem 0;
-  text-align: center;
-  width: 40rem;
-}
-
-#take-test #questions .option:hover {
-  background-color: var(--gold);
-}
-
-#take-test #questions .toggle {
-  background-color: var(--gold);
 }

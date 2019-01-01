@@ -8,11 +8,15 @@ button {
 }
 
 main {
-  padding: 1rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 2rem;
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   color: #fff;
 }
 
@@ -25,8 +29,15 @@ h6 {
 }
 
 h2 {
-  font-size: 2.75rem;
+  background-color: var(--light-blue);
+  box-shadow: 10px 5px 5px 5px #000;
+  display: block;
+  font-size: 3.5rem;
   text-align: center;
+  margin: 0;
+  margin-bottom: 2rem;
+  padding: 0;
+  width: 80%;
 }
 
 h3 {
@@ -41,4 +52,73 @@ a {
 a:hover {
   color: var(--light-blue);
   text-decoration: underline;
+}
+
+.btn {
+  background-color: var(--med-blue);
+  border: none;
+  border-radius: 1rem;
+  color: #fff;
+  display: block;
+  font-size: 2rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  text-align: center;
+  width: 40rem;
+}
+
+.btn:hover {
+  background-color: var(--gold);
+}
+
+.toggle {
+  background-color: var(--gold);
+}
+
+input {
+  background-color: var(--med-blue);
+  border: none;
+  border-radius: 1rem;
+  color: #fff;
+  display: block;
+  font-size: 2rem;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  width: 35rem;
+}
+
+input[type='file'] {
+  background-color: var(--dark-blue);
+  width: 35rem;
+}
+
+input[type='submit'] {
+  background: var(--yellow);
+  color: #000;
+  font-weight: 700;
+  width: 36.5rem;
+}
+
+input[type='reset'] {
+  background-color: var(--grey);
+  color: #000;
+  width: 36.5rem;
+}
+
+button:hover,
+input[type='button']:hover,
+input[type='submit']:hover,
+input[type='reset']:hover {
+  background-color: var(--gold);
+  color: #fff;
+  text-decoration: underline;
+}
+
+label {
+  font-weight: 700;
+}
+
+p {
+  font-size: 2rem;
+  font-weight: 700;
 }

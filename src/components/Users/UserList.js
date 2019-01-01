@@ -51,7 +51,7 @@ class UserList extends Component {
 
     return (
       <article id="user-list">
-        <h2>Enrolled Users</h2>
+        <h3>Enrolled Users</h3>
         {loading && <div>Loading ...</div>}
         <ul>
           {users.map((user) => (

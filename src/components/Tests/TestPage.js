@@ -114,7 +114,7 @@ class TestPage extends React.Component {
                               key={op}
                               data-key={op}
                               data-question={question.questionNum}
-                              className="option"
+                              className="option btn"
                               id={op}
                               value={op}
                               onClick={this.handleSubmitAnswer}

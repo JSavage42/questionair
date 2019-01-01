@@ -33,7 +33,7 @@ import {
 import { UserItem } from '../Users';
 
 const App = () => (
-  <div>
+  <React.Fragment>
     <Navigation />
     <Switch>
       <Route exact path={ROUTES.HOME} component={HomePage} />
@@ -56,7 +56,7 @@ const App = () => (
       <Route exact path={ROUTES.TAKE_TEST} component={TakeTest} />
       <Route exact path={ROUTES.HOST_TEST} component={HostTest} />
     </Switch>
-  </div>
+  </React.Fragment>
 );
 
 export default withAuthentication(App);
