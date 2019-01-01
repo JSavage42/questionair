@@ -8,6 +8,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 // *** Styles *** //
 import './styles/base/index.css';
 import './styles/base/settings.css';
+import './styles/base/reset.css';
 
 // *** Components *** //
 import App from './components/App';

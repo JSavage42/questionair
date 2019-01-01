@@ -35,10 +35,7 @@ class HomePage extends Component {
   render() {
     return (
       <main id="home">
-        <h2>Home Page</h2>
-        <article>
-          <p>Welcome to Question Air</p>
-        </article>
+        <p>Welcome to Question Air</p>
       </main>
     );
   }
