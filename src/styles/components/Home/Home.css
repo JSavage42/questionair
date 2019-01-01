@@ -8,12 +8,12 @@
 #home article {
   display: flex;
   height: 100%;
-  font-size: 5rem;
   align-items: center;
   justify-content: center;
   width: 100%;
 }
 
 #home article p {
+  font-size: 5rem;
   text-shadow: 5px 5px 15px #000;
 }
