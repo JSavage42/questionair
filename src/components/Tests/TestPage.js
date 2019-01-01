@@ -26,6 +26,7 @@ class TestPage extends React.Component {
       loading: true,
       url: '',
       toggle: false,
+      answersGiven: [],
     };
   }
 
@@ -35,11 +36,15 @@ class TestPage extends React.Component {
 
   handleHostTest = (e) => {
     e.preventDefault();
-    const { tid, test } = this.state;
+    const { tid, test, questions, answersGiven } = this.state;
     const { firebase, history } = this.props;
+    const numberOfQuestions = questions.length;
+    for (let i = 1; i <= numberOfQuestions; i++) {
+      this.state.answersGiven.push([i, false]);
+    }
     const hostedTest = {
+      answersGiven: answersGiven,
       currentQuestion: 0,
-      answersGiven: [],
       ...test,
     };
     // *** Create Hosted Test *** //

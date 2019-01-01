@@ -39,12 +39,33 @@ class HostTest extends Component {
         answersGiven: Object.values(snapshot.val().answersGiven),
         loading: false,
       });
+      const submittedAnswersArray = [];
+      const currQuest = snapshot.val().currentQuestion;
+      Object.entries(this.state.answersGiven[currQuest]).forEach(
+        ([key, value]) => {
+          submittedAnswersArray.push([key, value]);
+        },
+      );
+      this.setState({ submittedAnswers: submittedAnswersArray });
     });
   }
 
+  handleNextQuestion = () => {
+    const { firebase } = this.props;
+    const { tid, currentQuestion } = this.state;
+    let increment = 1;
+    this.setState((prevState) => ({
+      currentQuestion: prevState.currentQuestion + increment,
+    }));
+
+    firebase
+      .host(tid)
+      .child(`currentQuestion`)
+      .set(currentQuestion);
+  };
+
   render() {
-    const { tid, loading, test, answersGiven } = this.state;
-    console.log(answersGiven);
+    const { tid, loading, test, submittedAnswers } = this.state;
     return (
       <main id="host-test">
         {loading && <div>Loading...</div>}
@@ -52,9 +73,21 @@ class HostTest extends Component {
           <section>
             <h2>Test ID: {tid}</h2>
             <p>Answers Given:</p>
-            {this.state.submittedAnswers}
+            <ul id="answers-given">
+              {submittedAnswers[0] !== false &&
+                submittedAnswers.map(([key, value]) => (
+                  <li key={key}>{`${key}: ${value}`}</li>
+                ))}
+            </ul>
           </section>
         )}
+
+        <input
+          type="button"
+          value="Next Question"
+          name="next-question"
+          onClick={this.handleNextQuestion}
+        />
       </main>
     );
   }
