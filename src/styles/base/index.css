@@ -6,8 +6,6 @@ html {
 body {
   color: #fff;
   background-color: var(--dark-blue);
-  margin: 0;
-  padding: 0;
   height: 100vh;
   font-family: 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-size: 1.6rem;
