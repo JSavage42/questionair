@@ -28,7 +28,7 @@ class HostTest extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { tid } = this.state;
     const { firebase } = this.props;
     firebase.host(tid).on('value', (snapshot) => {
@@ -40,15 +40,15 @@ class HostTest extends Component {
         loading: false,
       });
       const submittedAnswersArray = [];
-      const currQuest = snapshot.val().currentQuestion;
+      const currQuest = snapshot.val().currentQuestion + 1;
       Object.entries(this.state.answersGiven[currQuest]).forEach(
         ([key, value]) => {
           submittedAnswersArray.push([key, value]);
         },
-      );
-      this.setState({ submittedAnswers: submittedAnswersArray });
-    });
-  }
+        );
+        this.setState({ submittedAnswers: submittedAnswersArray });
+      });
+    }
 
   handleNextQuestion = () => {
     const { firebase } = this.props;
