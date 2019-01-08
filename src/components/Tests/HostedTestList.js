@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import * as ROUTES from "../../constants/routes";
 
 // *** Styles *** //
-import "../../styles/components/Tests/TestList.css";
+import "../../styles/components/Tests/HostedTestList.css";
 
 // *** Third-Party *** //
 import { Link, withRouter } from "react-router-dom";
@@ -13,7 +13,7 @@ import { compose } from "recompose";
 // *** HOC and Context *** //
 import { withFirebase } from "../Firebase";
 
-class TestList extends Component {
+class HostedTestList extends Component {
   constructor(props) {
     super(props);
 
@@ -32,7 +32,7 @@ class TestList extends Component {
     const { authUser, userTests } = this.state;
     const { firebase } = this.props;
     this.setState({ loading: true });
-    firebase.tests(authUser.uid).on("value", snapshot => {
+    firebase.hosts().on("value", snapshot => {
       const testsObject = snapshot.val();
       if (testsObject === null) {
         return;
@@ -68,10 +68,10 @@ class TestList extends Component {
   };
 
   render() {
-    const { userTests, loading, authUser } = this.state;
+    const { userTests, loading } = this.state;
 
     return (
-      <section id="instructor-test-list">
+      <section id="instructor-hostedtest-list">
         {loading && <div>No available quizzes.</div>}
         {userTests && (
           <ul>
@@ -79,8 +79,8 @@ class TestList extends Component {
               userTests.map(test => (
                 <Link
                   to={{
-                    pathname: `${ROUTES.TESTS}/${test.tid}`,
-                    state: { test, authUser }
+                    pathname: `${ROUTES.TESTS}/i/${test.tid}`,
+                    state: test.tid
                   }}
                   key={test.tid}
                 >
@@ -97,4 +97,4 @@ class TestList extends Component {
 export default compose(
   withRouter,
   withFirebase
-)(TestList);
+)(HostedTestList);
