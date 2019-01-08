@@ -1,4 +1,28 @@
-# Question Air v0.43.1
+# Question Air v0.44.0
+
+- [Question Air v0.43.1](#question-air-v0431)
+  - [Install Locally](#install-locally)
+    - [Install Node and NPM](#install-node-and-npm)
+    - [Clone Repository and Install Packages](#clone-repository-and-install-packages)
+  - [Available Scripts](#available-scripts)
+    - [`npm start`](#npm-start)
+  - [Using Question Air](#using-question-air)
+    - [All Users](#all-users)
+      - [Sign Up](#sign-up)
+      - [Sign In](#sign-in)
+      - [Account Page](#account-page)
+    - [Students](#students)
+      - [Student Page](#student-page)
+        - [Todo](#todo)
+    - [Instructors](#instructors)
+      - [Instructor Page](#instructor-page)
+        - [Create Test Bank](#create-test-bank)
+        - [New Question](#new-question)
+      - [Instructor View of Test Page](#instructor-view-of-test-page)
+      - [Hosted Quiz View](#hosted-quiz-view)
+        - [TODO](#todo)
+    - [Administrators](#administrators)
+    - [Admin Page](#admin-page)
 
 ## Install Locally
 
@@ -25,40 +49,46 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Using Question Air
 
-### Sign Up
+### All Users
+
+#### Sign Up
 
 You must sign up before using the application. When you sign up you are allowed to request permissions. Please check all desired permissions. Once the administrator has approved your requests you'll be able to access those pages.
 
-### Sign In
+#### Sign In
 
 You may sign in with email/password or if you have linked accounts: Google, Facebook, or Twitter.
 
-### Account Page
+#### Account Page
 
 In the Account Page you can make changes to your account. You can reset your password, or link social media accounts. Users can request permissions from account page.
 
-### Student Page
+### Students
+
+#### Student Page
 
 You can add a Test ID to open a page that displays one question at a time and waits for the Hosting Instructor to continue the test.
 
-**TODO**
+##### Todo
 
 1. Only allow one option to be highlighted at a time.
 1. Show the current graph for submitted answers after you submit.
 
-### Instructor Page
+### Instructors
+
+#### Instructor Page
 
 The Instructor Page shows all the test banks you've created. It also displays links to create a new test bank or add questions to an existing test bank.
 
 Working on ability to edit a question. Also, the ability to control the hosted test.
 
-#### Create Test Bank
+##### Create Test Bank
 
 Here you can create a new test bank. Enter an ID number, total points possible, and passing score and click submit.
 
 A shell test will be created with the meta data provided. A prefix with the first four characters of your user ID will be pre-pended to the front of your entered Test ID. This is the ID you'll use when adding questions and to host the test. This is also the ID you'll give to students so they can participate.
 
-#### New Question
+##### New Question
 
 Here you can add questions to test banks.
 
@@ -77,6 +107,17 @@ Here you can add questions to test banks.
 To view the Instructor view of the test page, click on one of the blue test IDs under Available Quizzes on the Instructor Page.
 
 Here you can view metadata about the test (test ID, possible points, passing score, number of questions) and also the questions, their options and the correct answers.
+
+#### Hosted Quiz View
+
+The view the instructor has of a hosted test shows the current answers in a chart and a button to advance to the next question.
+
+##### TODO
+
+1. Plug in logic for chart to show actual percentage of answers.
+2. Show only one bar for each of the same answer. Currently shows a bar for each individual answer even if it is the same answer.
+
+### Administrators
 
 ### Admin Page
 
