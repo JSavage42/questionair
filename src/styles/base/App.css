@@ -14,6 +14,7 @@ main {
 }
 
 h1 {
+  align-self: center;
   font-size: 3rem;
   color: #fff;
 }
@@ -83,28 +84,28 @@ input {
   width: 100%;
 }
 
-input[type='file'] {
+input[type="file"] {
   background-color: var(--dark-blue);
   width: 100%;
 }
 
-input[type='submit'] {
+input[type="submit"] {
   background: var(--yellow);
   color: #000;
   font-weight: 700;
   width: 100%;
 }
 
-input[type='reset'] {
+input[type="reset"] {
   background-color: var(--grey);
   color: #000;
   width: 100%;
 }
 
 button:hover,
-input[type='button']:hover,
-input[type='submit']:hover,
-input[type='reset']:hover {
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover {
   background-color: var(--gold);
   color: #fff;
   text-decoration: underline;
@@ -140,15 +141,18 @@ p {
   }
 
   h1 {
-    font-size: 4rem;
-    color: #fff;
+    font-size: 5rem;
+    text-shadow: 5px 5px 5px #000;
+    color: var(--yellow);
   }
 
   h2 {
     box-shadow: 10px 5px 5px 5px #000;
     margin: 2.5rem;
-    width: 90%;
+    font-size: 4rem;
     padding: 1.5rem 0;
+    text-shadow: 5px 5px 5px #000;
+    width: 50%;
   }
 
   h3 {
@@ -198,28 +202,28 @@ p {
     width: 35rem;
   }
 
-  input[type='file'] {
+  input[type="file"] {
     background-color: var(--dark-blue);
     width: 35rem;
   }
 
-  input[type='submit'] {
+  input[type="submit"] {
     background: var(--yellow);
     color: #000;
     font-weight: 700;
     width: 36.5rem;
   }
 
-  input[type='reset'] {
+  input[type="reset"] {
     background-color: var(--grey);
     color: #000;
     width: 36.5rem;
   }
 
   button:hover,
-  input[type='button']:hover,
-  input[type='submit']:hover,
-  input[type='reset']:hover {
+  input[type="button"]:hover,
+  input[type="submit"]:hover,
+  input[type="reset"]:hover {
     background-color: var(--gold);
     color: #fff;
     text-decoration: underline;

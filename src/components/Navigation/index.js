@@ -1,25 +1,25 @@
-import React from 'react';
+import React from "react";
 
 // *** Constants *** //
-import * as ROUTES from '../../constants/routes';
-import * as ROLES from '../../constants/roles';
+import * as ROUTES from "../../constants/routes";
+import * as ROLES from "../../constants/roles";
 
 // *** Styles *** //
-import logo from '../../images/logo.svg';
-import '../../styles/components/Navigation.css';
+import logo from "../../images/logo.svg";
+import "../../styles/components/Navigation.css";
 
 // *** Third-Party *** //
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // *** HOC and Context *** //
-import { AuthUserContext } from '../Session';
+import { AuthUserContext } from "../Session";
 
 // *** Components *** //
-import SignOutButton from '../SignOut';
+import SignOutButton from "../SignOut";
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
-    {(authUser) =>
+    {authUser =>
       authUser ? <NavigationAuth authUser={authUser} /> : <NavigationNonAuth />
     }
   </AuthUserContext.Consumer>
@@ -27,7 +27,10 @@ const Navigation = () => (
 
 const NavigationAuth = ({ authUser }) => (
   <header>
-    <img src={logo} alt="Question Air" title="Question Air" />
+    <div id="logo-title">
+      <img src={logo} alt="Question Air" title="Question Air" />
+      <h1>Question Air</h1>
+    </div>
     <nav>
       <ul>
         <li>

@@ -3,16 +3,18 @@ header {
   background-color: var(--light-blue);
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   width: 100vw;
 }
 
-h1 {
-  color: var(--yellow);
+#logo-title {
+  display: flex;
+  width: 100%;
 }
 
 header img {
-  align-self: start;
+  display: inline-block;
+  align-self: flex-start;
   margin-left: 2rem;
   width: 5%;
 }
