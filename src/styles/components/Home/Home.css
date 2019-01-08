@@ -17,7 +17,7 @@
   }
 
   #home p {
-    font-size: 5rem;
+    font-size: 10rem;
     text-shadow: 5px 5px 5px var(--light-blue);
   }
 }
