@@ -1,6 +1,6 @@
 # Question Air v0.44.0
 
-- [Question Air v0.43.1](#question-air-v0431)
+- [Question Air v0.44.0](#question-air-v0440)
   - [Install Locally](#install-locally)
     - [Install Node and NPM](#install-node-and-npm)
     - [Clone Repository and Install Packages](#clone-repository-and-install-packages)
@@ -22,7 +22,7 @@
       - [Hosted Quiz View](#hosted-quiz-view)
         - [TODO](#todo)
     - [Administrators](#administrators)
-    - [Admin Page](#admin-page)
+      - [Admin Page](#admin-page)
 
 ## Install Locally
 
@@ -119,6 +119,6 @@ The view the instructor has of a hosted test shows the current answers in a char
 
 ### Administrators
 
-### Admin Page
+#### Admin Page
 
 Here you can view and reset user's passwords. You can also approve user permission requests via the admin dashboard. You can also remove permissions from users. Admins can only grant permissions via a request. This is a security feature.

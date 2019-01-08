@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
 // *** Styles *** //
-import '../../styles/components/Tests/TakeTest.css';
+import "../../styles/components/Tests/TakeTest.css";
 
 // *** Third-Party *** //
-import { compose } from 'recompose';
+import { compose } from "recompose";
 
 // *** HOC and Context *** //
-import { withFirebase } from '../Firebase';
-import { withAuthentication } from '../Session';
+import { withFirebase } from "../Firebase";
+import { withAuthentication } from "../Session";
 
 class TakeTest extends React.Component {
   constructor(props) {
@@ -21,27 +21,28 @@ class TakeTest extends React.Component {
       test: null,
       loading: true,
       submittedAnswers: [],
-      currentQuestion: '',
+      currentQuestion: "",
+      selectedAnswer: ""
     };
   }
 
   componentDidMount() {
     const { tid } = this.state;
     const { firebase } = this.props;
-    firebase.host(tid).on('value', (snapshot) => {
+    firebase.host(tid).on("value", snapshot => {
       this.setState({
         test: snapshot.val(),
         questions: Object.values(snapshot.val().questions),
         currentQuestion: snapshot.val().currentQuestion,
-        loading: false,
+        loading: false
       });
     });
   }
 
-  handleSubmitAnswer = (e) => {
+  handleSubmitAnswer = e => {
     e.preventDefault();
     const { firebase } = this.props;
-    const { tid, uid } = this.state;
+    const { tid, uid, selectedAnswer } = this.state;
     firebase
       .host(tid)
       .child(`answersGiven/`)
@@ -49,8 +50,9 @@ class TakeTest extends React.Component {
       .child(`${uid}`)
       .set(e.target.dataset.key);
 
-    const toggle = document.querySelector(`li[data-key="${e.target.id}"]`);
-    toggle.classList.toggle('toggle');
+    this.setState({ selectedAnswer: e.target.id });
+    const toggle = document.querySelector(`li[data-key="${selectedAnswer}"]`);
+    toggle.classList.toggle("toggle");
   };
 
   render() {
@@ -61,7 +63,7 @@ class TakeTest extends React.Component {
       tid,
       instructorID,
       url,
-      currentQuestion,
+      currentQuestion
     } = this.state;
     const { firebase } = this.props;
     return (
@@ -75,7 +77,7 @@ class TakeTest extends React.Component {
                 <li className="question">
                   {
                     <p className="questionTitle">
-                      Question #{questions[currentQuestion].questionNum}:{' '}
+                      Question #{questions[currentQuestion].questionNum}:{" "}
                       {questions[currentQuestion].question}
                     </p>
                   }
@@ -85,7 +87,7 @@ class TakeTest extends React.Component {
                     .images(instructorID)
                     .child(`${questions[currentQuestion].image.substring(12)}`)
                     .getDownloadURL()
-                    .then((url) => {
+                    .then(url => {
                       this.setState({ url });
                     })}
                 <br />
@@ -93,7 +95,7 @@ class TakeTest extends React.Component {
                   <img src={url} alt="question" title="Image Question" />
                 )}
                 <ol>
-                  {questions[currentQuestion].options.map((op) => (
+                  {questions[currentQuestion].options.map(op => (
                     <li
                       key={op}
                       data-key={op}
@@ -118,5 +120,5 @@ class TakeTest extends React.Component {
 
 export default compose(
   withAuthentication,
-  withFirebase,
+  withFirebase
 )(TakeTest);
