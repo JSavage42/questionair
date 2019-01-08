@@ -28,7 +28,7 @@ h6 {
 }
 
 h2 {
-  background-color: var(--light-blue);
+  background-color: var(--med-dark-blue);
   display: block;
   font-size: 2.5rem;
   text-align: center;
@@ -137,7 +137,6 @@ p {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding-top: 1rem;
   }
 
   h1 {
@@ -148,11 +147,10 @@ p {
 
   h2 {
     box-shadow: 10px 5px 5px 5px #000;
-    margin: 2.5rem;
+    margin: 1rem 0 2.5rem 0;
     font-size: 4rem;
     padding: 1.5rem 0;
     text-shadow: 5px 5px 5px #000;
-    width: 50%;
   }
 
   h3 {
