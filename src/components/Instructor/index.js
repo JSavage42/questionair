@@ -26,7 +26,7 @@ class InstructorPage extends React.Component {
     };
   }
 
-  handleEndHostedTests = () => {
+  handleEndHostedQuizzes = () => {
     const { authUser } = this.state;
     const { firebase } = this.props;
     firebase.hosts(authUser).remove();
@@ -68,13 +68,13 @@ class InstructorPage extends React.Component {
         </section>
         <section id="instructor-hosted-tests">
           <article id="hosted-list">
-            <h3>Hosted Tests</h3>
+            <h3>Hosted Quizzes</h3>
             <HostedTestList />
             <input
               type="button"
-              value="End Hosted Tests"
+              value="End Hosted Quizzes"
               className="endHostedTests"
-              onClick={this.handleEndHostedTests}
+              onClick={this.handleEndHostedQuizzes}
             />
           </article>
         </section>
