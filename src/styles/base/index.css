@@ -4,10 +4,10 @@ html {
 }
 
 body {
-  color: #fff;
-  background-color: var(--dark-blue);
+  color: #000;
+  background-color: #fff;
   height: 100vh;
-  font-family: 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: Raleway, "Helvetica Neue", sans-serif;
   font-size: 1.6rem;
   letter-spacing: 0.125rem;
 }

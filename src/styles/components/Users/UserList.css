@@ -1,6 +1,6 @@
 #user-list ul {
   list-style-type: none;
-  padding: 0 .75rem;
+  padding: 0 0.75rem;
 }
 
 #user-list span {
@@ -9,7 +9,7 @@
 }
 
 #user-list a {
-  background-color: var(--yellow);
+  background-color: var(--jayhawk-yellow);
   border-radius: 1rem;
   color: #000;
   display: block;
@@ -21,8 +21,8 @@
 }
 
 #user-list a:hover {
-  background-color: var(--gold);
-  color: #fff;
+  background-color: var(--jayhawk-yellow);
+  color: var(--ku-blue);
 }
 
 @media (min-width: 650px) {
