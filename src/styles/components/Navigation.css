@@ -1,6 +1,6 @@
 header {
   align-items: flex-start;
-  background-color: var(--light-blue);
+  background-color: var(--ku-blue);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -36,7 +36,6 @@ nav ul > li {
 }
 
 nav ul > li a {
-  background-color: var(--gold);
   border-radius: 1rem 1rem 0 0;
   font-weight: 700;
   padding: 0.51rem 1rem 0 1rem;
@@ -44,15 +43,15 @@ nav ul > li a {
 }
 
 nav ul > li a:hover {
-  background-color: var(--dark-blue);
-  color: #fff;
+  background-color: var(--jayhawk-yellow);
+  color: #000;
   text-decoration: none;
 }
 
 header button {
   align-self: flex-end;
   justify-self: flex-end;
-  background-color: var(--grey);
+  background-color: var(--signature-grey);
   border-radius: 1rem 1rem 0 0;
   border: none;
   color: #000;

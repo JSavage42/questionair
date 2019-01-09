@@ -1,9 +1,19 @@
 :root {
-  --dark-blue: #10162e;
-  --med-dark-blue: #090057;
-  --med-blue: #192192;
-  --light-blue: #1a1aa7;
-  --gold: #866e30;
-  --yellow: #ce9b19;
-  --grey: #aaa;
+  /* *** Primary Palette *** */
+  --ku-blue: #0051ba;
+  --crimson: #e8000d;
+  --jayhawk-yellow: #ffc82d;
+  --signature-grey: #85898a;
+
+  /* *** Secondary Palette *** */
+  --night: #003459;
+  --lake: #2767ff;
+  --sky: #73cbf2;
+  --fog: #8e9fbc;
+  --steam: #dde5ed;
+  --brick: #971b2f;
+  --fire: #ff3042;
+  --wheat: #f2a900;
+  --terra-cotta: #c66e4e;
+  --limestone: #d7d2cb;
 }

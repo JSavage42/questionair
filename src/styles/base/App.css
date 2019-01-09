@@ -16,19 +16,19 @@ main {
 h1 {
   align-self: center;
   font-size: 3rem;
-  color: #fff;
+  color: var(--crimson);
 }
 
-h2,
 h3,
 h4,
 h5,
 h6 {
-  color: var(--yellow);
+  color: var(--crimson);
 }
 
 h2 {
-  background-color: var(--med-dark-blue);
+  background-color: var(--ku-blue);
+  color: #fff;
   display: block;
   font-size: 2.5rem;
   text-align: center;
@@ -47,15 +47,15 @@ a {
 }
 
 a:hover {
-  color: var(--light-blue);
+  color: var(--crimson);
   text-decoration: underline;
 }
 
 .btn {
-  background-color: var(--med-blue);
+  background-color: var(--ku-blue);
   border: none;
   border-radius: 1rem;
-  color: #fff;
+  color: #000;
   display: block;
   font-size: 2rem;
   padding: 1rem;
@@ -65,15 +65,14 @@ a:hover {
 }
 
 .btn:hover {
-  background-color: var(--gold);
+  background-color: var(--jayhawk-yellow);
 }
 
 .toggle {
-  background-color: var(--gold);
+  background-color: var(--jayhawk-yellow);
 }
 
 input {
-  background-color: var(--med-blue);
   border: none;
   border-radius: 1rem;
   color: #fff;
@@ -85,19 +84,23 @@ input {
 }
 
 input[type="file"] {
-  background-color: var(--dark-blue);
+  background-color: var(--ku-blue);
   width: 100%;
 }
 
+input[type="button"] {
+  background-color: var(--ku-blue);
+}
+
 input[type="submit"] {
-  background: var(--yellow);
+  background: var(--jayhawk-yellow);
   color: #000;
   font-weight: 700;
   width: 100%;
 }
 
 input[type="reset"] {
-  background-color: var(--grey);
+  background-color: var(--signature-grey);
   color: #000;
   width: 100%;
 }
@@ -106,7 +109,7 @@ button:hover,
 input[type="button"]:hover,
 input[type="submit"]:hover,
 input[type="reset"]:hover {
-  background-color: var(--gold);
+  background-color: var(--jayhawk-yellow);
   color: #fff;
   text-decoration: underline;
 }
@@ -142,12 +145,11 @@ p {
   h1 {
     font-size: 5rem;
     text-shadow: 5px 5px 5px #000;
-    color: var(--yellow);
   }
 
   h2 {
-    box-shadow: 10px 5px 5px 5px #000;
-    margin: 1rem 0 2.5rem 0;
+    box-shadow: 5px 5px 5px 0 #000;
+    margin: 0 0 2.5rem 0;
     font-size: 4rem;
     padding: 1.5rem 0;
     text-shadow: 5px 5px 5px #000;
@@ -163,12 +165,12 @@ p {
   }
 
   a:hover {
-    color: var(--light-blue);
+    color: var(--ku-blue);
     text-decoration: underline;
   }
 
   .btn {
-    background-color: var(--med-blue);
+    background-color: var(--ku-blue);
     border: none;
     border-radius: 1rem;
     color: #fff;
@@ -181,48 +183,50 @@ p {
   }
 
   .btn:hover {
-    background-color: var(--gold);
+    background-color: var(--jayhawk-yellow);
   }
 
   .toggle {
-    background-color: var(--gold);
+    background-color: var(--jayhawk-yellow);
   }
 
   input {
-    background-color: var(--med-blue);
-    border: none;
+    border: 1px solid #000;
     border-radius: 1rem;
-    color: #fff;
+    color: #000;
     display: block;
     font-size: 2rem;
+    font-weight: 700;
     margin: 0.5rem 0;
     padding: 0.75rem;
-    width: 35rem;
+    width: 36rem;
   }
 
   input[type="file"] {
-    background-color: var(--dark-blue);
-    width: 35rem;
+    background-color: #fff;
+    border: none;
+  }
+
+  input[type="button"] {
+    background: var(--ku-blue);
+    color: #fff;
   }
 
   input[type="submit"] {
-    background: var(--yellow);
+    background: var(--jayhawk-yellow);
     color: #000;
-    font-weight: 700;
-    width: 36.5rem;
   }
 
   input[type="reset"] {
-    background-color: var(--grey);
+    background-color: var(--signature-grey);
     color: #000;
-    width: 36.5rem;
   }
 
   button:hover,
   input[type="button"]:hover,
   input[type="submit"]:hover,
   input[type="reset"]:hover {
-    background-color: var(--gold);
+    background-color: var(--jayhawk-yellow);
     color: #fff;
     text-decoration: underline;
   }

@@ -6,7 +6,7 @@
 }
 
 #home p {
-  color: var(--yellow);
+  color: var(--crimson);
   font-size: 3rem;
 }
 
@@ -18,6 +18,6 @@
 
   #home p {
     font-size: 10rem;
-    text-shadow: 5px 5px 5px var(--light-blue);
+    text-shadow: 5px 5px 5px var(--ku-blue);
   }
 }
