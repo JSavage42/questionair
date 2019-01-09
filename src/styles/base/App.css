@@ -27,7 +27,7 @@ h6 {
 }
 
 h2 {
-  background-color: var(--ku-blue);
+  background-color: var(--jayhawk-yellow);
   color: #fff;
   display: block;
   font-size: 2.5rem;
@@ -135,6 +135,11 @@ p {
     cursor: pointer;
   }
 
+  .selected {
+    background-color: #fff;
+    color: var(--crimson);
+  }
+
   main {
     align-items: center;
     display: flex;
@@ -144,15 +149,21 @@ p {
 
   h1 {
     font-size: 5rem;
-    text-shadow: 5px 5px 5px #000;
+    text-shadow: 5px 5px 2px var(--signature-grey);
+  }
+
+  h1 #air {
+    color: var(--ku-blue);
+    font-family: "Times New Roman", serif;
   }
 
   h2 {
     box-shadow: 5px 5px 5px 0 #000;
-    margin: 0 0 2.5rem 0;
+    margin: 2.5rem 0;
     font-size: 4rem;
-    padding: 1.5rem 0;
+    padding: 1rem 5rem;
     text-shadow: 5px 5px 5px #000;
+    width: auto;
   }
 
   h3 {

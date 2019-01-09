@@ -9,7 +9,7 @@ import logo from "../../images/logo.svg";
 import "../../styles/components/Navigation.css";
 
 // *** Third-Party *** //
-import { Link } from "react-router-dom";
+import { NavLink as Link } from "react-router-dom";
 
 // *** HOC and Context *** //
 import { AuthUserContext } from "../Session";
@@ -29,28 +29,40 @@ const NavigationAuth = ({ authUser }) => (
   <header>
     <div id="logo-title">
       <img src={logo} alt="Question Air" title="Question Air" />
-      <h1>Question Air</h1>
+      <h1>
+        Question <span id="air">Air</span>
+      </h1>
     </div>
     <nav>
       <ul>
         <li>
-          <Link to={ROUTES.HOME}>Home</Link>
+          <Link to={ROUTES.HOME} exact activeClassName="selected">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to={ROUTES.ACCOUNT}>Account</Link>
+          <Link to={ROUTES.ACCOUNT} activeClassName="selected">
+            Account
+          </Link>
         </li>
         <li>
-          <Link to={ROUTES.STUDENT}>Student</Link>
+          <Link to={ROUTES.STUDENT} activeClassName="selected">
+            Student
+          </Link>
         </li>
         {(authUser.roles.includes(ROLES.ADMIN) ||
           authUser.roles.includes(ROLES.INSTRUCTOR)) && (
           <li>
-            <Link to={ROUTES.INSTRUCTOR}>Instructor</Link>
+            <Link to={ROUTES.INSTRUCTOR} activeClassName="selected">
+              Instructor
+            </Link>
           </li>
         )}
         {authUser.roles.includes(ROLES.ADMIN) && (
           <li>
-            <Link to={ROUTES.ADMIN}>Admin</Link>
+            <Link to={ROUTES.ADMIN} activeClassName="selected">
+              Admin
+            </Link>
           </li>
         )}
       </ul>
