@@ -18,7 +18,7 @@ class TestList extends Component {
     super(props);
 
     this.state = {
-      authUser: JSON.parse(localStorage.getItem("authUser")).uid,
+      authUser: JSON.parse(localStorage.getItem("authUser")),
       loading: true,
       tid: "",
       test: null,
@@ -47,7 +47,7 @@ class TestList extends Component {
         });
 
         for (const value of Object.values(testsList)) {
-          if (value.tid.includes(authUser.substring(0, 4))) {
+          if (value.tid.includes(authUser.uid.substring(0, 4))) {
             userTests.push(value);
           }
         }

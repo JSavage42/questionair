@@ -22,7 +22,8 @@ class TakeTest extends React.Component {
       loading: true,
       submittedAnswers: [],
       currentQuestion: "",
-      selectedAnswer: ""
+      selectedAnswer: "",
+      answered: false
     };
   }
 
@@ -42,7 +43,7 @@ class TakeTest extends React.Component {
   handleSubmitAnswer = e => {
     e.preventDefault();
     const { firebase } = this.props;
-    const { tid, uid, selectedAnswer } = this.state;
+    const { tid, uid } = this.state;
     firebase
       .host(tid)
       .child(`answersGiven/`)
@@ -50,9 +51,7 @@ class TakeTest extends React.Component {
       .child(`${uid}`)
       .set(e.target.dataset.key);
 
-    this.setState({ selectedAnswer: e.target.id });
-    const toggle = document.querySelector(`li[data-key="${selectedAnswer}"]`);
-    toggle.classList.toggle("toggle");
+    this.setState({ answered: true });
   };
 
   render() {
@@ -63,7 +62,8 @@ class TakeTest extends React.Component {
       tid,
       instructorID,
       url,
-      currentQuestion
+      currentQuestion,
+      answered
     } = this.state;
     const { firebase } = this.props;
     return (
@@ -72,45 +72,53 @@ class TakeTest extends React.Component {
         {test && (
           <section id="test">
             <h2>Test ID: {tid}</h2>
-            <article className="test-question">
-              <ul id="questions">
-                <li className="question">
-                  {
-                    <p className="questionTitle">
-                      Question #{questions[currentQuestion].questionNum}:{" "}
-                      {questions[currentQuestion].question}
-                    </p>
-                  }
-                </li>
-                {questions[currentQuestion].image &&
-                  firebase
-                    .images(instructorID)
-                    .child(`${questions[currentQuestion].image.substring(12)}`)
-                    .getDownloadURL()
-                    .then(url => {
-                      this.setState({ url });
-                    })}
-                <br />
-                {questions[currentQuestion].image && (
-                  <img src={url} alt="question" title="Image Question" />
-                )}
-                <ol>
-                  {questions[currentQuestion].options.map(op => (
-                    <li
-                      key={op}
-                      data-key={op}
-                      data-question={questions[currentQuestion].questionNum}
-                      className="option btn"
-                      id={op}
-                      value={op}
-                      onClick={this.handleSubmitAnswer}
-                    >
-                      {op}
-                    </li>
-                  ))}
-                </ol>
-              </ul>
-            </article>
+            {answered ? (
+              <article className="question-results">
+                You've answered the question...
+              </article>
+            ) : (
+              <article className="test-question">
+                <ul id="questions">
+                  <li className="question">
+                    {
+                      <p className="questionTitle">
+                        Question #{questions[currentQuestion].questionNum}:{" "}
+                        {questions[currentQuestion].question}
+                      </p>
+                    }
+                  </li>
+                  {questions[currentQuestion].image &&
+                    firebase
+                      .images(instructorID)
+                      .child(
+                        `${questions[currentQuestion].image.substring(12)}`
+                      )
+                      .getDownloadURL()
+                      .then(url => {
+                        this.setState({ url });
+                      })}
+                  <br />
+                  {questions[currentQuestion].image && (
+                    <img src={url} alt="question" title="Image Question" />
+                  )}
+                  <ol>
+                    {questions[currentQuestion].options.map(op => (
+                      <li
+                        key={op}
+                        data-key={op}
+                        data-question={questions[currentQuestion].questionNum}
+                        className="option btn"
+                        id={op}
+                        value={op}
+                        onClick={this.handleSubmitAnswer}
+                      >
+                        {op}
+                      </li>
+                    ))}
+                  </ol>
+                </ul>
+              </article>
+            )}
           </section>
         )}
       </main>

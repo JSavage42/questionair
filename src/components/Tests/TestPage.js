@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
 
 // *** Constants *** //
-import * as ROUTES from '../../constants/routes';
-import * as ROLES from '../../constants/roles';
+import * as ROUTES from "../../constants/routes";
+import * as ROLES from "../../constants/roles";
 
 // *** Styles *** //
-import '../../styles/components/Tests/TestPage.css';
+import "../../styles/components/Tests/TestPage.css";
 
 // *** Third-Party *** //
-import { compose } from 'recompose';
+import { compose } from "recompose";
 
 // *** HOC and Context *** //
-import { withFirebase } from '../Firebase';
-import { withAuthentication } from '../Session';
+import { withFirebase } from "../Firebase";
+import { withAuthentication } from "../Session";
 
 class TestPage extends React.Component {
   constructor(props) {
@@ -24,17 +24,18 @@ class TestPage extends React.Component {
       tid: test.tid,
       questions: Object.values(test.questions),
       loading: true,
-      url: '',
+      url: "",
       toggle: false,
-      answersGiven: [],
+      answersGiven: []
     };
   }
 
   componentWillMount = () => {
     this.setState({ loading: false });
+    console.log(this.state);
   };
 
-  handleHostTest = (e) => {
+  handleHostTest = e => {
     e.preventDefault();
     const { tid, test, questions, answersGiven } = this.state;
     const { firebase, history } = this.props;
@@ -45,14 +46,14 @@ class TestPage extends React.Component {
     const hostedTest = {
       answersGiven: answersGiven,
       currentQuestion: 0,
-      ...test,
+      ...test
     };
     // *** Create Hosted Test *** //
     firebase.host(tid).set(hostedTest);
 
     history.push({
       pathname: `${ROUTES.TESTS}/i/${tid}`,
-      state: tid,
+      state: tid
     });
   };
 
@@ -75,7 +76,7 @@ class TestPage extends React.Component {
                 </form>
               </article>
             ) : (
-              ''
+              ""
             )}
             <ul>
               <li>Possible Points: {test.totalPoints}</li>
@@ -85,13 +86,13 @@ class TestPage extends React.Component {
                 Questions:
                 <ul id="questions">
                   {/* Iterates through the questions array, checks if there is an image associated with it, downloads the image and sets the url to the url state. */}
-                  {questions.map((question) => {
+                  {questions.map(question => {
                     question.image &&
                       firebase
                         .images(authUser.uid)
                         .child(`${question.image.substring(12)}`)
                         .getDownloadURL()
-                        .then((url) => {
+                        .then(url => {
                           this.setState({ url });
                         });
                     /* Returns the question number, text, image (if there is one) and then iterates through the options which are clickable to submit answers. */
@@ -109,7 +110,7 @@ class TestPage extends React.Component {
                           />
                         )}
                         <ol>
-                          {question.options.map((op) => (
+                          {question.options.map(op => (
                             <li
                               key={op}
                               data-key={op}
@@ -141,5 +142,5 @@ class TestPage extends React.Component {
 // Wraps the component with the higher order component "withFirebase" to give the component access to the Firebase API.
 export default compose(
   withAuthentication,
-  withFirebase,
+  withFirebase
 )(TestPage);
