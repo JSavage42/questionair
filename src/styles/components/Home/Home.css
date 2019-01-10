@@ -10,6 +10,12 @@
   font-size: 3rem;
 }
 
+#home #title {
+  color: var(--ku-blue);
+  font-family: "Times New Roman", serif;
+  text-shadow: 2px 2px 5px #000;
+}
+
 @media (min-width: 650px) {
   #home {
     align-items: center;
@@ -18,6 +24,6 @@
 
   #home p {
     font-size: 10rem;
-    text-shadow: 5px 5px 5px var(--ku-blue);
+    text-shadow: 2px 2px 5px var(--ku-blue);
   }
 }
