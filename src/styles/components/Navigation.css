@@ -4,7 +4,7 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 100vw;
+  width: 100%;
 }
 
 #logo-title {
@@ -52,13 +52,13 @@ nav ul > li a:hover {
 header button {
   align-self: flex-end;
   justify-self: flex-end;
-  background-color: var(--signature-grey);
+  background-color: var(--jayhawk-yellow);
   border-radius: 1rem 1rem 0 0;
   border: none;
-  color: #000;
-  margin: 0 1rem;
+  color: var(--crimson);
+  margin: 0;
   font-size: 1.6rem;
-  font-weight: 700;
+  font-weight: 500;
   padding: 0.5rem;
   width: auto;
 }

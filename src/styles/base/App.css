@@ -1,6 +1,6 @@
 #root {
   height: 100%;
-  width: 100vw;
+  width: 100%;
 }
 
 button {
@@ -27,7 +27,7 @@ h6 {
 }
 
 h2 {
-  background-color: var(--jayhawk-yellow);
+  background-color: var(--ku-blue);
   color: #fff;
   display: block;
   font-size: 2.5rem;
@@ -93,8 +93,8 @@ input[type="button"] {
 }
 
 input[type="submit"] {
-  background: var(--jayhawk-yellow);
-  color: #000;
+  background: var(--ku-blue);
+  color: #fff;
   font-weight: 700;
   width: 100%;
 }
@@ -126,15 +126,6 @@ p {
 /* *** Break Point *** */
 
 @media (min-width: 650px) {
-  #root {
-    height: 100%;
-    width: 100vw;
-  }
-
-  button {
-    cursor: pointer;
-  }
-
   .selected {
     background-color: #fff;
     color: var(--crimson);
@@ -149,7 +140,7 @@ p {
 
   h1 {
     font-size: 5rem;
-    text-shadow: 5px 5px 2px var(--signature-grey);
+    text-shadow: 2px 2px 2px var(--signature-grey);
   }
 
   h1 #air {
@@ -224,8 +215,8 @@ p {
   }
 
   input[type="submit"] {
-    background: var(--jayhawk-yellow);
-    color: #000;
+    background: var(--ku-blue);
+    color: #fff;
   }
 
   input[type="reset"] {
