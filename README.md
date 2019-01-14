@@ -20,7 +20,6 @@
         - [New Question](#new-question)
       - [Instructor View of Test Page](#instructor-view-of-test-page)
       - [Hosted Quiz View](#hosted-quiz-view)
-        - [TODO](#todo)
     - [Administrators](#administrators)
       - [Admin Page](#admin-page)
 
@@ -71,7 +70,6 @@ You can add a Test ID to open a page that displays one question at a time and wa
 
 ##### Todo
 
-1. Only allow one option to be highlighted at a time.
 1. Show the current graph for submitted answers after you submit.
 
 ### Instructors
@@ -110,12 +108,7 @@ Here you can view metadata about the test (test ID, possible points, passing sco
 
 #### Hosted Quiz View
 
-The view the instructor has of a hosted test shows the current answers in a chart and a button to advance to the next question.
-
-##### TODO
-
-1. Plug in logic for chart to show actual percentage of answers.
-2. Show only one bar for each of the same answer. Currently shows a bar for each individual answer even if it is the same answer.
+The view the instructor has of a hosted test shows the current answers in a chart that shows percentages and a button to advance to the next question.
 
 ### Administrators
 

@@ -8,9 +8,9 @@ const BarChart = props => (
       datasets: [
         {
           label: "My First Dataset",
-          backgroundColor: "#fff",
+          backgroundColor: "#0051ba",
           borderWidth: 1,
-          hoverBackgroundColor: "#ff0000",
+          hoverBackgroundColor: "#e8000d",
           hoverBorderColor: "#fff",
           data: props.data
         }
