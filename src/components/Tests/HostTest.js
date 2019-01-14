@@ -27,14 +27,12 @@ class HostTest extends Component {
       currentQuestion: "",
       submittedAnswers: [],
       labels: [],
-      data: [],
-      justAnswers: []
+      data: []
     };
   }
   componentWillMount() {
-    const { tid } = this.state;
+    const { tid, data } = this.state;
     const { firebase } = this.props;
-    console.log(this.state);
     firebase.host(tid).on("value", snapshot => {
       this.setState({
         test: snapshot.val(),
@@ -43,9 +41,15 @@ class HostTest extends Component {
         answersGiven: Object.values(snapshot.val().answersGiven),
         loading: false
       });
+
+      // *** Initializing Arrays *** //
       const submittedAnswersArray = [];
       const justAnswers = [];
+      const labels = [];
+      const dataArry = [];
       const currQuest = snapshot.val().currentQuestion;
+
+      // *** if that looks at the answers given to the current question, pulls out the answers from the student IDs *** //
       if (this.state.answersGiven[currQuest]) {
         Object.entries(this.state.answersGiven[currQuest]).forEach(
           ([key, value]) => {
@@ -53,10 +57,30 @@ class HostTest extends Component {
             justAnswers.push(value);
           }
         );
-        this.setState({ submittedAnswers: submittedAnswersArray, justAnswers });
+        this.setState({
+          submittedAnswers: submittedAnswersArray
+        });
       } else {
         return;
       }
+
+      // *** Sort justAnswers and counts the duplicates. Also stores the unique entires into the labels array. *** //
+      justAnswers.sort();
+      let current = null;
+      let cnt = 1;
+      for (let i = 0; i < justAnswers.length; i++) {
+        current = justAnswers[i];
+        if (justAnswers[i + 1] == current) {
+          cnt++;
+        } else {
+          labels.push(current);
+          // *** Takes the number of answers that are the same, divides them by the length of the answers and multiples by 100 to get the percentage *** //
+          dataArry.push((cnt / justAnswers.length) * 100);
+          cnt = 1;
+        }
+      }
+
+      this.setState({ labels, data: dataArry });
     });
   }
 
@@ -75,7 +99,7 @@ class HostTest extends Component {
   };
 
   render() {
-    const { tid, loading, test, justAnswers } = this.state;
+    const { tid, loading, test, labels, data } = this.state;
     return (
       <main id="host-test">
         {loading && <div>Loading...</div>}
@@ -83,7 +107,7 @@ class HostTest extends Component {
           <section>
             <h2>Test ID: {tid}</h2>
             <p>Answers</p>
-            <BarChart labels={justAnswers} data={[100]} />
+            <BarChart labels={labels} data={data} />
           </section>
         )}
         <input
