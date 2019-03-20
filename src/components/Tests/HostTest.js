@@ -31,7 +31,7 @@ class HostTest extends Component {
     };
   }
   componentWillMount() {
-    const { tid, data } = this.state;
+    const { tid } = this.state;
     const { firebase } = this.props;
     firebase.host(tid).on("value", snapshot => {
       this.setState({
@@ -105,7 +105,7 @@ class HostTest extends Component {
         {loading && <div>Loading...</div>}
         {test && (
           <section>
-            <h2>Test ID: {tid}</h2>
+            <h2>Quiz ID: {tid}</h2>
             <p>Answers</p>
             <BarChart labels={labels} data={data} />
           </section>

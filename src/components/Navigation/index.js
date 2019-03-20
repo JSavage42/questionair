@@ -50,15 +50,15 @@ const NavigationAuth = ({ authUser }) => (
             Student
           </Link>
         </li>
-        {(authUser.roles.includes(ROLES.ADMIN) ||
-          authUser.roles.includes(ROLES.INSTRUCTOR)) && (
+        {(Object.values(authUser.roles).includes(ROLES.INSTRUCTOR) ||
+          Object.values(authUser.roles).includes(ROLES.ADMIN)) && (
           <li>
             <Link to={ROUTES.INSTRUCTOR} activeClassName="selected">
               Instructor
             </Link>
           </li>
         )}
-        {authUser.roles.includes(ROLES.ADMIN) && (
+        {Object.values(authUser.roles).includes(ROLES.ADMIN) && (
           <li>
             <Link to={ROUTES.ADMIN} activeClassName="selected">
               Admin
