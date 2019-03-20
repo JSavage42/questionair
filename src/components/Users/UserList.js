@@ -26,7 +26,7 @@ class UserList extends Component {
     const { firebase } = this.props;
     this.setState({ loading: true });
 
-    firebase.users().on('value', (snapshot) => {
+    firebase.users().on('value', snapshot => {
       const usersObject = snapshot.val();
 
       const usersList = Object.keys(usersObject).map((key) => ({
@@ -48,13 +48,13 @@ class UserList extends Component {
 
   render() {
     const { users, loading } = this.state;
-
+    console.log(users);
     return (
       <article id="user-list">
         <h3>Enrolled Users</h3>
         {loading && <div>Loading ...</div>}
         <ul>
-          {users.map((user) => (
+          {users.length > 0 && users.map((user) => (
             <li key={user.uid}>
               <span>
                 <strong>ID:</strong> {user.uid}
@@ -65,7 +65,7 @@ class UserList extends Component {
               <span>
                 <strong>Username:</strong> {user.username}
               </span>
-              {user.roles && (
+              {user.roles > 1 && (
                 <span>
                   <strong>Roles:</strong>
                   <ul>
